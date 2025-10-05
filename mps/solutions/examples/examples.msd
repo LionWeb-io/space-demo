@@ -12,6 +12,7 @@
   </facets>
   <sourcePath />
   <languageVersions>
+    <language slang="l:daeaf3e0-0c1d-4bee-941e-b0a10169a7a6:Finding" version="0" />
     <language slang="l:88260bd7-f440-4eca-9873-12d94cb6e747:PowerBudget" version="0" />
     <language slang="l:ceab5195-25ea-4f22-9b92-103b95ca8c0c:jetbrains.mps.lang.core" version="2" />
   </languageVersions>
