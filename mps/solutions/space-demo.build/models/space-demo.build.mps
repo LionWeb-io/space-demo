@@ -7,24 +7,24 @@
   </languages>
   <imports>
     <import index="ffeo" ref="r:874d959d-e3b4-4d04-b931-ca849af130dd(jetbrains.mps.ide.build)" />
+    <import index="e6nc" ref="r:d70b5da3-1a32-4e12-b6d4-f80916aed790(io.lionweb.mps.build)" />
   </imports>
   <registry>
-    <language id="479c7a8c-02f9-43b5-9139-d910cb22f298" name="jetbrains.mps.core.xml">
-      <concept id="6666499814681415858" name="jetbrains.mps.core.xml.structure.XmlElement" flags="ng" index="2pNNFK">
-        <property id="6666499814681415862" name="tagName" index="2pNNFO" />
-        <child id="1622293396948928802" name="content" index="3o6s8t" />
-      </concept>
-      <concept id="1622293396948952339" name="jetbrains.mps.core.xml.structure.XmlText" flags="nn" index="3o6iSG">
-        <property id="1622293396948953704" name="value" index="3o6i5n" />
-      </concept>
-    </language>
     <language id="798100da-4f0a-421a-b991-71f8c50ce5d2" name="jetbrains.mps.build">
+      <concept id="5481553824944787378" name="jetbrains.mps.build.structure.BuildSourceProjectRelativePath" flags="ng" index="55IIr" />
+      <concept id="7321017245476976379" name="jetbrains.mps.build.structure.BuildRelativePath" flags="ng" index="iG8Mu">
+        <child id="7321017245477039051" name="compositePart" index="iGT6I" />
+      </concept>
       <concept id="4993211115183325728" name="jetbrains.mps.build.structure.BuildProjectDependency" flags="ng" index="2sgV4H">
         <reference id="5617550519002745380" name="script" index="1l3spb" />
         <child id="4129895186893471026" name="artifacts" index="2JcizS" />
       </concept>
       <concept id="4380385936562003279" name="jetbrains.mps.build.structure.BuildString" flags="ng" index="NbPM2">
         <child id="4903714810883783243" name="parts" index="3MwsjC" />
+      </concept>
+      <concept id="8618885170173601777" name="jetbrains.mps.build.structure.BuildCompositePath" flags="nn" index="2Ry0Ak">
+        <property id="8618885170173601779" name="head" index="2Ry0Am" />
+        <child id="8618885170173601778" name="tail" index="2Ry0An" />
       </concept>
       <concept id="6647099934206700647" name="jetbrains.mps.build.structure.BuildJavaPlugin" flags="ng" index="10PD9b" />
       <concept id="7389400916848050071" name="jetbrains.mps.build.structure.BuildLayout_Zip" flags="ng" index="3981dG" />
@@ -44,10 +44,17 @@
         <child id="5617550519002745378" name="macros" index="1l3spd" />
         <child id="5617550519002745372" name="layout" index="1l3spN" />
       </concept>
+      <concept id="8654221991637384182" name="jetbrains.mps.build.structure.BuildFileIncludesSelector" flags="ng" index="3qWCbU">
+        <property id="8654221991637384184" name="pattern" index="3qWCbO" />
+      </concept>
       <concept id="4701820937132344003" name="jetbrains.mps.build.structure.BuildLayout_Container" flags="ng" index="1y1bJS">
         <child id="7389400916848037006" name="children" index="39821P" />
       </concept>
       <concept id="841011766566059607" name="jetbrains.mps.build.structure.BuildStringNotEmpty" flags="ng" index="3_J27D" />
+      <concept id="5248329904287794596" name="jetbrains.mps.build.structure.BuildInputFiles" flags="ng" index="3LXTmp">
+        <child id="5248329904287794598" name="dir" index="3LXTmr" />
+        <child id="5248329904287794679" name="selectors" index="3LXTna" />
+      </concept>
       <concept id="4903714810883702019" name="jetbrains.mps.build.structure.BuildTextStringPart" flags="ng" index="3Mxwew">
         <property id="4903714810883755350" name="text" index="3MwjfP" />
       </concept>
@@ -63,7 +70,6 @@
       </concept>
       <concept id="6592112598314498932" name="jetbrains.mps.build.mps.structure.BuildMps_IdeaPlugin" flags="ng" index="m$_wf">
         <property id="6592112598314498927" name="id" index="m$_wk" />
-        <child id="1359186315025500371" name="xml" index="20twgj" />
         <child id="6592112598314498931" name="version" index="m$_w8" />
         <child id="6592112598314499050" name="content" index="m$_yh" />
         <child id="6592112598314499028" name="dependencies" index="m$_yJ" />
@@ -78,8 +84,28 @@
         <reference id="6592112598314499066" name="target" index="m$_y1" />
       </concept>
       <concept id="3570488090019868065" name="jetbrains.mps.build.mps.structure.BuildMpsLayout_AutoPluginLayoutType" flags="ng" index="pUk6x" />
-      <concept id="1500819558095907805" name="jetbrains.mps.build.mps.structure.BuildMps_Group" flags="ng" index="2G$12M" />
+      <concept id="1500819558095907805" name="jetbrains.mps.build.mps.structure.BuildMps_Group" flags="ng" index="2G$12M">
+        <child id="1500819558095907806" name="modules" index="2G$12L" />
+      </concept>
       <concept id="868032131020265945" name="jetbrains.mps.build.mps.structure.BuildMPSPlugin" flags="ng" index="3b7kt6" />
+      <concept id="5253498789149381388" name="jetbrains.mps.build.mps.structure.BuildMps_Module" flags="ng" index="3bQrTs">
+        <child id="5253498789149547825" name="sources" index="3bR31x" />
+      </concept>
+      <concept id="763829979718664966" name="jetbrains.mps.build.mps.structure.BuildMps_ModuleResources" flags="ng" index="3rtmxn">
+        <child id="763829979718664967" name="files" index="3rtmxm" />
+      </concept>
+      <concept id="4278635856200817744" name="jetbrains.mps.build.mps.structure.BuildMps_ModuleModelRoot" flags="ng" index="1BupzO">
+        <property id="8137134783396907368" name="convert2binary" index="1Hdu6h" />
+        <property id="8137134783396676838" name="extracted" index="1HemKv" />
+        <property id="2889113830911481881" name="deployFolderName" index="3ZfqAx" />
+        <child id="8137134783396676835" name="location" index="1HemKq" />
+      </concept>
+      <concept id="3189788309731840248" name="jetbrains.mps.build.mps.structure.BuildMps_Language" flags="ng" index="1E1JtD" />
+      <concept id="322010710375871467" name="jetbrains.mps.build.mps.structure.BuildMps_AbstractModule" flags="ng" index="3LEN3z">
+        <property id="8369506495128725901" name="compact" index="BnDLt" />
+        <property id="322010710375892619" name="uuid" index="3LESm3" />
+        <child id="322010710375956261" name="path" index="3LF7KH" />
+      </concept>
     </language>
   </registry>
   <node concept="1l3spW" id="RDOtZ1fw$0">
@@ -97,6 +123,12 @@
       <ref role="1l3spb" to="ffeo:3IKDaVZmzS6" />
       <node concept="398BVA" id="RDOtZ1fw$5" role="2JcizS">
         <ref role="398BVh" node="RDOtZ1fw$3" resolve="mps_home" />
+      </node>
+    </node>
+    <node concept="2sgV4H" id="RDOtZ1fx9B" role="1l3spa">
+      <ref role="1l3spb" to="e6nc:5wsogBcGDKa" resolve="io.lionweb.mps" />
+      <node concept="398BVA" id="RDOtZ1fx9G" role="2JcizS">
+        <ref role="398BVh" node="RDOtZ1fw$8" resolve="lionweb-mps.home" />
       </node>
     </node>
     <node concept="1l3spV" id="RDOtZ1fw$p" role="1l3spN">
@@ -130,20 +162,69 @@
       <node concept="m$_yC" id="RDOtZ1fw$i" role="m$_yJ">
         <ref role="m$_y1" to="ffeo:4k71ibbKLe8" />
       </node>
+      <node concept="m$_yC" id="RDOtZ1fx6h" role="m$_yJ">
+        <ref role="m$_y1" to="e6nc:5wsogBcGDKB" resolve="io.lionweb.mps" />
+      </node>
       <node concept="3_J27D" id="RDOtZ1fw$j" role="m_cZH">
         <node concept="3Mxwew" id="RDOtZ1fw$k" role="3MwsjC">
           <property role="3MwjfP" value="space-demo" />
         </node>
       </node>
-      <node concept="2pNNFK" id="RDOtZ1fw$l" role="20twgj">
-        <property role="2pNNFO" value="depends" />
-        <node concept="3o6iSG" id="RDOtZ1fw$m" role="3o6s8t">
-          <property role="3o6i5n" value="com.intellij.modules.platform" />
-        </node>
-      </node>
     </node>
     <node concept="2G$12M" id="RDOtZ1fw$b" role="3989C9">
       <property role="TrG5h" value="space-demo" />
+      <node concept="1E1JtD" id="RDOtZ1fx3M" role="2G$12L">
+        <property role="BnDLt" value="true" />
+        <property role="TrG5h" value="PowerBudget" />
+        <property role="3LESm3" value="88260bd7-f440-4eca-9873-12d94cb6e747" />
+        <node concept="55IIr" id="RDOtZ1fx3N" role="3LF7KH">
+          <node concept="2Ry0Ak" id="RDOtZ1fx3T" role="iGT6I">
+            <property role="2Ry0Am" value="languages" />
+            <node concept="2Ry0Ak" id="RDOtZ1fx3Y" role="2Ry0An">
+              <property role="2Ry0Am" value="PowerBudget" />
+              <node concept="2Ry0Ak" id="RDOtZ1fx43" role="2Ry0An">
+                <property role="2Ry0Am" value="PowerBudget.mpl" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="1BupzO" id="RDOtZ1fx49" role="3bR31x">
+          <property role="3ZfqAx" value="models" />
+          <property role="1Hdu6h" value="true" />
+          <property role="1HemKv" value="true" />
+          <node concept="3LXTmp" id="RDOtZ1fx4a" role="1HemKq">
+            <node concept="55IIr" id="RDOtZ1fx45" role="3LXTmr">
+              <node concept="2Ry0Ak" id="RDOtZ1fx46" role="iGT6I">
+                <property role="2Ry0Am" value="languages" />
+                <node concept="2Ry0Ak" id="RDOtZ1fx47" role="2Ry0An">
+                  <property role="2Ry0Am" value="PowerBudget" />
+                  <node concept="2Ry0Ak" id="RDOtZ1fx48" role="2Ry0An">
+                    <property role="2Ry0Am" value="models" />
+                  </node>
+                </node>
+              </node>
+            </node>
+            <node concept="3qWCbU" id="RDOtZ1fx4b" role="3LXTna">
+              <property role="3qWCbO" value="**/*.mps, **/*.mpsr, **/.model" />
+            </node>
+          </node>
+        </node>
+        <node concept="3rtmxn" id="RDOtZ1fx55" role="3bR31x">
+          <node concept="3LXTmp" id="RDOtZ1fx56" role="3rtmxm">
+            <node concept="55IIr" id="RDOtZ1fx57" role="3LXTmr">
+              <node concept="2Ry0Ak" id="RDOtZ1fx58" role="iGT6I">
+                <property role="2Ry0Am" value="languages" />
+                <node concept="2Ry0Ak" id="RDOtZ1fx59" role="2Ry0An">
+                  <property role="2Ry0Am" value="PowerBudget" />
+                </node>
+              </node>
+            </node>
+            <node concept="3qWCbU" id="RDOtZ1fx5b" role="3LXTna">
+              <property role="3qWCbO" value="icons/**, resources/**" />
+            </node>
+          </node>
+        </node>
+      </node>
     </node>
     <node concept="398rNT" id="RDOtZ1fw$F" role="1l3spd">
       <property role="TrG5h" value="space-demo.home" />

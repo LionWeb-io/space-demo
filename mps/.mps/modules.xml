@@ -3,6 +3,7 @@
   <component name="MPSProject">
     <projectModules>
       <modulePath path="$PROJECT_DIR$/languages/PowerBudget/PowerBudget.mpl" folder="" />
+      <modulePath path="$PROJECT_DIR$/solutions/LionWeb.export/LionWeb.export.msd" folder="" />
       <modulePath path="$PROJECT_DIR$/solutions/space-demo.build/space-demo.build.msd" folder="" />
     </projectModules>
   </component>
