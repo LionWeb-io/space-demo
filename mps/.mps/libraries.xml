@@ -7,7 +7,7 @@
           <value>
             <Library>
               <option name="name" value="LionWeb" />
-              <option name="path" value="$PROJECT_DIR$/build/artifacts/io.lionweb.mps" />
+              <option name="path" value="$PROJECT_DIR$/build/dependencies/io.lionweb.mps" />
             </Library>
           </value>
         </entry>
