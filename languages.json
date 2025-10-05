@@ -970,6 +970,467 @@
       "references": [],
       "annotations": [],
       "parent": "PowerSourceKind"
+    },
+    {
+      "id": "FindingLanguage",
+      "classifier": {
+        "language": "LionCore-M3",
+        "version": "2023.1",
+        "key": "Language"
+      },
+      "properties": [
+        {
+          "property": {
+            "language": "LionCore-M3",
+            "version": "2023.1",
+            "key": "Language-version"
+          },
+          "value": "0.1"
+        },
+        {
+          "property": {
+            "language": "LionCore-M3",
+            "version": "2023.1",
+            "key": "IKeyed-key"
+          },
+          "value": "FindingLanguage"
+        },
+        {
+          "property": {
+            "language": "LionCore-builtins",
+            "version": "2023.1",
+            "key": "LionCore-builtins-INamed-name"
+          },
+          "value": "Finding"
+        }
+      ],
+      "containments": [
+        {
+          "containment": {
+            "language": "LionCore-M3",
+            "version": "2023.1",
+            "key": "Language-entities"
+          },
+          "children": [
+            "Finding",
+            "Severity"
+          ]
+        }
+      ],
+      "references": [
+        {
+          "reference": {
+            "language": "LionCore-M3",
+            "version": "2023.1",
+            "key": "Language-dependsOn"
+          },
+          "targets": []
+        }
+      ],
+      "annotations": [],
+      "parent": null
+    },
+    {
+      "id": "Finding",
+      "classifier": {
+        "language": "LionCore-M3",
+        "version": "2023.1",
+        "key": "Annotation"
+      },
+      "properties": [
+        {
+          "property": {
+            "language": "LionCore-M3",
+            "version": "2023.1",
+            "key": "IKeyed-key"
+          },
+          "value": "Finding"
+        },
+        {
+          "property": {
+            "language": "LionCore-builtins",
+            "version": "2023.1",
+            "key": "LionCore-builtins-INamed-name"
+          },
+          "value": "Finding"
+        }
+      ],
+      "containments": [
+        {
+          "containment": {
+            "language": "LionCore-M3",
+            "version": "2023.1",
+            "key": "Classifier-features"
+          },
+          "children": [
+            "Finding-severity",
+            "Finding-message",
+            "Finding-code"
+          ]
+        }
+      ],
+      "references": [
+        {
+          "reference": {
+            "language": "LionCore-M3",
+            "version": "2023.1",
+            "key": "Annotation-annotates"
+          },
+          "targets": [
+            {
+              "resolveInfo": "Node",
+              "reference": "LionCore-builtins-Node"
+            }
+          ]
+        },
+        {
+          "reference": {
+            "language": "LionCore-M3",
+            "version": "2023.1",
+            "key": "Annotation-extends"
+          },
+          "targets": []
+        },
+        {
+          "reference": {
+            "language": "LionCore-M3",
+            "version": "2023.1",
+            "key": "Annotation-implements"
+          },
+          "targets": []
+        }
+      ],
+      "annotations": [
+        "Finding-ConceptDescription"
+      ],
+      "parent": "FindingLanguage"
+    },
+    {
+      "id": "Finding-ConceptDescription",
+      "classifier": {
+        "language": "io-lionweb-mps-specific",
+        "version": "0",
+        "key": "ConceptDescription"
+      },
+      "properties": [
+        {
+          "property": {
+            "language": "io-lionweb-mps-specific",
+            "version": "0",
+            "key": "ConceptDescription-conceptAlias"
+          },
+          "value": "Finding"
+        },
+        {
+          "property": {
+            "language": "io-lionweb-mps-specific",
+            "version": "0",
+            "key": "ConceptDescription-conceptShortDescription"
+          },
+          "value": null
+        },
+        {
+          "property": {
+            "language": "io-lionweb-mps-specific",
+            "version": "0",
+            "key": "ConceptDescription-helpUrl"
+          },
+          "value": null
+        }
+      ],
+      "containments": [],
+      "references": [],
+      "annotations": [],
+      "parent": "Finding"
+    },
+    {
+      "id": "Finding-severity",
+      "classifier": {
+        "language": "LionCore-M3",
+        "version": "2023.1",
+        "key": "Property"
+      },
+      "properties": [
+        {
+          "property": {
+            "language": "LionCore-M3",
+            "version": "2023.1",
+            "key": "Feature-optional"
+          },
+          "value": "true"
+        },
+        {
+          "property": {
+            "language": "LionCore-M3",
+            "version": "2023.1",
+            "key": "IKeyed-key"
+          },
+          "value": "Finding-severity"
+        },
+        {
+          "property": {
+            "language": "LionCore-builtins",
+            "version": "2023.1",
+            "key": "LionCore-builtins-INamed-name"
+          },
+          "value": "severity"
+        }
+      ],
+      "containments": [],
+      "references": [
+        {
+          "reference": {
+            "language": "LionCore-M3",
+            "version": "2023.1",
+            "key": "Property-type"
+          },
+          "targets": [
+            {
+              "resolveInfo": "Severity",
+              "reference": "Severity"
+            }
+          ]
+        }
+      ],
+      "annotations": [],
+      "parent": "Finding"
+    },
+    {
+      "id": "Finding-message",
+      "classifier": {
+        "language": "LionCore-M3",
+        "version": "2023.1",
+        "key": "Property"
+      },
+      "properties": [
+        {
+          "property": {
+            "language": "LionCore-M3",
+            "version": "2023.1",
+            "key": "Feature-optional"
+          },
+          "value": "true"
+        },
+        {
+          "property": {
+            "language": "LionCore-M3",
+            "version": "2023.1",
+            "key": "IKeyed-key"
+          },
+          "value": "Finding-message"
+        },
+        {
+          "property": {
+            "language": "LionCore-builtins",
+            "version": "2023.1",
+            "key": "LionCore-builtins-INamed-name"
+          },
+          "value": "message"
+        }
+      ],
+      "containments": [],
+      "references": [
+        {
+          "reference": {
+            "language": "LionCore-M3",
+            "version": "2023.1",
+            "key": "Property-type"
+          },
+          "targets": [
+            {
+              "resolveInfo": "String",
+              "reference": "LionCore-builtins-String"
+            }
+          ]
+        }
+      ],
+      "annotations": [],
+      "parent": "Finding"
+    },
+    {
+      "id": "Finding-code",
+      "classifier": {
+        "language": "LionCore-M3",
+        "version": "2023.1",
+        "key": "Property"
+      },
+      "properties": [
+        {
+          "property": {
+            "language": "LionCore-M3",
+            "version": "2023.1",
+            "key": "Feature-optional"
+          },
+          "value": "true"
+        },
+        {
+          "property": {
+            "language": "LionCore-M3",
+            "version": "2023.1",
+            "key": "IKeyed-key"
+          },
+          "value": "Finding-code"
+        },
+        {
+          "property": {
+            "language": "LionCore-builtins",
+            "version": "2023.1",
+            "key": "LionCore-builtins-INamed-name"
+          },
+          "value": "code"
+        }
+      ],
+      "containments": [],
+      "references": [
+        {
+          "reference": {
+            "language": "LionCore-M3",
+            "version": "2023.1",
+            "key": "Property-type"
+          },
+          "targets": [
+            {
+              "resolveInfo": "Integer",
+              "reference": "LionCore-builtins-Integer"
+            }
+          ]
+        }
+      ],
+      "annotations": [],
+      "parent": "Finding"
+    },
+    {
+      "id": "Severity",
+      "classifier": {
+        "language": "LionCore-M3",
+        "version": "2023.1",
+        "key": "Enumeration"
+      },
+      "properties": [
+        {
+          "property": {
+            "language": "LionCore-M3",
+            "version": "2023.1",
+            "key": "IKeyed-key"
+          },
+          "value": "Severity"
+        },
+        {
+          "property": {
+            "language": "LionCore-builtins",
+            "version": "2023.1",
+            "key": "LionCore-builtins-INamed-name"
+          },
+          "value": "Severity"
+        }
+      ],
+      "containments": [
+        {
+          "containment": {
+            "language": "LionCore-M3",
+            "version": "2023.1",
+            "key": "Enumeration-literals"
+          },
+          "children": [
+            "Severity-info",
+            "Severity-warning",
+            "Severity-error"
+          ]
+        }
+      ],
+      "references": [],
+      "annotations": [],
+      "parent": "FindingLanguage"
+    },
+    {
+      "id": "Severity-info",
+      "classifier": {
+        "language": "LionCore-M3",
+        "version": "2023.1",
+        "key": "EnumerationLiteral"
+      },
+      "properties": [
+        {
+          "property": {
+            "language": "LionCore-M3",
+            "version": "2023.1",
+            "key": "IKeyed-key"
+          },
+          "value": "Severity-info"
+        },
+        {
+          "property": {
+            "language": "LionCore-builtins",
+            "version": "2023.1",
+            "key": "LionCore-builtins-INamed-name"
+          },
+          "value": "info"
+        }
+      ],
+      "containments": [],
+      "references": [],
+      "annotations": [],
+      "parent": "Severity"
+    },
+    {
+      "id": "Severity-warning",
+      "classifier": {
+        "language": "LionCore-M3",
+        "version": "2023.1",
+        "key": "EnumerationLiteral"
+      },
+      "properties": [
+        {
+          "property": {
+            "language": "LionCore-M3",
+            "version": "2023.1",
+            "key": "IKeyed-key"
+          },
+          "value": "Severity-warning"
+        },
+        {
+          "property": {
+            "language": "LionCore-builtins",
+            "version": "2023.1",
+            "key": "LionCore-builtins-INamed-name"
+          },
+          "value": "warning"
+        }
+      ],
+      "containments": [],
+      "references": [],
+      "annotations": [],
+      "parent": "Severity"
+    },
+    {
+      "id": "Severity-error",
+      "classifier": {
+        "language": "LionCore-M3",
+        "version": "2023.1",
+        "key": "EnumerationLiteral"
+      },
+      "properties": [
+        {
+          "property": {
+            "language": "LionCore-M3",
+            "version": "2023.1",
+            "key": "IKeyed-key"
+          },
+          "value": "Severity-error"
+        },
+        {
+          "property": {
+            "language": "LionCore-builtins",
+            "version": "2023.1",
+            "key": "LionCore-builtins-INamed-name"
+          },
+          "value": "error"
+        }
+      ],
+      "containments": [],
+      "references": [],
+      "annotations": [],
+      "parent": "Severity"
     }
   ]
 }
