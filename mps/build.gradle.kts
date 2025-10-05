@@ -1,28 +1,39 @@
 // based on https://github.com/specificlanguages/mps-gradle-plugin-sample
 
+import com.specificlanguages.mps.MainBuild
+
 plugins {
     id("com.specificlanguages.mps")
+    id("com.specificlanguages.jbr-toolchain")
     `maven-publish`
 }
 
-val mpsVersionSuffix: String by project
-val lionwebRelease: String by project
 val mpsVersion: String by project
-val lionwebVersion: String by project
+val jbrVersion: String by project
 
 repositories {
-    mavenLocal()
     maven(url = "https://artifacts.itemis.cloud/repository/maven-mps")
     mavenCentral()
 }
 
 dependencies {
     "mps"("com.jetbrains:mps:$mpsVersion")
-    "mps"("io.lionweb.lionweb-mps:lionweb-mps-$mpsVersionSuffix-lw$lionwebRelease:$lionwebVersion")
+    jbr("com.jetbrains.jdk:jbr_jcef:$jbrVersion")
+    api(project(":"))
+}
+
+mpsBuilds {
+    create<MainBuild>("main") {
+        buildSolutionDescriptor = file("solutions/space-demo.build/space-project.build.msd")
+        buildProjectName = "space-demo"
+        buildFile = file("build.xml")
+    }
+
+    mpsDefaults.pathVariables.put("lionweb-mps.home", projectDir.resolve("build/dependencies/io.lionweb.mps"))
 }
 
 tasks.register<JavaExec>("runCommandLineTool") {
-    dependsOn("resolveGenerationDependencies")
+    dependsOn(tasks.resolveMpsLibraries)
 
     val mpsHome = configurations
             .getByName("mps")
@@ -40,6 +51,7 @@ tasks.register<JavaExec>("runCommandLineTool") {
             fileTree("$mpsHome/lib") // $mps_home points to the MPS installation
     )
     mainClass.set("io.lionweb.mps.cmdline.CommandLineTool")
+    javaLauncher = jbrToolchain.javaLauncher
 
     val propArgs: String? = project.findProperty("args") as String?
     project.logger.info("propArgs: $propArgs")
