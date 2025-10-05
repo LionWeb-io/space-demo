@@ -1,0 +1,54 @@
+{
+  "serializationFormatVersion": "2023.1",
+  "languages": [
+    {
+      "key": "space-PowerBudget",
+      "version": "0.1"
+    },
+    {
+      "key": "LionCore-builtins",
+      "version": "2023.1"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "1002563151016857164",
+      "classifier": {
+        "language": "space-PowerBudget",
+        "version": "0.1",
+        "key": "PowerModule"
+      },
+      "properties": [
+        {
+          "property": {
+            "language": "LionCore-builtins",
+            "version": "2023.1",
+            "key": "LionCore-builtins-INamed-name"
+          },
+          "value": "Voyager1"
+        }
+      ],
+      "containments": [
+        {
+          "containment": {
+            "language": "space-PowerBudget",
+            "version": "0.1",
+            "key": "PowerModule-contents"
+          },
+          "children": [
+            "1002563151016857165",
+            "7395118629968815219",
+            "1002563151016885558",
+            "1002563151016885516",
+            "1002563151016885542",
+            "1002563151016885528",
+            "1002563151016885577"
+          ]
+        }
+      ],
+      "references": [],
+      "annotations": [],
+      "parent": null
+    }
+  ]
+}

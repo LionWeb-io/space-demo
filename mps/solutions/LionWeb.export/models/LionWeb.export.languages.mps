@@ -4,9 +4,17 @@
   <languages>
     <use id="97ef2b8d-23e1-433e-8d23-48f916dd314d" name="io.lionweb.mps.converter.lang" version="0" />
   </languages>
-  <imports />
+  <imports>
+    <import index="cnx8" ref="r:85987500-ec3f-404a-b73a-cc3f3a1ce869(examples.ex0)" />
+  </imports>
   <registry>
     <language id="97ef2b8d-23e1-433e-8d23-48f916dd314d" name="io.lionweb.mps.converter.lang">
+      <concept id="3631234780355719700" name="io.lionweb.mps.converter.lang.structure.NodeRef" flags="ng" index="pgsVv">
+        <reference id="3631234780355720143" name="target" index="pgsW4" />
+      </concept>
+      <concept id="3631234780355716573" name="io.lionweb.mps.converter.lang.structure.ExportInstanceToJson" flags="ng" index="pgt$m">
+        <child id="3631234780355719074" name="instances" index="pgtdD" />
+      </concept>
       <concept id="5028875375328515028" name="io.lionweb.mps.converter.lang.structure.APathConverter" flags="ng" index="VS7hm">
         <property id="5028875375328515031" name="path" index="VS7hl" />
       </concept>
@@ -40,6 +48,13 @@
     <node concept="2V$Bhx" id="RDOtZ1fJS8" role="qeD2G">
       <property role="2V$B1T" value="88260bd7-f440-4eca-9873-12d94cb6e747" />
       <property role="2V$B1Q" value="PowerBudget" />
+    </node>
+  </node>
+  <node concept="pgt$m" id="6qwJjq3ayi4">
+    <property role="TrG5h" value="Export Voyager1" />
+    <property role="VS7hl" value="${space-demo.home}/../voyager1.json" />
+    <node concept="pgsVv" id="6qwJjq3aylk" role="pgtdD">
+      <ref role="pgsW4" to="cnx8:RDOtZ1goTc" resolve="Voyager1" />
     </node>
   </node>
 </model>
