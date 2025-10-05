@@ -25,7 +25,7 @@ dependencies {
 mpsBuilds {
     create<MainBuild>("main") {
         buildSolutionDescriptor = file("solutions/space-demo.build/space-project.build.msd")
-        buildProjectName = "space-demo"
+        buildArtifactsDirectory  = file(".")
         buildFile = file("build.xml")
     }
 
