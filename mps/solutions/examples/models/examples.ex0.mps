@@ -65,7 +65,7 @@
       <property role="3cEr1a" value="200" />
       <property role="3cEr17" value="0" />
       <node concept="3cErdH" id="6qwJjq39IwL" role="3cE2Lg">
-        <ref role="3cErdE" node="RDOtZ1goTd" resolve="rtg" />
+        <ref role="3cErdE" node="RDOtZ1goTd" />
       </node>
     </node>
     <node concept="3cEr1W" id="RDOtZ1gvOc" role="3cEr30">
@@ -73,7 +73,7 @@
       <property role="3cEr1a" value="15" />
       <property role="3cEr17" value="15" />
       <node concept="3cErdH" id="6qwJjq3ayhW" role="3cE2Lg">
-        <ref role="3cErdE" node="6qwJjq3ayhN" resolve="rtg1" />
+        <ref role="3cErdE" node="6qwJjq3ayhN" />
       </node>
     </node>
     <node concept="3cEr1W" id="RDOtZ1gvOA" role="3cEr30">
@@ -81,7 +81,7 @@
       <property role="3cEr1a" value="20" />
       <property role="3cEr17" value="15" />
       <node concept="3cErdH" id="6qwJjq3ayhY" role="3cE2Lg">
-        <ref role="3cErdE" node="6qwJjq3ayhN" resolve="rtg1" />
+        <ref role="3cErdE" node="6qwJjq3ayhN" />
       </node>
     </node>
     <node concept="3cEr1W" id="RDOtZ1gvOo" role="3cEr30">
@@ -89,7 +89,7 @@
       <property role="3cEr1a" value="200" />
       <property role="3cEr17" value="15" />
       <node concept="3cErdH" id="6qwJjq3ayi0" role="3cE2Lg">
-        <ref role="3cErdE" node="RDOtZ1goTd" resolve="rtg0" />
+        <ref role="3cErdE" node="RDOtZ1goTd" />
       </node>
     </node>
     <node concept="3cEr1W" id="RDOtZ1gvP9" role="3cEr30">
@@ -97,7 +97,7 @@
       <property role="3cEr1a" value="130" />
       <property role="3cEr17" value="0" />
       <node concept="3cErdH" id="6qwJjq3ayi2" role="3cE2Lg">
-        <ref role="3cErdE" node="RDOtZ1goTd" resolve="rtg0" />
+        <ref role="3cErdE" node="RDOtZ1goTd" />
       </node>
     </node>
   </node>

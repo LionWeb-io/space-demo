@@ -82,7 +82,7 @@
     <property role="TrG5h" value="PowerModule" />
     <property role="19KtqR" value="true" />
     <property role="34LRSv" value="Power Module" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="PrWs8" id="RDOtZ1g64r" role="PzmwI">
       <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
     </node>
@@ -117,7 +117,7 @@
     <property role="EcuMT" value="1002563151016780164" />
     <property role="TrG5h" value="PowerSource" />
     <property role="34LRSv" value="Source" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="PrWs8" id="RDOtZ1g665" role="PzmwI">
       <ref role="PrY4T" node="RDOtZ1g64y" resolve="IPowerModuleContent" />
     </node>
@@ -191,7 +191,7 @@
     <property role="EcuMT" value="1002563151016780195" />
     <property role="TrG5h" value="PowerConsumer" />
     <property role="34LRSv" value="Consumer" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="PrWs8" id="RDOtZ1g66$" role="PzmwI">
       <ref role="PrY4T" node="RDOtZ1g64y" resolve="IPowerModuleContent" />
     </node>
