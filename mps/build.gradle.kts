@@ -10,6 +10,11 @@ plugins {
 
 val mpsVersion: String by project
 val jbrVersion: String by project
+val lionwebVersion: String by project
+val lionwebRelease: String by project
+val mpsVersionSuffix: String by project
+
+val concatenatedArtifact = "lionweb-mps-$mpsVersionSuffix-lw$lionwebRelease"
 
 repositories {
     maven(url = "https://artifacts.itemis.cloud/repository/maven-mps")
@@ -19,7 +24,7 @@ repositories {
 dependencies {
     "mps"("com.jetbrains:mps:$mpsVersion")
     jbr("com.jetbrains.jdk:jbr_jcef:$jbrVersion")
-    api(project(":"))
+    api("io.lionweb.lionweb-mps:$concatenatedArtifact:$lionwebVersion")
 }
 
 mpsBuilds {
