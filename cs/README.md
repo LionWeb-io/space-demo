@@ -6,8 +6,6 @@ Uses
 
 # Generate languages
 
-Needs LionWeb-CSharp _unreleased branch_ `generator-cli`
-
 Run
 
 ```sh
