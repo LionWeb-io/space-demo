@@ -57,7 +57,7 @@
   </node>
   <node concept="pgt$m" id="6qwJjq3ayi4">
     <property role="TrG5h" value="Export Voyager1" />
-    <property role="VS7hl" value="${space-demo.home}/../voyager1.json" />
+    <property role="VS7hl" value="${space-demo.home}/../voyager1.instance.json" />
     <property role="pjpzt" value="39$JcGFainl/descendants" />
     <node concept="pgsVv" id="6qwJjq3aylk" role="pgtdD">
       <ref role="pgsW4" to="cnx8:RDOtZ1goTc" />

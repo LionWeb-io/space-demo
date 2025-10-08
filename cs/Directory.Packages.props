@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-      <LionWebCSharpVersion>0.3.0-rc.12.6</LionWebCSharpVersion>
+      <LionWebCSharpVersion>0.3.0-rc.12.7</LionWebCSharpVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="LionWeb-CSharp" Version="$(LionWebCSharpVersion)" />
