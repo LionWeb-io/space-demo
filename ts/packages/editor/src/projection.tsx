@@ -1,10 +1,11 @@
 import { INodeBase } from "@lionweb/class-core"
 import { observer } from "mobx-react"
 import React from "react"
-import { PowerBudgetBase, PowerModule } from "./gen/PowerBudget.g.js"
+
+import { PowerModule } from "./gen/PowerBudget.g.js"
 
 
-export const Projection = observer(({ node }: { node: INodeBase | undefined }) => {
+export const Projection = observer(({ node }: { node: INodeBase }) => {
 
     if (node === undefined) {
         return <span>model is empty</span>

@@ -1,10 +1,11 @@
-import { nodeBaseDeserializer } from "@lionweb/class-core"
+import { asTreeTextWith, INodeBase, nodeBaseDeserializer } from "@lionweb/class-core"
 import { LionWebJsonChunk } from "@lionweb/json"
 import { makeObservable, observable } from "mobx"
 
 import { allLanguageBases } from "./gen/index.g.js"
 
 import modelJson from "../../../../voyager1.json" assert { type: "json" }
+    // (ignore the warning "assert" needing to be "with"!)
 
 
 export const deserialized = (chunk: LionWebJsonChunk) =>
@@ -12,12 +13,21 @@ export const deserialized = (chunk: LionWebJsonChunk) =>
 const model = deserialized(modelJson)
 
 
+console.log(
+    asTreeTextWith(
+        (node) =>
+            "name" in node ? (node.name as string) : node.id
+    )(model)
+)
+
+
 export class Store {
 
     // TODO  implement multi-model store?
-    model = model
+    model: INodeBase[]
 
-    constructor() {
+    constructor(model: INodeBase[]) {
+        this.model = model
         makeObservable(
             this,
             {
@@ -30,5 +40,5 @@ export class Store {
 }
 
 
-export const store = new Store()
+export const store = new Store(model)
 
