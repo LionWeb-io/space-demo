@@ -27,10 +27,11 @@ class ValidatorClient
 
         Log($"Starting client {name} to connect to {serverIp}:{serverPort}@{repositoryId}");
 
-        var webSocketClient = new WebSocketClient(name);
+        var webSocketClient = new WebSocketClient(name, lionWebVersion);
         
         var forest = new Forest();
         var lionWeb = new LionWebClient(lionWebVersion, languages, $"client_{name}", forest, webSocketClient);
+        var lionWeb = new LionWebClient(lionWebVersion, languages, $"client_{name}", forest, webSocketClient.Connector);
 
         await webSocketClient.ConnectToServer(serverIp, serverPort);
 

@@ -37,7 +37,7 @@ public class Repository
         var serverForest = new Forest();
 
         var lionWebServer = new LionWebRepository(lionWebVersion, languages, "server",
-            serverForest, webSocketServer);
+            serverForest, webSocketServer.Connector);
 
         Console.ReadLine();
         webSocketServer.Stop();

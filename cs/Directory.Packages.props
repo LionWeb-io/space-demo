@@ -1,12 +1,13 @@
 <Project>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+      <LionWebCSharpVersion>0.3.0-rc.12.6</LionWebCSharpVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="LionWeb-CSharp" Version="0.3.0-rc.11" />
-    <PackageVersion Include="LionWeb-CSharp-Generator-Cli" Version="0.3.0-rc.11.25" />
-    <PackageVersion Include="LionWeb-CSharp-Protocol-Delta" Version="0.3.0-rc.7-alpha.1" />
-    <PackageVersion Include="LionWeb-CSharp-WebSocket" Version="0.3.0-rc.11.2" />
+    <PackageVersion Include="LionWeb-CSharp" Version="$(LionWebCSharpVersion)" />
+    <PackageVersion Include="LionWeb-CSharp-Generator-Cli" Version="$(LionWebCSharpVersion)" />
+    <PackageVersion Include="LionWeb-CSharp-Protocol-Delta" Version="$(LionWebCSharpVersion)" />
+    <PackageVersion Include="LionWeb-CSharp-WebSocket" Version="$(LionWebCSharpVersion)" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.14.0" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
     <PackageVersion Include="MSTest.TestAdapter" Version="3.10.2" />
