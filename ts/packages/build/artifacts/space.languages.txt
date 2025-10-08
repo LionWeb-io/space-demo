@@ -1,3 +1,24 @@
+language Finding
+    version: 0.1
+    dependsOn:
+        io.lionweb.mps.specific (2024-01)
+    entities (↓name):
+
+        annotation Finding
+            annotates: Node
+            features (↓name):
+                code: Integer?
+                message: String?
+                severity: Severity?
+
+        enumeration Severity
+            literals:
+                info
+                warning
+                error
+
+
+
 language PowerBudget
     version: 0.1
     dependsOn:
@@ -28,5 +49,6 @@ language PowerBudget
                 solar
                 nuclear
                 diesel
+
 
 

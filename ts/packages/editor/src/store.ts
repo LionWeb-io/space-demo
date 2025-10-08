@@ -2,12 +2,15 @@ import { nodeBaseDeserializer } from "@lionweb/class-core"
 import { LionWebJsonChunk } from "@lionweb/json"
 import { makeObservable, observable } from "mobx"
 
-import { PowerBudgetBase } from "./gen/PowerBudget.g.js"
+import { allLanguageBases } from "./gen/index.g.js"
+
 import modelJson from "../../../../voyager1.json" assert { type: "json" }
 
+
 export const deserialized = (chunk: LionWebJsonChunk) =>
-    nodeBaseDeserializer([PowerBudgetBase.INSTANCE])(chunk)
+    nodeBaseDeserializer(allLanguageBases)(chunk)
 const model = deserialized(modelJson)
+
 
 export class Store {
 

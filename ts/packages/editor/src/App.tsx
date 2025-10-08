@@ -10,7 +10,7 @@ export const App = observer(() => {
         <p>
             This is a small web application that allows you to author a model in the space DSL.
         </p>
-        { store.model.map( (node, index) => <Projection node = {node} key = {index} />) }
+        {store.model.map( (node, index) => <Projection node={node} key={index} />)}
     </>
 })
 
