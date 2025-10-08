@@ -1,10 +1,8 @@
 import { writeFileSync } from "fs"
 import { generateApiFromLanguages } from "@lionweb/class-core-generator"
-import { deserializeLanguagesWithIoLionWebMpsSpecific } from "@lionweb/io-lionweb-mps-specific"
+import { deserializeLanguagesWithIoLionWebMpsSpecific, repairIoLionWebMpsSpecificAnnotations } from "@lionweb/io-lionweb-mps-specific"
 import { LionWebJsonChunk } from "@lionweb/json"
 import { generatePlantUmlForLanguage, languagesAsText, readFileAsJson } from "@lionweb/utilities"
-
-import { repairIoLionWebMpsSpecificAnnotations } from "./annotations-repairing.js"
 
 
 const languagesJson = readFileAsJson("../../../languages.json") as LionWebJsonChunk
