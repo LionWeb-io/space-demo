@@ -38,6 +38,7 @@ public class Repository
 
         var lionWebServer = new LionWebRepository(lionWebVersion, languages, "server",
             serverForest, webSocketServer.Connector);
+        lionWebServer.CommunicationError += (_, exception) => Log(exception.ToString()); 
 
         Console.ReadLine();
         webSocketServer.Stop();

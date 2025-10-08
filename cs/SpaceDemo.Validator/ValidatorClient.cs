@@ -6,7 +6,6 @@ using LionWeb.Core.M3;
 using LionWeb.Core.Notification;
 using LionWeb.Core.Notification.Pipe;
 using LionWeb.Protocol.Delta.Client;
-using LionWeb.Protocol.Delta.Repository;
 using LionWeb.WebSocket;
 
 namespace SpaceDemo.Validator;
@@ -33,8 +32,9 @@ class ValidatorClient
         
         var forest = new Forest();
         forest.GetNotificationSender()!.ConnectTo(new ValidationTrigger());
-        
+
         var lionWeb = new LionWebClient(lionWebVersion, languages, $"client_{name}", forest, webSocketClient.Connector);
+        lionWeb.CommunicationError += (_, exception) => Log(exception.ToString()); 
 
         await webSocketClient.ConnectToServer(serverIp, serverPort);
         await lionWeb.SignOn("myRepo");
@@ -53,13 +53,17 @@ class ValidatorClient
         {
             foreach (var powerModule in notification.AffectedNodes.Select(n => n.GetPartition()).OfType<PowerModule>())
             {
-                _validator.Validate(powerModule);
+                Task.Run(() =>
+                {
+                    Log($"Validating {powerModule.Name}({powerModule.GetId()})");
+                    _validator.Validate(powerModule);
+                });
             }
         }
     }
  
     private static void Log(string message, bool header = false) =>
         Console.WriteLine(header
-            ? $"{ILionWebRepository.HeaderColor_Start}{message}{ILionWebRepository.HeaderColor_End}"
+            ? $"{ILionWebClient.HeaderColor_Start}{message}{ILionWebClient.HeaderColor_End}"
             : message);   
 }

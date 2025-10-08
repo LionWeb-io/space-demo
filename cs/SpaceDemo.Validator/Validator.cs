@@ -1,24 +1,25 @@
-﻿// // Copyright 2024 TRUMPF Laser GmbH
-// //
-// // Licensed under the Apache License, Version 2.0 (the "License");
-// // you may not use this file except in compliance with the License.
-// // You may obtain a copy of the License at
-// //
-// //     http://www.apache.org/licenses/LICENSE-2.0
-// //
-// // Unless required by applicable law or agreed to in writing, software
-// // distributed under the License is distributed on an "AS IS" BASIS,
-// // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// // See the License for the specific language governing permissions and
-// // limitations under the License.
-// //
-// // SPDX-FileCopyrightText: 2024 TRUMPF Laser GmbH
-// // SPDX-License-Identifier: Apache-2.0
+﻿// Copyright 2024 TRUMPF Laser GmbH
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// SPDX-FileCopyrightText: 2024 TRUMPF Laser GmbH
+// SPDX-License-Identifier: Apache-2.0
 
 using Languages;
 using LionWeb.Core;
 using LionWeb.Core.M1;
 using LionWeb.Core.Utilities;
+using LionWeb.Protocol.Delta.Client;
 
 namespace SpaceDemo.Validator;
 
@@ -118,11 +119,18 @@ public class Validator
                 new Comparer([(IReadableNode)finding], [f]).AreEqual()))
             return;
 
+        Log($"Adding finding {finding.Code} to {node.GetId()}");
         node.AddAnnotations([finding]);
     }
 
     private void RemoveFinding(INode node, int code)
     {
+        Log($"Removing finding {code} from {node.GetId()}");
         node.RemoveAnnotations(node.GetAnnotations().OfType<Finding>().Where(f => f.Code == code));
     }
+
+    private static void Log(string message, bool header = false) =>
+        Console.WriteLine(header
+            ? $"{ILionWebClient.HeaderColor_Start}{message}{ILionWebClient.HeaderColor_End}"
+            : message);   
 }
