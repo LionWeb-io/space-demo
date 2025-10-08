@@ -3,6 +3,8 @@ using Languages;
 using LionWeb.Core;
 using LionWeb.Core.M1;
 using LionWeb.Core.M3;
+using LionWeb.Core.Notification;
+using LionWeb.Core.Notification.Pipe;
 using LionWeb.Protocol.Delta.Client;
 using LionWeb.Protocol.Delta.Repository;
 using LionWeb.WebSocket;
@@ -30,12 +32,30 @@ class ValidatorClient
         var webSocketClient = new WebSocketClient(name, lionWebVersion);
         
         var forest = new Forest();
-        var lionWeb = new LionWebClient(lionWebVersion, languages, $"client_{name}", forest, webSocketClient);
+        forest.GetNotificationSender()!.ConnectTo(new ValidationTrigger());
+        
         var lionWeb = new LionWebClient(lionWebVersion, languages, $"client_{name}", forest, webSocketClient.Connector);
 
         await webSocketClient.ConnectToServer(serverIp, serverPort);
+        await lionWeb.SignOn("myRepo");
+        await lionWeb.SubscribeToChangingPartitions(true, true, true);
 
         Console.ReadLine();
+
+        await lionWeb.SignOff();
+    }
+    
+    private class ValidationTrigger : INotificationReceiver
+    {
+        private readonly Validator _validator = new();
+        
+        public void Receive(INotificationSender correspondingSender, INotification notification)
+        {
+            foreach (var powerModule in notification.AffectedNodes.Select(n => n.GetPartition()).OfType<PowerModule>())
+            {
+                _validator.Validate(powerModule);
+            }
+        }
     }
  
     private static void Log(string message, bool header = false) =>
