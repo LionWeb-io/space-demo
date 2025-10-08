@@ -1,7 +1,5 @@
 language Finding
     version: 0.1
-    dependsOn:
-        io.lionweb.mps.specific (2024-01)
     entities (↓name):
 
         annotation Finding
@@ -21,8 +19,6 @@ language Finding
 
 language PowerBudget
     version: 0.1
-    dependsOn:
-        io.lionweb.mps.specific (2024-01)
     entities (↓name):
 
         interface IPowerModuleContent extends INamed

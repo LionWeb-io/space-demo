@@ -1,13 +1,15 @@
 import { writeFileSync } from "fs"
 import { generateApiFromLanguages } from "@lionweb/class-core-generator"
-import { deserializeLanguages } from "@lionweb/core"
-import { ioLionWebMpsSpecificLanguage } from "@lionweb/io-lionweb-mps-specific"
+import { deserializeLanguagesWithIoLionWebMpsSpecific } from "@lionweb/io-lionweb-mps-specific"
 import { LionWebJsonChunk } from "@lionweb/json"
 import { generatePlantUmlForLanguage, languagesAsText, readFileAsJson } from "@lionweb/utilities"
 
+import { repairIoLionWebMpsSpecificAnnotations } from "./annotations-repairing.js"
+
 
 const languagesJson = readFileAsJson("../../../languages.json") as LionWebJsonChunk
-const spaceLanguages = deserializeLanguages(languagesJson, ioLionWebMpsSpecificLanguage)
+repairIoLionWebMpsSpecificAnnotations(languagesJson)
+const spaceLanguages = deserializeLanguagesWithIoLionWebMpsSpecific(languagesJson)
 
 writeFileSync("artifacts/space.languages.txt", languagesAsText(spaceLanguages))
 
