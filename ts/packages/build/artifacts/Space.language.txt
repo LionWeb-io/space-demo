@@ -1,5 +1,32 @@
-language SpaceDSL
-    version: 0
+language PowerBudget
+    version: 0.1
+    dependsOn:
+        io.lionweb.mps.specific (2024-01)
     entities (↓name):
+
+        interface IPowerModuleContent extends INamed
+
+        interface IPowerParticipant
+            features (↓name):
+                continuous: Integer?
+                peak: Integer?
+
+        concept PowerConsumer extends Node implements IPowerModuleContent, IPowerParticipant
+            features (↓name):
+                providedFrom -> PowerSource[0..*]
+
+        <<partition>> concept PowerModule extends Node implements INamed
+            features (↓name):
+                contents: IPowerModuleContent[0..*]
+
+        concept PowerSource extends Node implements IPowerModuleContent, IPowerParticipant
+            features (↓name):
+                kind: PowerSourceKind?
+
+        enumeration PowerSourceKind
+            literals:
+                solar
+                nuclear
+                diesel
 
 

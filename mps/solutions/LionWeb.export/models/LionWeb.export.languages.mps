@@ -13,6 +13,7 @@
         <reference id="3631234780355720143" name="target" index="pgsW4" />
       </concept>
       <concept id="3631234780355716573" name="io.lionweb.mps.converter.lang.structure.ExportInstanceToJson" flags="ng" index="pgt$m">
+        <property id="3631234780355961878" name="scope" index="pjpzt" />
         <child id="3631234780355719074" name="instances" index="pgtdD" />
       </concept>
       <concept id="5028875375328515028" name="io.lionweb.mps.converter.lang.structure.APathConverter" flags="ng" index="VS7hm">
@@ -57,6 +58,7 @@
   <node concept="pgt$m" id="6qwJjq3ayi4">
     <property role="TrG5h" value="Export Voyager1" />
     <property role="VS7hl" value="${space-demo.home}/../voyager1.json" />
+    <property role="pjpzt" value="39$JcGFainl/descendants" />
     <node concept="pgsVv" id="6qwJjq3aylk" role="pgtdD">
       <ref role="pgsW4" to="cnx8:RDOtZ1goTc" />
     </node>
