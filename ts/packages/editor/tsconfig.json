@@ -10,6 +10,8 @@
     "resolveJsonModule": true,
     "target": "esnext",
     "module": "esnext",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "lib": [ "dom", "esnext" ],
+    "outDir": "dist/"
   }
 }
