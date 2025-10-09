@@ -17,8 +17,10 @@
   "scripts": {
     "clean": "npx rimraf dist node_modules",
     "check": "tsc --noEmit",
-    "start": "parcel",
-    "build": "parcel build"
+    "dev": "parcel serve --port 1234 --hmr-port 1236 src/index.html",
+    "build": "parcel build",
+    "preprod": "npm run build",
+    "prod": "http-server dist/ --port 1234"
   },
   "dependencies": {
     "@lionweb/class-core": "0.7.0-beta.21",
@@ -35,6 +37,7 @@
     "@parcel/transformer-typescript-tsc": "2.16.0",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.1",
+    "http-server": "14.1.1",
     "parcel": "2.16.0",
     "typescript": "5.9.3"
   }

@@ -20,10 +20,7 @@
     "timers-browserify": "2.0.12"
   },
   "scripts": {
-    "clean": "npm run clean -w packages --if-present && npx rimraf node_modules",
-    "generate": "npm run generate -w packages --if-present",
-    "build": "npm run build -w packages --if-present",
-    "start": "npm run start -w packages --if-present"
+    "clean": "npm run clean -w packages --if-present && npx rimraf node_modules"
   },
   "private": true,
   "workspaces": [
