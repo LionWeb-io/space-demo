@@ -28,6 +28,7 @@
   "private": true,
   "workspaces": [
     "./packages/build",
-    "./packages/editor"
+    "./packages/editor",
+    "./packages/echo-ws-server"
   ]
 }
