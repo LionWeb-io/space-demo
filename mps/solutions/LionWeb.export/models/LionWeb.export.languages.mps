@@ -42,7 +42,7 @@
   </registry>
   <node concept="3IuRE0" id="RDOtZ1f$Pe">
     <property role="TrG5h" value="SpaceDemo Languages" />
-    <property role="VS7hl" value="${space-demo.home}/../languages.json" />
+    <property role="VS7hl" value="${space-demo.home}/../chunks/space.languages.json" />
     <property role="2G9pTy" value="utjSYFIcjG/fineGrainedClosure" />
     <property role="1_BS0j" value="true" />
     <property role="39gGq0" value="true" />
@@ -57,7 +57,7 @@
   </node>
   <node concept="pgt$m" id="6qwJjq3ayi4">
     <property role="TrG5h" value="Export Voyager1" />
-    <property role="VS7hl" value="${space-demo.home}/../voyager1.instance.json" />
+    <property role="VS7hl" value="${space-demo.home}/../chunks/voyager1.instance.json" />
     <property role="pjpzt" value="39$JcGFainl/descendants" />
     <node concept="pgsVv" id="6qwJjq3aylk" role="pgtdD">
       <ref role="pgsW4" to="cnx8:RDOtZ1goTc" />

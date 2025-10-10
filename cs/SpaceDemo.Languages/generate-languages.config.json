@@ -1,6 +1,6 @@
 ﻿[
   {
-    "LanguageFile": "../../languages.json",
+    "LanguageFile": "../../chunks/space.languages.json",
     "OutputDir": "Languages/",
     "Namespace": "Languages",
     "PathPattern": "NamespaceInFilename",

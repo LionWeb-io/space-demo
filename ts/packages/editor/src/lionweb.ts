@@ -4,6 +4,8 @@ import { createBrowserLowLevelClient } from "@lionweb/delta-protocol-low-level-c
 
 import { allLanguageBases } from "./gen/index.g"
 import { store } from "./store"
+import modelJson from "../../../../chunks/voyager1.instance.json" assert { type: "json" }
+    // (ignore the warning "assert" needing to be "with"!)
 
 
 export const logModel = (model: INodeBase[]) => {
@@ -16,8 +18,6 @@ export const logModel = (model: INodeBase[]) => {
 }
 
 
-import modelJson from "../../../../voyager1.json" assert { type: "json" }
-    // (ignore the warning "assert" needing to be "with"!)
 
 
 export const initializeLionWeb = () => {

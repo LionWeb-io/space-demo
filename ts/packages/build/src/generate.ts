@@ -5,7 +5,7 @@ import { LionWebJsonChunk } from "@lionweb/json"
 import { generatePlantUmlForLanguage, languagesAsText, readFileAsJson } from "@lionweb/utilities"
 
 
-const languagesJson = readFileAsJson("../../../languages.json") as LionWebJsonChunk
+const languagesJson = readFileAsJson("../../../chunks/space.languages.json") as LionWebJsonChunk
 repairIoLionWebMpsSpecificAnnotations(languagesJson)
 const spaceLanguages = deserializeLanguagesWithIoLionWebMpsSpecific(languagesJson)
 
