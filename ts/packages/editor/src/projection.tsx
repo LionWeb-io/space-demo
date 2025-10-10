@@ -1,4 +1,5 @@
 import { INodeBase } from "@lionweb/class-core"
+import { action } from "mobx"
 import { observer } from "mobx-react"
 import React from "react"
 import { FaPlug, FaBatteryFull, FaBatteryHalf } from "react-icons/fa"
@@ -32,7 +33,7 @@ export const Projection = observer(({ node }: { node: INodeBase }) => {
     if (node instanceof PowerConsumer) {
         return (<div> 
             <FaPlug/> power consumer <span style={{ fontWeight: 600, color: "#0070f3" }}> {node.name} </span> 
-            with peak <input type ="number" value = {node.peak} onChange = {(e) => {node.peak = parseInt(e.target.value)}} /> 
+            with peak <input type ="number" value = {node.peak} onChange = {action((event) => {node.peak = parseInt(event.target.value)})} />
             { node.annotations.length > 0 && node.annotations.map( (anno) => <Projection node = {anno} /> )}
         </div>)
     }
@@ -40,7 +41,7 @@ export const Projection = observer(({ node }: { node: INodeBase }) => {
     if (node instanceof PowerSource) {
         return (<div> 
             <FaBatteryHalf/> power source<span style={{ fontWeight: 600, color: "#038112ff" }}> {node.name} </span>  
-            with peak <input type ="number" value = {node.peak} onChange = {(e) => {node.peak = parseInt(e.target.value)}} /> 
+            with peak <input type ="number" value = {node.peak} onChange = {action((event) => {node.peak = parseInt(event.target.value)})} />
             { node.annotations.length > 0 && node.annotations.map( (anno) => <Projection node = {anno} key = {anno.id} /> )}
             </div>)
     }
