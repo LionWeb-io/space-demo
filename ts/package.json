@@ -11,9 +11,7 @@
     "url": "https://github.com/LionWeb-io/space-demo/issues"
   },
   "devDependencies": {
-    "process": "0.11.10",
-    "rimraf": "6.0.1",
-    "timers-browserify": "2.0.12"
+    "rimraf": "6.0.1"
   },
   "scripts": {
     "clean": "npm run clean -w packages --if-present && npx rimraf node_modules .parcel-cache package-lock.json"
