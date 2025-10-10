@@ -1,44 +1,32 @@
-import { asTreeTextWith, INodeBase, nodeBaseDeserializer } from "@lionweb/class-core"
-import { LionWebJsonChunk } from "@lionweb/json"
-import { makeObservable, observable } from "mobx"
+import { INodeBase } from "@lionweb/class-core"
+import { action, makeObservable, observable } from "mobx"
 
-import { allLanguageBases } from "./gen/index.g.js"
-
-import modelJson from "../../../../voyager1.json" assert { type: "json" }
-    // (ignore the warning "assert" needing to be "with"!)
+import { initializeLionWeb } from "./lionweb"
 
 
-export const deserialized = (chunk: LionWebJsonChunk) =>
-    nodeBaseDeserializer(allLanguageBases)(chunk)
-const model = deserialized(modelJson)
-
-
-console.log(
-    asTreeTextWith(
-        (node) =>
-            "name" in node ? (node.name as string) : node.id
-    )(model)
-)
+initializeLionWeb()
 
 
 export class Store {
 
-    // TODO  implement multi-model store?
-    model: INodeBase[]
+    model: INodeBase[] = []
 
-    constructor(model: INodeBase[]) {
-        this.model = model
+    setModel = (model: INodeBase[]) => {
+        this.model.splice(0, this.model.length)
+        this.model.push(...model)
+    }
+
+    constructor() {
         makeObservable(
             this,
             {
-                model: observable
+                model: observable,
+                setModel: action
             }
         )
-        // TODO  implement a reaction that auto-saves
     }
 
 }
 
-
-export const store = new Store(model)
+export const store = new Store()
 
