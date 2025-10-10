@@ -4,8 +4,6 @@ This (sub-)project contains two packages:
 
 * `build`: Takes care of generating required code into the `editor` package.
 
-  **Note** that it currently defines ta space DSL's `Language` instance (=LionCore/M3) itself, but soon, we'll probably pick up one that's exported from MPS.
-
   Run the generator as follows, from inside the `build` package:
 
   ```shell
@@ -26,5 +24,5 @@ This (sub-)project contains two packages:
   $ npm run prod
   ```
 
-  **Note** that it currently *doesn't* use the `lionweb-server` as backend...*yet*.
+* `echo-ws-server`: A simple WebSocket server that just echoes everything it receives to the console.
 

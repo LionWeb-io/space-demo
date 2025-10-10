@@ -24,7 +24,7 @@ export const initializeLionWeb = () => {
     console.log(`creating client`)
     LionWebClient.create({
         clientId: "TS-client-1",
-        url: "ws://localhost:40001",
+        url: "ws://localhost:40000",
         languageBases: allLanguageBases,
         lowLevelClientInstantiator: (lowLevelClientParameters) =>
             createBrowserLowLevelClient(lowLevelClientParameters, console.dir),
@@ -34,7 +34,7 @@ export const initializeLionWeb = () => {
             console.log(`client created; signing in`)
             const model = client.deserializer(modelJson)
             logModel(model)
-            client.signOn("query-1", "repo-1")
+            client.signOn("query-1", "myRepo")
                 .then(() => {
                     console.log(`signed on; adding all partitions`)
                     model.forEach((partition) => {
