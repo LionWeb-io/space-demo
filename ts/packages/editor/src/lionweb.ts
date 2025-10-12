@@ -38,9 +38,11 @@ export const initializeLionWeb = () => {
         lowLevelClientInstantiator: (lowLevelClientParameters) =>
             createBrowserLowLevelClient(lowLevelClientParameters, (logItem) => {
                 console.log(`low-level log item: ${trimTo(JSON.stringify(logItem))}`)
+                console.dir(logItem)
             }),
         semanticLogger: (logItem) => {
             console.log(trimTo(logItem.asText()))
+            console.dir(logItem)
         }
     })
         .then((client) => {
@@ -66,7 +68,6 @@ export const initializeLionWeb = () => {
                         (powerModule.contents[0] as PowerSource).peak = 600
                         powerModule.name = "VGER"
                     }, 1)
-                    // FIXME  these changes are NOT sent to the server (for some – presumably not so good! – reason)!
                 })
         })
 }
