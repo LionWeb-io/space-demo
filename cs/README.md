@@ -10,10 +10,10 @@ Requirements to run:
 
 ## Generate languages
 
-Run (anywhere):
+Run in `SpaceDemo.Languages`:
 
 ```shell
-$ dotnet run --project <LionWeb-CSharp Git root>/src/LionWeb.Generator.Cli --config <space-DSL Git root>/cs/SpaceDemo.Languages/generate-languages.config.json
+$ dotnet LionWebGenerator --config <space-DSL Git root>/cs/SpaceDemo.Languages/generate-languages.config.json
 ```
 
 
