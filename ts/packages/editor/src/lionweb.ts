@@ -3,7 +3,7 @@ import { LionWebClient } from "@lionweb/delta-protocol-client"
 import { createBrowserLowLevelClient } from "@lionweb/delta-protocol-low-level-client-browser"
 
 import { allLanguageBases } from "./gen/index.g.js"
-import { PowerModule, PowerSource } from "./gen/PowerBudget.g.js"
+// import { PowerModule, PowerSource } from "./gen/PowerBudget.g.js"
 import { store } from "./store.js"
 
 
@@ -66,6 +66,7 @@ export const initializeLionWeb = () => {
                                     store.setModel(receivedModel)
                                     logModel(receivedModel)
                                     client.setModel(receivedModel)
+                                    /*
                                     setTimeout(() => {
                                         if (client.model.length > 0 && client.model[0] instanceof PowerModule) {
                                             console.log(`making changes, to check whether they are sent`)
@@ -74,6 +75,7 @@ export const initializeLionWeb = () => {
                                             powerModule.name = "VGER"
                                         }
                                     }, 1)
+                                     */
                                     console.log(`(done)`)
                                 })
                         })

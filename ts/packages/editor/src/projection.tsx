@@ -2,11 +2,16 @@ import { INodeBase } from "@lionweb/class-core"
 import { action } from "mobx"
 import { observer } from "mobx-react"
 import React from "react"
-import { FaPlug, FaBatteryFull, FaBatteryHalf } from "react-icons/fa"
+import { FaBatteryHalf, FaPlug } from "react-icons/fa"
 
-import { PowerModule, PowerConsumer, PowerSource } from "./gen/PowerBudget.g.js"
+import { PowerConsumer, PowerModule, PowerSource } from "./gen/PowerBudget.g.js"
 import { Finding, Severity } from "./gen/Finding.g.js"
 
+
+const parsedNumberValue = (stringValue: string) =>
+    stringValue === ""
+        ? undefined
+        : parseInt(stringValue, 10)
 
 export const Projection = observer(({ node }: { node: INodeBase }) => {
 
@@ -15,35 +20,33 @@ export const Projection = observer(({ node }: { node: INodeBase }) => {
     }
 
     if (node instanceof PowerModule) {
-    return (
-        <div> 
-            power module {node.name} 
-            { node.contents && node.contents.length > 0  && (
+        return <div>
+            power module {node.name}
+            {node.contents.length > 0  &&
                 <ul>
-                    { node.contents.map( (child) => (
-                        <li key = {child.id}>
-                            <Projection node = {child} />
-                        </li> )) }
-                </ul>                
-            )}
+                    {node.contents.map((child) =>
+                        <li key={child.id}>
+                            <Projection node={child} />
+                        </li>
+                    )}
+                </ul>
+            }
         </div>
-        )
     }
 
     if (node instanceof PowerConsumer) {
-        return (<div> 
-            <FaPlug/> power consumer <span style={{ fontWeight: 600, color: "#0070f3" }}> {node.name} </span> 
-            with peak <input type ="number" value = {node.peak} onChange = {action((event) => {node.peak = parseInt(event.target.value)})} />
-            { node.annotations.length > 0 && node.annotations.map( (anno) => <Projection node = {anno} /> )}
-        </div>)
+        return <div>
+            <FaPlug/> power consumer <span style={{ fontWeight: 600, color: "#0070f3" }}> {node.name} </span>
+            with peak <input type ="number" value={node.peak ?? ""} onChange={action((event) => {node.peak = parsedNumberValue(event.target.value)})} />
+            {node.annotations.length > 0 && node.annotations.map((anno) => <Projection node={anno} /> )}
+        </div>
     }
-
     if (node instanceof PowerSource) {
-        return (<div> 
-            <FaBatteryHalf/> power source<span style={{ fontWeight: 600, color: "#038112ff" }}> {node.name} </span>  
-            with peak <input type ="number" value = {node.peak} onChange = {action((event) => {node.peak = parseInt(event.target.value)})} />
-            { node.annotations.length > 0 && node.annotations.map( (anno) => <Projection node = {anno} key = {anno.id} /> )}
-            </div>)
+        return <div>
+            <FaBatteryHalf/> power source<span style={{ fontWeight: 600, color: "#038112ff" }}> {node.name} </span>
+            with peak <input type ="number" value={node.peak ?? ""} onChange={action((event) => {node.peak = parsedNumberValue(event.target.value)})} />
+            {node.annotations.length > 0 && node.annotations.map((anno) => <Projection node={anno} key={anno.id} /> )}
+        </div>
     }
 
     if (node instanceof Finding) {
