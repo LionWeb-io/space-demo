@@ -6,9 +6,6 @@ import { allLanguageBases } from "./gen/index.g.js"
 import { PowerModule, PowerSource } from "./gen/PowerBudget.g.js"
 import { store } from "./store.js"
 
-import modelJson from "../../../../chunks/voyager1.instance.json" assert { type: "json" }
-    // (ignore the warning "assert" needing to be "with"!)
-
 
 export const logModel = (model: INodeBase[]) => {
     console.log(
@@ -30,7 +27,7 @@ const trimTo = (text: string) =>
 export const initializeLionWeb = () => {
     console.log(`creating client`)
     let queryNumber = 0
-    const queryId = () => `query-${++queryNumber}`
+    const uniqueQueryId = () => `query-${++queryNumber}`
     LionWebClient.create({
         clientId: "TS-client-1",
         url: "ws://localhost:40000",
@@ -46,29 +43,43 @@ export const initializeLionWeb = () => {
         }
     })
         .then((client) => {
-            console.log(`client created; signing in`)
-            const model = client.deserializer(modelJson)
-            logModel(model)
-            client.signOn(queryId(), "myRepo")
+            console.log(`client created`)
+            console.log(`signing in`)
+            client.signOn(uniqueQueryId(), "myRepo")
                 .then(() => {
-                    console.log(`signed on; adding all partitions`)
-                    client.subscribeToPartitionContents(queryId(), "1002563151016857164")   // TODO  look up ID from modelJson?
-                        .then((receivedModelJson) => {
-                            const receivedModel = client.deserializer(receivedModelJson)
-                            store.setModel(receivedModel)
+                    console.log(`signed on`)
+                    console.log(`getting list of partitions`)
+                    client.listPartitions(uniqueQueryId())
+                        .then((partitionInfo) => {
+                            const partitionIds = partitionInfo.nodes
+                                .filter((partitionJson) => partitionJson.parent === null)
+                                .map(({id}) => id)
+                            console.log(`list of IDs of partitions: ${partitionIds.join(", ")}`)
+                            if (partitionIds.length === 0) {
+                                throw new Error(`no partition`)
+                            }
+                            const partitionId = partitionIds[0]
+                            console.log(`subscribing to partition ${partitionId}`)
+                            client.subscribeToPartitionContents(uniqueQueryId(), partitionId)
+                                .then((receivedModelJson) => {
+                                    const receivedModel = client.deserializer(receivedModelJson)
+                                    store.setModel(receivedModel)
+                                    logModel(receivedModel)
+                                    client.setModel(receivedModel)
+                                    setTimeout(() => {
+                                        if (client.model.length > 0 && client.model[0] instanceof PowerModule) {
+                                            console.log(`making changes, to check whether they are sent`)
+                                            const powerModule = client.model[0] as PowerModule
+                                            (powerModule.contents[0] as PowerSource).peak = 600
+                                            powerModule.name = "VGER"
+                                        }
+                                    }, 1)
+                                    console.log(`(done)`)
+                                })
                         })
-                    model.forEach((partition) => {
-                        client.addPartition(partition)
-                    })
-                    // cause it to render:
-                    store.setModel(model)
-                    // make changes, to check whether they are sent:
-                    setTimeout(() => {
-                        const powerModule = model[0] as PowerModule
-                        (powerModule.contents[0] as PowerSource).peak = 600
-                        powerModule.name = "VGER"
-                    }, 1)
                 })
         })
 }
+
+// TODO  (find out how to make Parcel understand await/async)
 
