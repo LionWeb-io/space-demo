@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Concurrent;
+using System.Diagnostics;
 using Languages;
 using LionWeb.Core;
 using LionWeb.Core.M1;
@@ -23,6 +24,8 @@ class Loader
 
     private static readonly Forest forest = new Forest();
 
+    private static readonly BlockingCollection<string> filesToProcess = [];
+
     static async Task Main(string[] args)
     {
         Trace.Listeners.Add(new ConsoleTraceListener());
@@ -44,26 +47,58 @@ class Loader
 
         var path = args[0];
         Log($"Watching {path}");
+
         var watcher = new FileSystemWatcher(path);
 
         watcher.NotifyFilter = NotifyFilters.LastWrite
                                | NotifyFilters.FileName
                                | NotifyFilters.DirectoryName;
 
-        watcher.Filter = "*.instance.json";
+        var filter = "*.instance.json";
+        watcher.Filter = filter;
 
         watcher.Changed += OnChanged;
 
+        var dir = new DirectoryInfo(path);
+        if (dir.Exists)
+        {
+            foreach (var file in dir.EnumerateFiles(filter))
+            {
+                filesToProcess.Add(file.FullName);
+            }
+        }
+
         watcher.EnableRaisingEvents = true;
 
-        Console.ReadLine();
+        try
+        {
+            while (!filesToProcess.IsCompleted)
+            {
+                var filePath = filesToProcess.Take(); //blocking dequeue
 
-        await lionWeb.SignOff();
+                if (File.Exists(filePath))
+                    LoadFile(filePath);
+                
+                if (Console.In.Peek() != 0)
+                    filesToProcess.CompleteAdding();
+            }
+        }
+        finally
+        {
+            await lionWeb.SignOff();
+        }
     }
 
     private static void OnChanged(object source, FileSystemEventArgs e)
     {
-        Log($"Loading {e.ChangeType} file {e.FullPath}");
+        Log($"Queueing {e.ChangeType} file {e.FullPath}");
+
+        filesToProcess.Add(e.FullPath);
+    }
+
+    private static void LoadFile(string fullPath)
+    {
+        Log($"Loading file {fullPath}");
 
         var deserializer = new DeserializerBuilder()
             .WithLionWebVersion(lionWebVersion)
@@ -75,7 +110,7 @@ class Loader
 
         try
         {
-            using var stream = File.Open(e.FullPath, FileMode.Open, FileAccess.Read, FileShare.None);
+            using var stream = File.Open(fullPath, FileMode.Open, FileAccess.Read, FileShare.None);
 
             var roots = JsonUtils.ReadNodesFromStream(stream, deserializer);
 
@@ -93,8 +128,9 @@ class Loader
                 }
             }
         }
-        catch (IOException _)
+        catch (Exception ex)
         {
+            Log(ex.ToString());
         }
     }
 
@@ -104,7 +140,7 @@ class Loader
         var differences = comparer.Compare().Where(d => d is not IContainerDifference).ToList();
 
         Log($"differences: {differences.Count}");
-        
+
         foreach (var difference in differences)
         {
             switch (difference)
@@ -137,11 +173,16 @@ class Loader
                     {
                         r.Set(d.Link, null);
                     }
+
                     break;
 
                 case LeftSurplusNodeDifference { RightOwner: IWritableNode r, Node: IWritableNode n } d:
                     n.DetachFromParent();
-                    if (d.Link.Multiple)
+                    if (d.Link is null)
+                    {
+                        r.AddAnnotations([n]);
+                    }
+                    else if (d.Link.Multiple)
                     {
                         var currentValue = d.Link.AsNodes<IReadableNode>(r.Get(d.Link)).ToList();
                         currentValue.Add(n);
@@ -151,6 +192,7 @@ class Loader
                     {
                         r.Set(d.Link, n);
                     }
+
                     break;
 
                 default:

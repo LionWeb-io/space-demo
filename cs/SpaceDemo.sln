@@ -10,6 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 		..\ts\packages\editor\src\gen\Finding.g.ts = ..\ts\packages\editor\src\gen\Finding.g.ts
 		..\ts\packages\editor\src\gen\PowerBudget.g.ts = ..\ts\packages\editor\src\gen\PowerBudget.g.ts
+		..\playbook.md = ..\playbook.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceDemo.Repository", "SpaceDemo.Repository\SpaceDemo.Repository.csproj", "{898E2944-C873-439F-A1A6-8953E49C068B}"
