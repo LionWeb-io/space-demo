@@ -78,9 +78,6 @@ class Loader
 
                 if (File.Exists(filePath))
                     LoadFile(filePath);
-                
-                if (Console.In.Peek() != 0)
-                    filesToProcess.CompleteAdding();
             }
         }
         finally
@@ -162,11 +159,14 @@ class Loader
                         d.Reference.Multiple ? new List<IReadableNode> { d.RightTarget } : d.RightTarget);
                     break;
 
-                case RightSurplusNodeDifference { RightOwner: IWritableNode r } d:
-                    if (d.Link.Multiple)
+                case RightSurplusNodeDifference { RightOwner: IWritableNode r, Node: IWritableNode n } d:
+                    if (d.Link is null)
+                    {
+                        r.RemoveAnnotations([n]);
+                    }else if (d.Link.Multiple)
                     {
                         var currentValue = d.Link.AsNodes<IReadableNode>(r.Get(d.Link)).ToList();
-                        currentValue.Remove(d.Node);
+                        currentValue.Remove(n);
                         r.Set(d.Link, currentValue);
                     }
                     else
