@@ -54,34 +54,12 @@
         <property role="3_yK2A" value="1" />
       </node>
     </node>
-    <node concept="3cEr1r" id="6qwJjq3ayhN" role="3cEr30">
-      <property role="TrG5h" value="rtg1" />
-      <property role="3cEr1o" value="RDOtZ1g66b/nuclear" />
-      <property role="3cEr1a" value="150" />
-      <property role="3cEr17" value="150" />
-    </node>
     <node concept="3cEr1W" id="RDOtZ1gvOQ" role="3cEr30">
       <property role="TrG5h" value="comms" />
       <property role="3cEr1a" value="200" />
       <property role="3cEr17" value="0" />
       <node concept="3cErdH" id="6qwJjq39IwL" role="3cE2Lg">
         <ref role="3cErdE" node="RDOtZ1goTd" />
-      </node>
-    </node>
-    <node concept="3cEr1W" id="RDOtZ1gvOc" role="3cEr30">
-      <property role="TrG5h" value="flight" />
-      <property role="3cEr1a" value="15" />
-      <property role="3cEr17" value="15" />
-      <node concept="3cErdH" id="6qwJjq3ayhW" role="3cE2Lg">
-        <ref role="3cErdE" node="6qwJjq3ayhN" />
-      </node>
-    </node>
-    <node concept="3cEr1W" id="RDOtZ1gvOA" role="3cEr30">
-      <property role="TrG5h" value="nav" />
-      <property role="3cEr1a" value="20" />
-      <property role="3cEr17" value="15" />
-      <node concept="3cErdH" id="6qwJjq3ayhY" role="3cE2Lg">
-        <ref role="3cErdE" node="6qwJjq3ayhN" />
       </node>
     </node>
     <node concept="3cEr1W" id="RDOtZ1gvOo" role="3cEr30">

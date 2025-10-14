@@ -41,10 +41,7 @@
           },
           "children": [
             "1002563151016857165",
-            "7395118629968815219",
             "1002563151016885558",
-            "1002563151016885516",
-            "1002563151016885542",
             "1002563151016885528",
             "1002563151016885577"
           ]
@@ -141,52 +138,6 @@
       "parent": "1002563151016857165"
     },
     {
-      "id": "7395118629968815219",
-      "classifier": {
-        "language": "space-PowerBudget",
-        "version": "0.1",
-        "key": "PowerSource"
-      },
-      "properties": [
-        {
-          "property": {
-            "language": "LionCore-builtins",
-            "version": "2023.1",
-            "key": "LionCore-builtins-INamed-name"
-          },
-          "value": "rtg1"
-        },
-        {
-          "property": {
-            "language": "space-PowerBudget",
-            "version": "0.1",
-            "key": "PowerSource-kind"
-          },
-          "value": "PowerSourceKind-nuclear"
-        },
-        {
-          "property": {
-            "language": "space-PowerBudget",
-            "version": "0.1",
-            "key": "IPowerParticipant-peak"
-          },
-          "value": "150"
-        },
-        {
-          "property": {
-            "language": "space-PowerBudget",
-            "version": "0.1",
-            "key": "IPowerParticipant-continuous"
-          },
-          "value": "150"
-        }
-      ],
-      "containments": [],
-      "references": [],
-      "annotations": [],
-      "parent": "1002563151016857164"
-    },
-    {
       "id": "1002563151016885558",
       "classifier": {
         "language": "space-PowerBudget",
@@ -231,110 +182,6 @@
             {
               "resolveInfo": "rtg0",
               "reference": "1002563151016857165"
-            }
-          ]
-        }
-      ],
-      "annotations": [],
-      "parent": "1002563151016857164"
-    },
-    {
-      "id": "1002563151016885516",
-      "classifier": {
-        "language": "space-PowerBudget",
-        "version": "0.1",
-        "key": "PowerConsumer"
-      },
-      "properties": [
-        {
-          "property": {
-            "language": "LionCore-builtins",
-            "version": "2023.1",
-            "key": "LionCore-builtins-INamed-name"
-          },
-          "value": "flight"
-        },
-        {
-          "property": {
-            "language": "space-PowerBudget",
-            "version": "0.1",
-            "key": "IPowerParticipant-peak"
-          },
-          "value": "15"
-        },
-        {
-          "property": {
-            "language": "space-PowerBudget",
-            "version": "0.1",
-            "key": "IPowerParticipant-continuous"
-          },
-          "value": "15"
-        }
-      ],
-      "containments": [],
-      "references": [
-        {
-          "reference": {
-            "language": "space-PowerBudget",
-            "version": "0.1",
-            "key": "ODgyNjBiZDctZjQ0MC00ZWNhLTk4NzMtMTJkOTRjYjZlNzQ3LzEwMDI1NjMxNTEwMTY3ODAxOTUvMTAwMjU2MzE1MTAxNjg4NTY0Nw"
-          },
-          "targets": [
-            {
-              "resolveInfo": "rtg1",
-              "reference": "7395118629968815219"
-            }
-          ]
-        }
-      ],
-      "annotations": [],
-      "parent": "1002563151016857164"
-    },
-    {
-      "id": "1002563151016885542",
-      "classifier": {
-        "language": "space-PowerBudget",
-        "version": "0.1",
-        "key": "PowerConsumer"
-      },
-      "properties": [
-        {
-          "property": {
-            "language": "LionCore-builtins",
-            "version": "2023.1",
-            "key": "LionCore-builtins-INamed-name"
-          },
-          "value": "nav"
-        },
-        {
-          "property": {
-            "language": "space-PowerBudget",
-            "version": "0.1",
-            "key": "IPowerParticipant-peak"
-          },
-          "value": "20"
-        },
-        {
-          "property": {
-            "language": "space-PowerBudget",
-            "version": "0.1",
-            "key": "IPowerParticipant-continuous"
-          },
-          "value": "15"
-        }
-      ],
-      "containments": [],
-      "references": [
-        {
-          "reference": {
-            "language": "space-PowerBudget",
-            "version": "0.1",
-            "key": "ODgyNjBiZDctZjQ0MC00ZWNhLTk4NzMtMTJkOTRjYjZlNzQ3LzEwMDI1NjMxNTEwMTY3ODAxOTUvMTAwMjU2MzE1MTAxNjg4NTY0Nw"
-          },
-          "targets": [
-            {
-              "resolveInfo": "rtg1",
-              "reference": "7395118629968815219"
             }
           ]
         }
