@@ -56,7 +56,7 @@ export const initializeLionWeb = () => {
                                 .map(({id}) => id)
                             console.log(`list of IDs of partitions: ${partitionIds.join(", ")}`)
                             if (partitionIds.length === 0) {
-                                throw new Error(`no partition`)
+                                return
                             }
                             const partitionId = partitionIds[0]
                             console.log(`subscribing to partition ${partitionId}`)

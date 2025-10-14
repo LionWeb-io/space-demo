@@ -16,7 +16,7 @@ const parsedNumberValue = (stringValue: string) =>
 export const Projection = observer(({ node }: { node: INodeBase }) => {
 
     if (node === undefined) {
-        return <span>model is empty</span>
+        return <span>(no node)</span>
     }
 
     if (node instanceof PowerModule) {
