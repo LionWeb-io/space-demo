@@ -125,12 +125,16 @@ public class Validator
 
     private void RemoveFinding(INode node, int code)
     {
+        var annotations = node.GetAnnotations().OfType<Finding>().Where(f => f.Code == code).ToList();
+        if (annotations.Count == 0)
+            return;
+
         Log($"Removing finding {code} from {node.GetId()}");
-        node.RemoveAnnotations(node.GetAnnotations().OfType<Finding>().Where(f => f.Code == code));
+        node.RemoveAnnotations(annotations);
     }
 
     private static void Log(string message, bool header = false) =>
         Console.WriteLine(header
             ? $"{ILionWebClient.HeaderColor_Start}{message}{ILionWebClient.HeaderColor_End}"
-            : message);   
+            : message);
 }
