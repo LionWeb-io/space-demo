@@ -150,7 +150,7 @@ export const SPACE_DIAGRAM_CONFIG: DiagramConfig = {
                 shape: leftRoundedRectangleShape,
                 fillColor: '#eadff2',
                 borderColor: 'none',
-                borderThickness: 1,
+                borderThickness: 2,
                 selected: {
                   fillColor: '#902a9c',
                   borderColor: 'none',
@@ -171,7 +171,7 @@ export const SPACE_DIAGRAM_CONFIG: DiagramConfig = {
                 shape: rightRoundedRectangleShape,
                 fillColor: '#ffffff',
                 borderColor: 'none',
-                borderThickness: 1,
+                borderThickness: 2,
                 selected: {
                   fillColor: '#eadff2',
                   borderColor: 'none',
@@ -186,9 +186,9 @@ export const SPACE_DIAGRAM_CONFIG: DiagramConfig = {
         shape: roundedRectangleShape,
         fillColor: 'none',
         borderColor: '#902a9c',
-        borderThickness: 1,
+        borderThickness: 2,
         highlighted: {
-          borderThickness: 2,
+          borderThickness: 4,
         },
       },
       properties: [
@@ -236,7 +236,7 @@ export const SPACE_DIAGRAM_CONFIG: DiagramConfig = {
                 shape: leftRoundedRectangleShape,
                 fillColor: '#dff3f7',
                 borderColor: 'none',
-                borderThickness: 1,
+                borderThickness: 2,
                 selected: {
                   fillColor: '#00729c',
                   borderColor: 'none',
@@ -257,7 +257,7 @@ export const SPACE_DIAGRAM_CONFIG: DiagramConfig = {
                 shape: rightRoundedRectangleShape,
                 fillColor: '#ffffff',
                 borderColor: 'none',
-                borderThickness: 1,
+                borderThickness: 2,
                 selected: {
                   fillColor: '#dff3f7',
                   borderColor: 'none',
@@ -272,9 +272,9 @@ export const SPACE_DIAGRAM_CONFIG: DiagramConfig = {
         shape: roundedRectangleShape,
         fillColor: 'none',
         borderColor: '#00729c',
-        borderThickness: 1,
+        borderThickness: 2,
         highlighted: {
-          borderThickness: 2,
+          borderThickness: 4,
         },
       },
       properties: [
@@ -324,7 +324,7 @@ export const SPACE_DIAGRAM_CONFIG: DiagramConfig = {
                 shape: leftRoundedRectangleShape,
                 fillColor: '#f2f7df',
                 borderColor: 'none',
-                borderThickness: 1,
+                borderThickness: 2,
                 selected: {
                   fillColor: '#849c00',
                   borderColor: 'none',
@@ -345,7 +345,7 @@ export const SPACE_DIAGRAM_CONFIG: DiagramConfig = {
                 shape: rightRoundedRectangleShape,
                 fillColor: '#ffffff',
                 borderColor: 'none',
-                borderThickness: 1,
+                borderThickness: 2,
                 selected: {
                   fillColor: '#f2f7df',
                   borderColor: 'none',
@@ -360,9 +360,9 @@ export const SPACE_DIAGRAM_CONFIG: DiagramConfig = {
         shape: roundedRectangleShape,
         fillColor: 'none',
         borderColor: '#849c00',
-        borderThickness: 1,
+        borderThickness: 2,
         highlighted: {
-          borderThickness: 2,
+          borderThickness: 4,
         },
       },
       properties: [
