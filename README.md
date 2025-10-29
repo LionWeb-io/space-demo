@@ -15,3 +15,29 @@ The `chunks/` directory contains two serialization chunks:
 
 Both chunks are exported from MPS: see its respective [`README.md`](./mps/README.md).
 
+## Docker
+
+In order to launch the dockerized version:
+
+Build the images executing the script:
+
+```bash
+./build.sh
+```
+
+Run the images with:
+
+```bash
+./start.sh
+```
+
+Clients available at:
+
+* React <https://localhost:1234>
+* and Daga <https://localhost:1235>
+
+Stop with:
+
+```bash
+./stop.sh
+```
