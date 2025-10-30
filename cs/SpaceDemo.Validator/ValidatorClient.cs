@@ -12,6 +12,7 @@ namespace SpaceDemo.Validator;
 
 class ValidatorClient
 {
+    public const int DEFAULT_WS_PORT = 40000;
     public static async Task Main(string[] args)
     {
         Trace.Listeners.Add(new ConsoleTraceListener());
@@ -20,13 +21,13 @@ class ValidatorClient
         string serverIp = "localhost";
         var repositoryId = "myRepo";
 
-        var nonInteractive = args.Length > 1
-            ? args[1] == "--non-interactive"
-            : false;
+        var interactive = args.Length > 1
+            ? false
+            : args[1] == "--non-interactive";
 
         var serverPort = args.Length > 0
             ? int.Parse(args[0])
-            : 40000;
+            : DEFAULT_WS_PORT;
 
         LionWebVersions lionWebVersion = LionWebVersions.v2023_1;
         List<Language> languages = [
@@ -47,7 +48,7 @@ class ValidatorClient
         await lionWeb.SignOn("myRepo");
         await lionWeb.SubscribeToChangingPartitions(true, true, true);
 
-        if (!nonInteractive)
+        if (interactive)
         {
             Console.ReadLine();
             await lionWeb.SignOff();

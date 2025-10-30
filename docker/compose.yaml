@@ -5,7 +5,7 @@ services:
   server:
     build: nginx/.
     ports:
-      - 81:80
+      - 40000:80
     networks:
       - space
     depends_on:

@@ -10,19 +10,20 @@ namespace SpaceDemo.Repository;
 
 public class Repository
 {
+    public const int DEFAULT_WS_PORT = 40000;
     public async static Task Main(string[] args)
     {
         Trace.Listeners.Add(new ConsoleTraceListener());
 
         Log($"server args: {string.Join(", ", args)}");
 
-        var nonInteractive = args.Length > 1
-            ? args[1] == "--non-interactive"
-            : false;
+        var interactive = args.Length > 1
+            ? false
+            : args[1] == "--non-interactive";
 
         var port = args.Length > 0
             ? int.Parse(args[0])
-            : 40000;
+            : DEFAULT_WS_PORT;
 
         LionWebVersions lionWebVersion = LionWebVersions.v2023_1;
         List<Language> languages =
@@ -46,7 +47,7 @@ public class Repository
             serverForest, webSocketServer.Connector);
         lionWebServer.CommunicationError += (_, exception) => Log(exception.ToString());
 
-        if (!nonInteractive)
+        if (interactive)
         {
             Console.ReadLine();
             webSocketServer.Stop();

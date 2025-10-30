@@ -31,6 +31,8 @@ Run the images with:
 ./start.sh
 ```
 
+Server is available at <http://localhost:40000>
+
 Clients available at:
 
 * React <https://localhost:1234>
