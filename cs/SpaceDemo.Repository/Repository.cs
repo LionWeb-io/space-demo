@@ -11,6 +11,7 @@ namespace SpaceDemo.Repository;
 public class Repository
 {
     public const int DEFAULT_WS_PORT = 40000;
+    public const string DEFAULT_WS_SERVER = "localhost";
     public async static Task Main(string[] args)
     {
         Trace.Listeners.Add(new ConsoleTraceListener());
@@ -37,7 +38,7 @@ public class Repository
             Languages = languages
         };
 
-        webSocketServer.StartServer("localhost", port);
+        webSocketServer.StartServer(DEFAULT_WS_SERVER, port);
 
         Console.WriteLine($"WS listening at port {port}...");
 

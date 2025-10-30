@@ -13,12 +13,13 @@ namespace SpaceDemo.Validator;
 class ValidatorClient
 {
     public const int DEFAULT_WS_PORT = 40000;
+    public const string DEFAULT_WS_SERVER = "localhost";
     public static async Task Main(string[] args)
     {
         Trace.Listeners.Add(new ConsoleTraceListener());
 
         string name = "Validator";
-        string serverIp = "localhost";
+        string serverIp = DEFAULT_WS_SERVER;
         var repositoryId = "myRepo";
 
         var interactive = args.Length == 0
