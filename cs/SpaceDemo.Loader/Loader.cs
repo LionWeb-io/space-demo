@@ -14,6 +14,8 @@ namespace SpaceDemo.Loader;
 
 class Loader
 {
+    public const int DEFAULT_WS_PORT = 40000;
+    public const string DEFAULT_WS_SERVER = "localhost";
     private static readonly LionWebVersions lionWebVersion = LionWebVersions.v2023_1;
 
     private static readonly List<Language> languages =
@@ -31,8 +33,8 @@ class Loader
         Trace.Listeners.Add(new ConsoleTraceListener());
 
         string name = "Loader";
-        string serverIp = args.Count() >= 1 ? args[1] : "localhost";
-        int serverPort = args.Count() >= 2 ? int.Parse(args[2]) : 40000;
+        string serverIp = args.Count() >= 1 ? args[1] : DEFAULT_WS_SERVER;
+        int serverPort = args.Count() >= 2 ? int.Parse(args[2]) : DEFAULT_WS_PORT;
         var repositoryId = "myRepo";
 
         Log($"Starting client {name} to connect to {serverIp}:{serverPort}@{repositoryId}");
@@ -43,7 +45,7 @@ class Loader
         lionWeb.CommunicationError += (_, exception) => Log(exception.ToString());
 
         await webSocketClient.ConnectToServer(serverIp, serverPort);
-        await lionWeb.SignOn("myRepo");
+        await lionWeb.SignOn(repositoryId);
 
         var path = args[0];
         Log($"Watching {path}");

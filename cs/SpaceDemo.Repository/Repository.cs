@@ -17,9 +17,9 @@ public class Repository
 
         Log($"server args: {string.Join(", ", args)}");
 
-        var interactive = args.Length > 1
-            ? false
-            : args[1] == "--non-interactive";
+        var interactive = args.Length == 0
+            ? true
+            : !args.Any(a => a == "--non-interactive");
 
         var port = args.Length > 0
             ? int.Parse(args[0])
