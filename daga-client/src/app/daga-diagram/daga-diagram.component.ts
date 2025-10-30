@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { KeyValuePipe } from '@angular/common';
 import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { INodeBase } from '@lionweb/class-core';
 import { LionWebClient } from '@lionweb/delta-protocol-client';
@@ -16,13 +17,13 @@ import {
   DiagramModelExporter,
   DiagramModelImporter,
   DiagramNode,
+  UpdateValuesAction,
 } from '@metadev/daga-angular';
 import { delay, Subscription } from 'rxjs';
 import { SPACE_DIAGRAM_CONFIG } from './daga-diagram.config';
-import { allLanguageBases } from './gen/index.g';
-import { PowerConsumer, PowerModule, PowerSource } from './gen/PowerBudget.g';
-import { KeyValuePipe } from '@angular/common';
 import { Finding } from './gen/Finding.g';
+import { allLanguageBases } from './gen/index.g';
+import { PowerConsumer, PowerModule, PowerSource, PowerSourceKind } from './gen/PowerBudget.g';
 
 @Component({
   selector: 'app-daga-diagram',
@@ -110,8 +111,50 @@ export class DagaDiagramComponent implements AfterViewInit, OnDestroy {
       this.diagramChangesSubscription?.unsubscribe();
       this.diagramChangesSubscription = this.canvas.diagramChange$.subscribe(
         (change: { action: DiagramAction; method: DiagramActionMethod }) => {
-          // TODO: SEND THE CHANGES TO LIONWEB
-          console.log(change);
+          if (this.client) {
+            if (change.action instanceof UpdateValuesAction && change.action.id) {
+              let changingTo!: { [key: string]: unknown };
+              if (
+                change.method === DiagramActionMethod.Do ||
+                change.method === DiagramActionMethod.Redo
+              ) {
+                changingTo = change.action.to;
+              } else {
+                changingTo = change.action.from;
+              }
+              const node = this.findNode(this.client?.model, change.action.id);
+              if (node instanceof PowerModule) {
+                if (changingTo['name'] !== undefined) {
+                  node.name = changingTo['name'] as string;
+                }
+              }
+              if (node instanceof PowerSource) {
+                if (changingTo['name'] !== undefined) {
+                  node.name = changingTo['name'] as string;
+                }
+                if (changingTo['IPowerParticipant-continuous'] !== undefined) {
+                  node.continuous = changingTo['IPowerParticipant-continuous'] as number;
+                }
+                if (changingTo['IPowerParticipant-peak'] !== undefined) {
+                  node.peak = changingTo['IPowerParticipant-peak'] as number;
+                }
+                if (changingTo['PowerSource-kind'] !== undefined) {
+                  node.kind = changingTo['PowerSource-kind'] as PowerSourceKind;
+                }
+              }
+              if (node instanceof PowerConsumer) {
+                if (changingTo['name'] !== undefined) {
+                  node.name = changingTo['name'] as string;
+                }
+                if (changingTo['IPowerParticipant-continuous'] !== undefined) {
+                  node.continuous = changingTo['IPowerParticipant-continuous'] as number;
+                }
+                if (changingTo['IPowerParticipant-peak'] !== undefined) {
+                  node.peak = changingTo['IPowerParticipant-peak'] as number;
+                }
+              }
+            }
+          }
         }
       );
 
@@ -138,6 +181,20 @@ export class DagaDiagramComponent implements AfterViewInit, OnDestroy {
     this.canvasSubscription?.unsubscribe();
     this.diagramChangesSubscription?.unsubscribe();
     this.diagramEventsSubscription?.unsubscribe();
+  }
+
+  private findNode(model: INodeBase[], id: string): INodeBase | undefined {
+    for (const node of model) {
+      if (node.id === id) {
+        return node;
+      } else if (node instanceof PowerModule) {
+        const foundNode = this.findNode(node.contents, id);
+        if (foundNode) {
+          return foundNode;
+        }
+      }
+    }
+    return undefined;
   }
 
   private importModel(model: INodeBase[]): void {
