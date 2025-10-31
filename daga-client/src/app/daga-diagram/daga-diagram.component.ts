@@ -258,8 +258,8 @@ export class DagaDiagramComponent implements AfterViewInit, OnDestroy {
   }
 
   updateNodeDecorators(node: DiagramNode): void {
-    for (const existingDecorator of node.decorators) {
-      this.canvas.model.decorators.remove(existingDecorator.id);
+    while (node.decorators.length > 0) {
+      this.canvas.model.decorators.remove(node.decorators[0].id);
     }
 
     let iconPath = '';
