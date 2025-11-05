@@ -27,15 +27,15 @@ Run in this exact order:
   ```
   This starts the _empty_ repository – with ID "`myRepo`" – on the specified port.
 
-2. in `SpaceDemo.Loader`:
-  ```shell
-  $ dotnet run <space-DSL Git root>/chunks/
-  ```
-  This _watches_ the `chunks/` dir., and (re-)loads any file which name matches `*.instance.json`, adding the corresponding partitions to the repository.
-
-3. in `SpaceDemo.Validator`:
+2. in `SpaceDemo.Validator`:
   ```shell
   $ dotnet run
   ```
   This listens to model changes and validates all partitions.
+
+3. in `SpaceDemo.Loader`:
+  ```shell
+  $ dotnet run <space-DSL Git root>/chunks/
+  ```
+This _watches_ the `chunks/` dir., and (re-)loads any file which name matches `*.instance.json`, adding the corresponding partitions to the repository.
 
