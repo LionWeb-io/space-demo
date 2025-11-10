@@ -10,15 +10,21 @@ namespace SpaceDemo.Repository;
 
 public class Repository
 {
-    public static void Main(string[] args)
+    public const int DEFAULT_WS_PORT = 40000;
+    public const string DEFAULT_WS_SERVER = "localhost";
+    public async static Task Main(string[] args)
     {
         Trace.Listeners.Add(new ConsoleTraceListener());
 
         Log($"server args: {string.Join(", ", args)}");
 
+        var interactive = args.Length == 0
+            ? true
+            : !args.Any(a => a == "--non-interactive");
+
         var port = args.Length > 0
             ? int.Parse(args[0])
-            : 40000;
+            : DEFAULT_WS_PORT;
 
         LionWebVersions lionWebVersion = LionWebVersions.v2023_1;
         List<Language> languages =
@@ -32,16 +38,33 @@ public class Repository
             Languages = languages
         };
 
-        webSocketServer.StartServer("localhost", port);
+        webSocketServer.StartServer(DEFAULT_WS_SERVER, port);
+
+        Console.WriteLine($"WS listening at port {port}...");
 
         var serverForest = new Forest();
 
         var lionWebServer = new LionWebRepository(lionWebVersion, languages, "server",
             serverForest, webSocketServer.Connector);
-        lionWebServer.CommunicationError += (_, exception) => Log(exception.ToString()); 
+        lionWebServer.CommunicationError += (_, exception) => Log(exception.ToString());
 
-        Console.ReadLine();
-        webSocketServer.Stop();
+        if (interactive)
+        {
+            Console.ReadLine();
+            webSocketServer.Stop();
+        }
+        else
+        {
+            int i = 0;
+            // For ever .....
+            while (true)
+            {
+                Console.WriteLine($"alive {i++} {DateTime.Now:O}");
+                await Task.Delay(10000);
+            }
+        }
+        Console.WriteLine("Closed repository.");
+        return;
     }
 
     private static void Log(string message, bool header = false) =>
