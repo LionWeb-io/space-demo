@@ -33,8 +33,13 @@ class Loader
         Trace.Listeners.Add(new ConsoleTraceListener());
 
         string name = "Loader";
-        string serverIp = args.Count() >= 1 ? args[1] : DEFAULT_WS_SERVER;
-        int serverPort = args.Count() >= 2 ? int.Parse(args[2]) : DEFAULT_WS_PORT;
+        if (args.Count() == 0)
+        {
+            Console.Error.WriteLine("No path to LionWeb serialization JSON chunks given — exiting");
+            Environment.Exit(1);
+        }
+        string serverIp = args.Count() >= 2 ? args[1] : DEFAULT_WS_SERVER;
+        int serverPort = args.Count() >= 3 ? int.Parse(args[2]) : DEFAULT_WS_PORT;
         var repositoryId = "myRepo";
 
         Log($"Starting client {name} to connect to {serverIp}:{serverPort}@{repositoryId}");
