@@ -9,6 +9,6 @@ RUN npm i
 WORKDIR /app/ts/packages/build
 RUN npm run generate
 
-WORKDIR /app/ts/packages/editor
+WORKDIR /app/ts/packages/react-client
 
 CMD ["npm", "run", "prod"]
