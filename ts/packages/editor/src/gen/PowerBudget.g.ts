@@ -15,9 +15,10 @@ import {
     EnumerationLiteral,
     Interface,
     Language,
+    MultiRef,
+    Node,
     Property,
-    Reference,
-    SingleRef
+    Reference
 } from "@lionweb/core";
 
 import {
@@ -194,7 +195,7 @@ export class PowerConsumer extends NodeBase implements IPowerModuleContent, IPow
     }
 
     private readonly _providedFrom: OptionalMultiReferenceValueManager<PowerSource>;
-    get providedFrom(): SingleRef<PowerSource>[] {
+    get providedFrom(): MultiRef<PowerSource> {
         return this._providedFrom.get();
     }
     addProvidedFrom(newValue: PowerSource) {
@@ -251,7 +252,7 @@ export class PowerConsumer extends NodeBase implements IPowerModuleContent, IPow
         }
     }
 
-    getReferenceValueManager(reference: Reference): ReferenceValueManager<INodeBase> {
+    getReferenceValueManager(reference: Reference): ReferenceValueManager<Node> {
         if (reference.key === PowerBudgetBase.INSTANCE.PowerConsumer_providedFrom.key) {
             return this._providedFrom;
         }
