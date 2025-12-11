@@ -24,5 +24,13 @@ This (sub-)project contains two packages:
   $ npm run prod
   ```
 
+* `daga-client`: An implementation of a model client (using Daga) with which to edit a model according to the space DSL.
+
+  Start the Web app in development mode as follows, from inside the `daga-client` package:
+
+  ```shell
+  $ npm start
+  ```
+
 * `echo-ws-server`: A simple WebSocket server that just echoes everything it receives to the console.
 
