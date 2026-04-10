@@ -97,8 +97,7 @@ export class DagaDiagramComponent implements AfterViewInit, OnDestroy {
               .subscribeToPartitionContents(uniqueQueryId(), partitionId)
               .then((receivedPartitionJson) => {
                 console.log(`deserializing partition`);
-                const receivedModel = client.deserialize(receivedPartitionJson);
-                client.setModel(receivedModel);
+                const receivedModel = client.forest.deserializeInto(receivedPartitionJson);
 
                 this.importModel(receivedModel);
 
@@ -122,7 +121,7 @@ export class DagaDiagramComponent implements AfterViewInit, OnDestroy {
               } else {
                 changingTo = change.action.from;
               }
-              const node = this.findNode(this.client?.model, change.action.id);
+              const node = this.findNode(this.client?.forest.partitions, change.action.id);
               if (node instanceof PowerModule) {
                 if (changingTo['name'] !== undefined) {
                   node.name = changingTo['name'] as string;
@@ -183,8 +182,8 @@ export class DagaDiagramComponent implements AfterViewInit, OnDestroy {
     this.diagramEventsSubscription?.unsubscribe();
   }
 
-  private findNode(model: INodeBase[], id: string): INodeBase | undefined {
-    for (const node of model) {
+  private findNode(partitions: INodeBase[], id: string): INodeBase | undefined {
+    for (const node of partitions) {
       if (node.id === id) {
         return node;
       } else if (node instanceof PowerModule) {

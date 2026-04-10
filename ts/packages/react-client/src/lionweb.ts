@@ -3,7 +3,6 @@ import { LionWebClient } from "@lionweb/delta-protocol-client"
 import { createBrowserLowLevelClient } from "@lionweb/delta-protocol-low-level-client-browser"
 
 import { allLanguageBases } from "./gen/index.g.js"
-// import { PowerModule, PowerSource } from "./gen/PowerBudget.g.js"
 import { store } from "./store.js"
 
 
@@ -72,8 +71,7 @@ export const initializeLionWeb = () => {
                                 .then((receivedPartitionJson) => {
 
                                     console.log(`deserializing partition`)
-                                    const receivedModel = client.deserialize(receivedPartitionJson)
-                                    client.setModel(receivedModel)
+                                    const receivedModel = client.forest.deserializeInto(receivedPartitionJson)
                                     store.setModel(receivedModel)
                                     logModel(receivedModel)
 

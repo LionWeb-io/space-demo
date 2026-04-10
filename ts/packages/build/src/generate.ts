@@ -15,7 +15,7 @@ spaceLanguages.forEach((language) => {
     writeFileSync(`artifacts/${language.name}.puml`, generatePlantUmlForLanguage(language))
 })
 
-generateApiFromLanguages(spaceLanguages, "../editor/src/gen")
+generateApiFromLanguages(spaceLanguages, "../react-client/src/gen")
 
 
 const modelJson = readFileAsJson("../../../chunks/voyager1.instance.json") as LionWebJsonChunk
