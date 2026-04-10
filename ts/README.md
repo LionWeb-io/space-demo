@@ -18,6 +18,13 @@ This (sub-)project contains two packages:
   $ npm start
   ```
 
+> If this gives you an error message to the tune of
+> 
+> `DOMException [DataCloneError]: function fn(...args) {`
+> 
+> run `yarn` once to (hopefully) fix that problem.
+> (Don’t commit the then-generated `yarn.lock` and `.parcel-cache`, though!)
+
   Start the Web app in “production” mode as follows, from inside the `react-client` package:
 
   ```shell
