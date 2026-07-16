@@ -7,123 +7,90 @@
  */
 
 
-import {
-    Classifier,
-    Concept,
-    Containment,
-    Enumeration,
-    EnumerationLiteral,
-    Interface,
-    Language,
-    MultiRef,
-    Node,
-    Property,
-    Reference
-} from "@lionweb/core";
+import * as $lwClassCore from "@lionweb/class-core";
+import * as $lwCore from "@lionweb/core";
+import * as $lwJson from "@lionweb/json";
 
-import {
-    LionWebId
-} from "@lionweb/json";
+export class PowerBudgetBase implements $lwClassCore.ILanguageBase {
 
-import {
-    ContainmentValueManager,
-    DeltaReceiver,
-    ILanguageBase,
-    INamed,
-    INodeBase,
-    LionCore_builtinsBase,
-    NodeBase,
-    NodeBaseFactory,
-    OptionalMultiContainmentValueManager,
-    OptionalMultiReferenceValueManager,
-    OptionalPropertyValueManager,
-    Parentage,
-    PropertyValueManager,
-    ReferenceValueManager,
-    RequiredPropertyValueManager
-} from "@lionweb/class-core";
-
-
-export class PowerBudgetBase implements ILanguageBase {
-
-    private readonly _language: Language = new Language("PowerBudget", "0.1", "space-PowerBudget", "space-PowerBudget");
-    get language(): Language {
+    private readonly _language: $lwCore.Language = new $lwCore.Language("PowerBudget", "0.1", "space-PowerBudget", "space-PowerBudget");
+    get language(): $lwCore.Language {
         this.ensureWiredUp();
         return this._language;
     }
 
-    public readonly _IPowerModuleContent = new Interface(this._language, "IPowerModuleContent", "IPowerModuleContent", "IPowerModuleContent");
-    get IPowerModuleContent(): Interface {
+    public readonly _IPowerModuleContent = new $lwCore.Interface(this._language, "IPowerModuleContent", "IPowerModuleContent", "IPowerModuleContent");
+    get IPowerModuleContent(): $lwCore.Interface {
         this.ensureWiredUp();
         return this._IPowerModuleContent;
     }
 
-    public readonly _IPowerParticipant = new Interface(this._language, "IPowerParticipant", "IPowerParticipant", "IPowerParticipant");
-    get IPowerParticipant(): Interface {
+    public readonly _IPowerParticipant = new $lwCore.Interface(this._language, "IPowerParticipant", "IPowerParticipant", "IPowerParticipant");
+    get IPowerParticipant(): $lwCore.Interface {
         this.ensureWiredUp();
         return this._IPowerParticipant;
     }
-    private readonly _IPowerParticipant_peak = new Property(this._IPowerParticipant, "peak", "IPowerParticipant-peak", "IPowerParticipant-peak").isOptional();
-    get IPowerParticipant_peak(): Property {
+    private readonly _IPowerParticipant_peak = new $lwCore.Property(this._IPowerParticipant, "peak", "IPowerParticipant-peak", "IPowerParticipant-peak").isOptional();
+    get IPowerParticipant_peak(): $lwCore.Property {
         this.ensureWiredUp();
         return this._IPowerParticipant_peak;
     }
-    private readonly _IPowerParticipant_continuous = new Property(this._IPowerParticipant, "continuous", "IPowerParticipant-continuous", "IPowerParticipant-continuous").isOptional();
-    get IPowerParticipant_continuous(): Property {
+    private readonly _IPowerParticipant_continuous = new $lwCore.Property(this._IPowerParticipant, "continuous", "IPowerParticipant-continuous", "IPowerParticipant-continuous").isOptional();
+    get IPowerParticipant_continuous(): $lwCore.Property {
         this.ensureWiredUp();
         return this._IPowerParticipant_continuous;
     }
 
-    public readonly _PowerConsumer = new Concept(this._language, "PowerConsumer", "PowerConsumer", "PowerConsumer", false);
-    get PowerConsumer(): Concept {
+    public readonly _PowerConsumer = new $lwCore.Concept(this._language, "PowerConsumer", "PowerConsumer", "PowerConsumer", $lwCore.ConceptModifier.concrete);
+    get PowerConsumer(): $lwCore.Concept {
         this.ensureWiredUp();
         return this._PowerConsumer;
     }
-    private readonly _PowerConsumer_providedFrom = new Reference(this._PowerConsumer, "providedFrom", "ODgyNjBiZDctZjQ0MC00ZWNhLTk4NzMtMTJkOTRjYjZlNzQ3LzEwMDI1NjMxNTEwMTY3ODAxOTUvMTAwMjU2MzE1MTAxNjg4NTY0Nw", "ODgyNjBiZDctZjQ0MC00ZWNhLTk4NzMtMTJkOTRjYjZlNzQ3LzEwMDI1NjMxNTEwMTY3ODAxOTUvMTAwMjU2MzE1MTAxNjg4NTY0Nw").isOptional().isMultiple();
-    get PowerConsumer_providedFrom(): Reference {
+    private readonly _PowerConsumer_providedFrom = new $lwCore.Reference(this._PowerConsumer, "providedFrom", "ODgyNjBiZDctZjQ0MC00ZWNhLTk4NzMtMTJkOTRjYjZlNzQ3LzEwMDI1NjMxNTEwMTY3ODAxOTUvMTAwMjU2MzE1MTAxNjg4NTY0Nw", "ODgyNjBiZDctZjQ0MC00ZWNhLTk4NzMtMTJkOTRjYjZlNzQ3LzEwMDI1NjMxNTEwMTY3ODAxOTUvMTAwMjU2MzE1MTAxNjg4NTY0Nw").isOptional().isMultiple();
+    get PowerConsumer_providedFrom(): $lwCore.Reference {
         this.ensureWiredUp();
         return this._PowerConsumer_providedFrom;
     }
 
-    public readonly _PowerModule = new Concept(this._language, "PowerModule", "PowerModule", "PowerModule", false).isPartition();
-    get PowerModule(): Concept {
+    public readonly _PowerModule = new $lwCore.Concept(this._language, "PowerModule", "PowerModule", "PowerModule", $lwCore.ConceptModifier.concrete).isPartition();
+    get PowerModule(): $lwCore.Concept {
         this.ensureWiredUp();
         return this._PowerModule;
     }
-    private readonly _PowerModule_contents = new Containment(this._PowerModule, "contents", "PowerModule-contents", "PowerModule-contents").isOptional().isMultiple();
-    get PowerModule_contents(): Containment {
+    private readonly _PowerModule_contents = new $lwCore.Containment(this._PowerModule, "contents", "PowerModule-contents", "PowerModule-contents").isOptional().isMultiple();
+    get PowerModule_contents(): $lwCore.Containment {
         this.ensureWiredUp();
         return this._PowerModule_contents;
     }
 
-    public readonly _PowerSource = new Concept(this._language, "PowerSource", "PowerSource", "PowerSource", false);
-    get PowerSource(): Concept {
+    public readonly _PowerSource = new $lwCore.Concept(this._language, "PowerSource", "PowerSource", "PowerSource", $lwCore.ConceptModifier.concrete);
+    get PowerSource(): $lwCore.Concept {
         this.ensureWiredUp();
         return this._PowerSource;
     }
-    private readonly _PowerSource_kind = new Property(this._PowerSource, "kind", "PowerSource-kind", "PowerSource-kind").isOptional();
-    get PowerSource_kind(): Property {
+    private readonly _PowerSource_kind = new $lwCore.Property(this._PowerSource, "kind", "PowerSource-kind", "PowerSource-kind").isOptional();
+    get PowerSource_kind(): $lwCore.Property {
         this.ensureWiredUp();
         return this._PowerSource_kind;
     }
 
-    public readonly _PowerSourceKind = new Enumeration(this._language, "PowerSourceKind", "PowerSourceKind", "PowerSourceKind");
-    get PowerSourceKind(): Enumeration {
+    public readonly _PowerSourceKind = new $lwCore.Enumeration(this._language, "PowerSourceKind", "PowerSourceKind", "PowerSourceKind");
+    get PowerSourceKind(): $lwCore.Enumeration {
         this.ensureWiredUp();
         return this._PowerSourceKind;
     }
-    private readonly _PowerSourceKind_solar = new EnumerationLiteral(this._PowerSourceKind, "solar", "PowerSourceKind-solar", "PowerSourceKind-solar");
-    get PowerSourceKind_solar(): EnumerationLiteral {
+    private readonly _PowerSourceKind_solar = new $lwCore.EnumerationLiteral(this._PowerSourceKind, "solar", "PowerSourceKind-solar", "PowerSourceKind-solar");
+    get PowerSourceKind_solar(): $lwCore.EnumerationLiteral {
         this.ensureWiredUp();
         return this._PowerSourceKind_solar;
     }
-    private readonly _PowerSourceKind_nuclear = new EnumerationLiteral(this._PowerSourceKind, "nuclear", "PowerSourceKind-nuclear", "PowerSourceKind-nuclear");
-    get PowerSourceKind_nuclear(): EnumerationLiteral {
+    private readonly _PowerSourceKind_nuclear = new $lwCore.EnumerationLiteral(this._PowerSourceKind, "nuclear", "PowerSourceKind-nuclear", "PowerSourceKind-nuclear");
+    get PowerSourceKind_nuclear(): $lwCore.EnumerationLiteral {
         this.ensureWiredUp();
         return this._PowerSourceKind_nuclear;
     }
-    private readonly _PowerSourceKind_diesel = new EnumerationLiteral(this._PowerSourceKind, "diesel", "PowerSourceKind-diesel", "PowerSourceKind-diesel");
-    get PowerSourceKind_diesel(): EnumerationLiteral {
+    private readonly _PowerSourceKind_diesel = new $lwCore.EnumerationLiteral(this._PowerSourceKind, "diesel", "PowerSourceKind-diesel", "PowerSourceKind-diesel");
+    get PowerSourceKind_diesel(): $lwCore.EnumerationLiteral {
         this.ensureWiredUp();
         return this._PowerSourceKind_diesel;
     }
@@ -134,19 +101,19 @@ export class PowerBudgetBase implements ILanguageBase {
             return;
         }
         this._language.havingEntities(this._IPowerModuleContent, this._IPowerParticipant, this._PowerConsumer, this._PowerModule, this._PowerSource, this._PowerSourceKind);
-        this._IPowerModuleContent.extending(LionCore_builtinsBase.INSTANCE._INamed);
+        this._IPowerModuleContent.extending($lwClassCore.LionCore_builtinsBase.INSTANCE._INamed);
         this._IPowerParticipant.havingFeatures(this._IPowerParticipant_peak, this._IPowerParticipant_continuous);
-        this._IPowerParticipant_peak.ofType(LionCore_builtinsBase.INSTANCE._Integer).isOptional();
-        this._IPowerParticipant_continuous.ofType(LionCore_builtinsBase.INSTANCE._Integer).isOptional();
-        this._PowerConsumer.extends = LionCore_builtinsBase.INSTANCE._Node;
+        this._IPowerParticipant_peak.ofType($lwClassCore.LionCore_builtinsBase.INSTANCE._Integer).isOptional();
+        this._IPowerParticipant_continuous.ofType($lwClassCore.LionCore_builtinsBase.INSTANCE._Integer).isOptional();
+        this._PowerConsumer.extends = $lwClassCore.LionCore_builtinsBase.INSTANCE._Node;
         this._PowerConsumer.implementing(this._IPowerModuleContent, this._IPowerParticipant);
         this._PowerConsumer.havingFeatures(this._PowerConsumer_providedFrom);
         this._PowerConsumer_providedFrom.ofType(this._PowerSource);
-        this._PowerModule.extends = LionCore_builtinsBase.INSTANCE._Node;
-        this._PowerModule.implementing(LionCore_builtinsBase.INSTANCE._INamed);
+        this._PowerModule.extends = $lwClassCore.LionCore_builtinsBase.INSTANCE._Node;
+        this._PowerModule.implementing($lwClassCore.LionCore_builtinsBase.INSTANCE._INamed);
         this._PowerModule.havingFeatures(this._PowerModule_contents);
         this._PowerModule_contents.ofType(this._IPowerModuleContent);
-        this._PowerSource.extends = LionCore_builtinsBase.INSTANCE._Node;
+        this._PowerSource.extends = $lwClassCore.LionCore_builtinsBase.INSTANCE._Node;
         this._PowerSource.implementing(this._IPowerModuleContent, this._IPowerParticipant);
         this._PowerSource.havingFeatures(this._PowerSource_kind);
         this._PowerSource_kind.ofType(this._PowerSourceKind).isOptional();
@@ -154,8 +121,8 @@ export class PowerBudgetBase implements ILanguageBase {
         this._wiredUp = true;
     }
 
-    factory(receiveDelta?: DeltaReceiver): NodeBaseFactory {
-        return (classifier: Classifier, id: LionWebId) => {
+    factory(receiveDelta?: $lwClassCore.DeltaReceiver): $lwClassCore.NodeBaseFactory {
+        return (classifier: $lwCore.Classifier, id: $lwJson.LionWebId) => {
             switch (classifier.key) {
                 case this._PowerConsumer.key: return PowerConsumer.create(id, receiveDelta);
                 case this._PowerModule.key: return PowerModule.create(id, receiveDelta);
@@ -168,7 +135,7 @@ export class PowerBudgetBase implements ILanguageBase {
         }
     }
 
-    enumLiteralFrom<EnumType>(enumerationLiteral: EnumerationLiteral): EnumType {
+    enumLiteralFrom<EnumType>(enumerationLiteral: $lwCore.EnumerationLiteral): EnumType {
         const {enumeration} = enumerationLiteral;
         if (enumeration.key === this._PowerSourceKind.key) {
             return enumerationLiteral.key as EnumType;
@@ -181,21 +148,21 @@ export class PowerBudgetBase implements ILanguageBase {
 }
 
 
-export interface IPowerModuleContent extends INamed {
+export interface IPowerModuleContent extends $lwClassCore.INamed {
 }
 
-export interface IPowerParticipant extends INodeBase {
+export interface IPowerParticipant extends $lwClassCore.INodeBase {
     peak: number | undefined;
     continuous: number | undefined;
 }
 
-export class PowerConsumer extends NodeBase implements IPowerModuleContent, IPowerParticipant {
-    static create(id: LionWebId, receiveDelta?: DeltaReceiver, parentInfo?: Parentage): PowerConsumer {
+export class PowerConsumer extends $lwClassCore.NodeBase implements IPowerModuleContent, IPowerParticipant {
+    static create(id: $lwJson.LionWebId, receiveDelta?: $lwClassCore.DeltaReceiver, parentInfo?: $lwClassCore.Parentage): PowerConsumer {
         return new PowerConsumer(PowerBudgetBase.INSTANCE.PowerConsumer, id, receiveDelta, parentInfo);
     }
 
-    private readonly _providedFrom: OptionalMultiReferenceValueManager<PowerSource>;
-    get providedFrom(): MultiRef<PowerSource> {
+    private readonly _providedFrom: $lwClassCore.OptionalMultiReferenceValueManager<PowerSource>;
+    get providedFrom(): $lwCore.MultiRef<PowerSource> {
         return this._providedFrom.get();
     }
     addProvidedFrom(newValue: PowerSource) {
@@ -211,7 +178,7 @@ export class PowerConsumer extends NodeBase implements IPowerModuleContent, IPow
         this._providedFrom.move(oldIndex, newIndex);
     }
 
-    private readonly _name: RequiredPropertyValueManager<string>;
+    private readonly _name: $lwClassCore.RequiredPropertyValueManager<string>;
     get name(): string {
         return this._name.get();
     }
@@ -219,7 +186,7 @@ export class PowerConsumer extends NodeBase implements IPowerModuleContent, IPow
         this._name.set(newValue);
     }
 
-    private readonly _peak: OptionalPropertyValueManager<number>;
+    private readonly _peak: $lwClassCore.OptionalPropertyValueManager<number>;
     get peak(): number | undefined {
         return this._peak.get();
     }
@@ -227,7 +194,7 @@ export class PowerConsumer extends NodeBase implements IPowerModuleContent, IPow
         this._peak.set(newValue);
     }
 
-    private readonly _continuous: OptionalPropertyValueManager<number>;
+    private readonly _continuous: $lwClassCore.OptionalPropertyValueManager<number>;
     get continuous(): number | undefined {
         return this._continuous.get();
     }
@@ -235,24 +202,24 @@ export class PowerConsumer extends NodeBase implements IPowerModuleContent, IPow
         this._continuous.set(newValue);
     }
 
-    public constructor(classifier: Classifier, id: LionWebId, receiveDelta?: DeltaReceiver, parentInfo?: Parentage) {
+    public constructor(classifier: $lwCore.Classifier, id: $lwJson.LionWebId, receiveDelta?: $lwClassCore.DeltaReceiver, parentInfo?: $lwClassCore.Parentage) {
         super(classifier, id, receiveDelta, parentInfo);
-        this._providedFrom = new OptionalMultiReferenceValueManager<PowerSource>(PowerBudgetBase.INSTANCE.PowerConsumer_providedFrom, this);
-        this._name = new RequiredPropertyValueManager<string>(LionCore_builtinsBase.INSTANCE.INamed_name, this);
-        this._peak = new OptionalPropertyValueManager<number>(PowerBudgetBase.INSTANCE.IPowerParticipant_peak, this);
-        this._continuous = new OptionalPropertyValueManager<number>(PowerBudgetBase.INSTANCE.IPowerParticipant_continuous, this);
+        this._providedFrom = new $lwClassCore.OptionalMultiReferenceValueManager<PowerSource>(PowerBudgetBase.INSTANCE.PowerConsumer_providedFrom, this);
+        this._name = new $lwClassCore.RequiredPropertyValueManager<string>($lwClassCore.LionCore_builtinsBase.INSTANCE.INamed_name, this);
+        this._peak = new $lwClassCore.OptionalPropertyValueManager<number>(PowerBudgetBase.INSTANCE.IPowerParticipant_peak, this);
+        this._continuous = new $lwClassCore.OptionalPropertyValueManager<number>(PowerBudgetBase.INSTANCE.IPowerParticipant_continuous, this);
     }
 
-    getPropertyValueManager(property: Property): PropertyValueManager<unknown> {
+    getPropertyValueManager(property: $lwCore.Property): $lwClassCore.PropertyValueManager<unknown> {
         switch (property.key) {
-            case LionCore_builtinsBase.INSTANCE.INamed_name.key: return this._name;
+            case $lwClassCore.LionCore_builtinsBase.INSTANCE.INamed_name.key: return this._name;
             case PowerBudgetBase.INSTANCE.IPowerParticipant_peak.key: return this._peak;
             case PowerBudgetBase.INSTANCE.IPowerParticipant_continuous.key: return this._continuous;
             default: return super.getPropertyValueManager(property);
         }
     }
 
-    getReferenceValueManager(reference: Reference): ReferenceValueManager<Node> {
+    getReferenceValueManager(reference: $lwCore.Reference): $lwClassCore.ReferenceValueManager<$lwCore.Node> {
         if (reference.key === PowerBudgetBase.INSTANCE.PowerConsumer_providedFrom.key) {
             return this._providedFrom;
         }
@@ -260,12 +227,12 @@ export class PowerConsumer extends NodeBase implements IPowerModuleContent, IPow
     }
 }
 
-export class PowerModule extends NodeBase implements INamed {
-    static create(id: LionWebId, receiveDelta?: DeltaReceiver, parentInfo?: Parentage): PowerModule {
+export class PowerModule extends $lwClassCore.NodeBase implements $lwClassCore.INamed {
+    static create(id: $lwJson.LionWebId, receiveDelta?: $lwClassCore.DeltaReceiver, parentInfo?: $lwClassCore.Parentage): PowerModule {
         return new PowerModule(PowerBudgetBase.INSTANCE.PowerModule, id, receiveDelta, parentInfo);
     }
 
-    private readonly _contents: OptionalMultiContainmentValueManager<IPowerModuleContent>;
+    private readonly _contents: $lwClassCore.OptionalMultiContainmentValueManager<IPowerModuleContent>;
     get contents(): IPowerModuleContent[] {
         return this._contents.get();
     }
@@ -284,8 +251,14 @@ export class PowerModule extends NodeBase implements INamed {
     replaceContentsAtIndex(movedChild: IPowerModuleContent, newIndex: number) {
         this._contents.replaceAtIndex(movedChild, newIndex);
     }
+    moveContentsOffsetBased(oldIndex: number, indexOffset: number) {
+        this._contents.moveOffsetBased(oldIndex, indexOffset);
+    }
+    moveAndReplaceContentsOffsetBased(oldIndex: number, indexOffset: number) {
+        this._contents.moveAndReplaceOffsetBased(oldIndex, indexOffset);
+    }
 
-    private readonly _name: RequiredPropertyValueManager<string>;
+    private readonly _name: $lwClassCore.RequiredPropertyValueManager<string>;
     get name(): string {
         return this._name.get();
     }
@@ -293,20 +266,20 @@ export class PowerModule extends NodeBase implements INamed {
         this._name.set(newValue);
     }
 
-    public constructor(classifier: Classifier, id: LionWebId, receiveDelta?: DeltaReceiver, parentInfo?: Parentage) {
+    public constructor(classifier: $lwCore.Classifier, id: $lwJson.LionWebId, receiveDelta?: $lwClassCore.DeltaReceiver, parentInfo?: $lwClassCore.Parentage) {
         super(classifier, id, receiveDelta, parentInfo);
-        this._contents = new OptionalMultiContainmentValueManager<IPowerModuleContent>(PowerBudgetBase.INSTANCE.PowerModule_contents, this);
-        this._name = new RequiredPropertyValueManager<string>(LionCore_builtinsBase.INSTANCE.INamed_name, this);
+        this._contents = new $lwClassCore.OptionalMultiContainmentValueManager<IPowerModuleContent>(PowerBudgetBase.INSTANCE.PowerModule_contents, this);
+        this._name = new $lwClassCore.RequiredPropertyValueManager<string>($lwClassCore.LionCore_builtinsBase.INSTANCE.INamed_name, this);
     }
 
-    getPropertyValueManager(property: Property): PropertyValueManager<unknown> {
-        if (property.key === LionCore_builtinsBase.INSTANCE.INamed_name.key) {
+    getPropertyValueManager(property: $lwCore.Property): $lwClassCore.PropertyValueManager<unknown> {
+        if (property.key === $lwClassCore.LionCore_builtinsBase.INSTANCE.INamed_name.key) {
             return this._name;
         }
         return super.getPropertyValueManager(property);
     }
 
-    getContainmentValueManager(containment: Containment): ContainmentValueManager<INodeBase> {
+    getContainmentValueManager(containment: $lwCore.Containment): $lwClassCore.ContainmentValueManager<$lwClassCore.INodeBase> {
         if (containment.key === PowerBudgetBase.INSTANCE.PowerModule_contents.key) {
             return this._contents;
         }
@@ -314,12 +287,12 @@ export class PowerModule extends NodeBase implements INamed {
     }
 }
 
-export class PowerSource extends NodeBase implements IPowerModuleContent, IPowerParticipant {
-    static create(id: LionWebId, receiveDelta?: DeltaReceiver, parentInfo?: Parentage): PowerSource {
+export class PowerSource extends $lwClassCore.NodeBase implements IPowerModuleContent, IPowerParticipant {
+    static create(id: $lwJson.LionWebId, receiveDelta?: $lwClassCore.DeltaReceiver, parentInfo?: $lwClassCore.Parentage): PowerSource {
         return new PowerSource(PowerBudgetBase.INSTANCE.PowerSource, id, receiveDelta, parentInfo);
     }
 
-    private readonly _kind: OptionalPropertyValueManager<PowerSourceKind>;
+    private readonly _kind: $lwClassCore.OptionalPropertyValueManager<PowerSourceKind>;
     get kind(): PowerSourceKind | undefined {
         return this._kind.get();
     }
@@ -327,7 +300,7 @@ export class PowerSource extends NodeBase implements IPowerModuleContent, IPower
         this._kind.set(newValue);
     }
 
-    private readonly _name: RequiredPropertyValueManager<string>;
+    private readonly _name: $lwClassCore.RequiredPropertyValueManager<string>;
     get name(): string {
         return this._name.get();
     }
@@ -335,7 +308,7 @@ export class PowerSource extends NodeBase implements IPowerModuleContent, IPower
         this._name.set(newValue);
     }
 
-    private readonly _peak: OptionalPropertyValueManager<number>;
+    private readonly _peak: $lwClassCore.OptionalPropertyValueManager<number>;
     get peak(): number | undefined {
         return this._peak.get();
     }
@@ -343,7 +316,7 @@ export class PowerSource extends NodeBase implements IPowerModuleContent, IPower
         this._peak.set(newValue);
     }
 
-    private readonly _continuous: OptionalPropertyValueManager<number>;
+    private readonly _continuous: $lwClassCore.OptionalPropertyValueManager<number>;
     get continuous(): number | undefined {
         return this._continuous.get();
     }
@@ -351,18 +324,18 @@ export class PowerSource extends NodeBase implements IPowerModuleContent, IPower
         this._continuous.set(newValue);
     }
 
-    public constructor(classifier: Classifier, id: LionWebId, receiveDelta?: DeltaReceiver, parentInfo?: Parentage) {
+    public constructor(classifier: $lwCore.Classifier, id: $lwJson.LionWebId, receiveDelta?: $lwClassCore.DeltaReceiver, parentInfo?: $lwClassCore.Parentage) {
         super(classifier, id, receiveDelta, parentInfo);
-        this._kind = new OptionalPropertyValueManager<PowerSourceKind>(PowerBudgetBase.INSTANCE.PowerSource_kind, this);
-        this._name = new RequiredPropertyValueManager<string>(LionCore_builtinsBase.INSTANCE.INamed_name, this);
-        this._peak = new OptionalPropertyValueManager<number>(PowerBudgetBase.INSTANCE.IPowerParticipant_peak, this);
-        this._continuous = new OptionalPropertyValueManager<number>(PowerBudgetBase.INSTANCE.IPowerParticipant_continuous, this);
+        this._kind = new $lwClassCore.OptionalPropertyValueManager<PowerSourceKind>(PowerBudgetBase.INSTANCE.PowerSource_kind, this);
+        this._name = new $lwClassCore.RequiredPropertyValueManager<string>($lwClassCore.LionCore_builtinsBase.INSTANCE.INamed_name, this);
+        this._peak = new $lwClassCore.OptionalPropertyValueManager<number>(PowerBudgetBase.INSTANCE.IPowerParticipant_peak, this);
+        this._continuous = new $lwClassCore.OptionalPropertyValueManager<number>(PowerBudgetBase.INSTANCE.IPowerParticipant_continuous, this);
     }
 
-    getPropertyValueManager(property: Property): PropertyValueManager<unknown> {
+    getPropertyValueManager(property: $lwCore.Property): $lwClassCore.PropertyValueManager<unknown> {
         switch (property.key) {
             case PowerBudgetBase.INSTANCE.PowerSource_kind.key: return this._kind;
-            case LionCore_builtinsBase.INSTANCE.INamed_name.key: return this._name;
+            case $lwClassCore.LionCore_builtinsBase.INSTANCE.INamed_name.key: return this._name;
             case PowerBudgetBase.INSTANCE.IPowerParticipant_peak.key: return this._peak;
             case PowerBudgetBase.INSTANCE.IPowerParticipant_continuous.key: return this._continuous;
             default: return super.getPropertyValueManager(property);

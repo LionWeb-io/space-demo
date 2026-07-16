@@ -1,4 +1,4 @@
-import { writeFileSync } from "fs"
+import { writeFileSync } from "node:fs"
 import { generateApiFromLanguages } from "@lionweb/class-core-generator"
 import { deserializeLanguagesWithIoLionWebMpsSpecific, repairIoLionWebMpsSpecificAnnotations } from "@lionweb/io-lionweb-mps-specific"
 import { LionWebJsonChunk } from "@lionweb/json"

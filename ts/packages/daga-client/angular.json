@@ -34,7 +34,7 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/@metadev/daga-angular/assets/styles/daga.scss"
+              "../../node_modules/@metadev/daga-angular/assets/styles/daga.scss"
             ]
           },
           "configurations": {

@@ -25,6 +25,8 @@ import { Finding } from './gen/Finding.g';
 import { allLanguageBases } from './gen/index.g';
 import { PowerConsumer, PowerModule, PowerSource, PowerSourceKind } from './gen/PowerBudget.g';
 
+const repositoryId = 'myRepo'
+
 @Component({
   selector: 'app-daga-diagram',
   templateUrl: './daga-diagram.component.html',
@@ -56,6 +58,7 @@ export class DagaDiagramComponent implements AfterViewInit, OnDestroy {
 
       console.log(`creating client`);
       LionWebClient.create({
+        repositoryId,
         clientId: 'TS-client-1',
         url: 'ws://localhost:40000',
         languageBases: allLanguageBases,
@@ -78,11 +81,11 @@ export class DagaDiagramComponent implements AfterViewInit, OnDestroy {
         this.client = client;
 
         console.log(`signing in`);
-        client.signOn(uniqueQueryId(), 'myRepo').then(() => {
+        client.signOn(uniqueQueryId(), repositoryId).then(() => {
           console.log(`signed on`);
 
           console.log(`getting list of partitions`);
-          client.listPartitions(uniqueQueryId()).then((partitionInfo) => {
+          client.listPartitions(uniqueQueryId(), Number.MAX_SAFE_INTEGER).then((partitionInfo) => {
             const partitionIds = partitionInfo.nodes
               .filter((partitionJson) => partitionJson.parent === null)
               .map(({ id }) => id);
