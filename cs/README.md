@@ -35,7 +35,7 @@ Run in this exact order:
 
 3. in `SpaceDemo.Loader`:
   ```shell
-  $ dotnet run <space-DSL Git root>/chunks/
+  $ dotnet run <space-DSL Git root>/chunks/ [host name; default=localhost] [WebSocket port number; default=40000]
   ```
 This _watches_ the `chunks/` dir., and (re-)loads any file which name matches `*.instance.json`, adding the corresponding partitions to the repository.
 

@@ -376,7 +376,7 @@ export class PowerConsumer extends NodeBase implements IPowerModuleContent, IPow
     if (reference.key === PowerBudgetBase.INSTANCE.PowerConsumer_providedFrom.key) {
       return this._providedFrom;
     }
-    return super.getReferenceValueManager(reference);
+    return super.getReferenceValueManager(reference) as ReferenceValueManager<INodeBase>;
   }
 }
 

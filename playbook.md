@@ -2,7 +2,7 @@
 
 ## Preparation
 1. Delete generated files
-   * `space-demo/ts/packages/editor/src/gen/*`
+   * `space-demo/ts/packages/react-client/src/gen/*`
    * `space-demo/cs/SpaceDemo.Languages/Languages/*`
    * `space-demo/chunks/*`
 
@@ -19,8 +19,8 @@
 
 1. Open another Console tab "RunTs" in `space-demo/ts/`
    * Run `npm i`
-   * Change to `space-demo/ts/packages/editor`
-   * Type `npm run dev` 
+   * Change to `space-demo/ts/packages/react-client`
+   * Type `npm start` 
 
 1. Open MPS 2021.3 with project `space-demo/mps`
    * Build everything
