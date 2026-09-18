@@ -218,12 +218,12 @@ class Loader
 
 internal class PreferExistingNodesHandler : DeserializerExceptionHandler
 {
-    public override string? DuplicateNodeId(ICompressedId nodeId, IReadableNode existingNode, IReadableNode node)
+    public override string? DuplicateNodeId(string nodeId, IReadableNode existingNode, IReadableNode node)
     {
         return existingNode.GetId();
     }
 
-    public override bool SkipDeserializingDependentNode(ICompressedId id)
+    public override bool SkipDeserializingDependentNode(string id)
     {
         return false;
     }

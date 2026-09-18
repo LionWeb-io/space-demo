@@ -47,7 +47,7 @@ class ValidatorClient
 
         await webSocketClient.ConnectToServer(serverIp, serverPort);
         await lionWeb.SignOn("myRepo");
-        await lionWeb.SubscribeToChangingPartitions(true, true, true);
+        await lionWeb.SubscribeToChangingPartitions(true, true);
 
         if (interactive)
         {
