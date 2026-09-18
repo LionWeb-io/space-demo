@@ -9,6 +9,7 @@ annotation Finding {
   message: String?
   code: Integer?
 }
+Finding ..# Node : <i>annotates</i>
 
 enum Severity {
   info
