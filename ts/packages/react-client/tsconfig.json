@@ -9,8 +9,8 @@
     "jsx": "react-jsx",
     "resolveJsonModule": true,
     "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "lib": [ "dom", "esnext" ],
     "outDir": "dist/"
   }

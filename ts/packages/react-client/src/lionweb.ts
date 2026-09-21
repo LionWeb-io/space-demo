@@ -4,6 +4,7 @@ import { createBrowserLowLevelClient } from "@lionweb/delta-protocol-low-level-c
 
 import { allLanguageBases } from "./gen/index.g.js"
 import { store } from "./store.js"
+import { LionWebJsonChunk } from "@lionweb/json"
 
 
 export const logModel = (model: INodeBase[]) => {
@@ -31,6 +32,7 @@ export const initializeLionWeb = () => {
     LionWebClient.create({
         clientId: "TS-client-1",
         url: "ws://localhost:40000",
+        repositoryId: "myRepo",
         languageBases: allLanguageBases,
         lowLevelClientInstantiator: (lowLevelClientParameters) =>
             createBrowserLowLevelClient(lowLevelClientParameters, (logItem) => {
@@ -55,7 +57,7 @@ export const initializeLionWeb = () => {
                     console.log(`signed on`)
 
                     console.log(`getting list of partitions`)
-                    client.listPartitions(uniqueQueryId())
+                    client.listPartitions(uniqueQueryId(), 1 << 30)
                         .then((partitionInfo) => {
                             const partitionIds = partitionInfo.nodes
                                 .filter((partitionJson) => partitionJson.parent === null)
@@ -71,7 +73,8 @@ export const initializeLionWeb = () => {
                                 .then((receivedPartitionJson) => {
 
                                     console.log(`deserializing partition`)
-                                    const receivedModel = client.forest.deserializeInto(receivedPartitionJson)
+                                    const receivedModel = client.forest.deserializeInto(receivedPartitionJson as LionWebJsonChunk)
+                                    // FIXME  type coercion hack because type of Forest.deserializeInto should be OnlyNodesOfLionWebJsonChunk (fixed in 0.10.1)
                                     store.setModel(receivedModel)
                                     logModel(receivedModel)
 
