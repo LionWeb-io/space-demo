@@ -40,4 +40,5 @@ This (sub-)project contains two packages:
   ```
 
 * `echo-ws-server`: A simple WebSocket server that just echoes everything it receives to the console.
+This is predominantly for checking whether something is actually connecting (correctly) over WebSocket.
 
