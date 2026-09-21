@@ -2,7 +2,7 @@ import { asTreeTextWith, INodeBase } from "@lionweb/class-core"
 import { LionWebClient } from "@lionweb/delta-protocol-client"
 import { createBrowserLowLevelClient } from "@lionweb/delta-protocol-low-level-client-browser"
 
-import { allLanguageBases } from "./gen/index.g.js"
+import { allLanguageBases } from "ts-space-demo-dsl"
 import { store } from "./store.js"
 import { LionWebJsonChunk } from "@lionweb/json"
 

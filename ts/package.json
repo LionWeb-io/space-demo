@@ -14,11 +14,13 @@
     "rimraf": "6.0.1"
   },
   "scripts": {
-    "clean": "npm run clean -w packages --if-present && npx rimraf node_modules .parcel-cache package-lock.json"
+    "build": "npm run build -w packages --if-present && npm run check -w packages --if-present",
+    "clean": "npm run clean -w packages --if-present && npx rimraf .parcel-cache node_modules package-lock.json"
   },
   "private": true,
   "workspaces": [
     "./packages/build",
+    "./packages/space-dsl",
     "./packages/daga-client",
     "./packages/echo-ws-server",
     "./packages/react-client"

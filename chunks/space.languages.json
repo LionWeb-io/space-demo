@@ -45,7 +45,7 @@
             "version": "2023.1",
             "key": "LionCore-builtins-INamed-name"
           },
-          "value": "PowerBudget"
+          "value": "PowerBudgetLanguage"
         }
       ],
       "containments": [
@@ -1001,7 +1001,7 @@
             "version": "2023.1",
             "key": "LionCore-builtins-INamed-name"
           },
-          "value": "Finding"
+          "value": "FindingLanguage"
         }
       ],
       "containments": [

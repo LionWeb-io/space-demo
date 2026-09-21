@@ -21,9 +21,10 @@ import {
 } from '@metadev/daga-angular';
 import { delay, Subscription } from 'rxjs';
 import { SPACE_DIAGRAM_CONFIG } from './daga-diagram.config';
-import { Finding } from './gen/Finding.g';
-import { allLanguageBases } from './gen/index.g';
-import { PowerConsumer, PowerModule, PowerSource, PowerSourceKind } from './gen/PowerBudget.g';
+import { allLanguageBases, FindingLanguage, PowerBudgetLanguage } from 'ts-space-demo-dsl';
+const { Finding } = FindingLanguage;
+const { PowerConsumer, PowerModule, PowerSource } = PowerBudgetLanguage;
+import { PowerSourceKind } from "ts-space-demo-dsl/dist/gen/PowerBudgetLanguage.g.js"  // TODO  can we improve on that?
 
 const repositoryId = 'myRepo'
 

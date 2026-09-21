@@ -18,26 +18,26 @@ using global::System.Collections.Generic;
 using global::System.Diagnostics.CodeAnalysis;
 
 [LionCoreLanguage(Key = "space-PowerBudget", Version = "0.1")]
-public partial class PowerBudgetLanguage : LanguageBase<IPowerBudgetFactory>
+public partial class PowerBudgetLanguageLanguage : LanguageBase<IPowerBudgetLanguageFactory>
 {
-	public static readonly PowerBudgetLanguage Instance = new Lazy<PowerBudgetLanguage>(() => new("space-PowerBudget")).Value;
-	public PowerBudgetLanguage(string id) : base(id, LionWebVersions.v2023_1)
+	public static readonly PowerBudgetLanguageLanguage Instance = new Lazy<PowerBudgetLanguageLanguage>(() => new("space-PowerBudget")).Value;
+	public PowerBudgetLanguageLanguage(string id) : base(id, LionWebVersions.v2023_1)
 	{
-		_iPowerModuleContent = new(() => new InterfaceBase<PowerBudgetLanguage>("IPowerModuleContent", this) { Key = "IPowerModuleContent", Name = "IPowerModuleContent", ExtendsLazy = new(() => [_builtIns.INamed]) });
-		_iPowerParticipant = new(() => new InterfaceBase<PowerBudgetLanguage>("IPowerParticipant", this) { Key = "IPowerParticipant", Name = "IPowerParticipant", FeaturesLazy = new(() => [IPowerParticipant_continuous, IPowerParticipant_peak]) });
-		_iPowerParticipant_continuous = new(() => new PropertyBase<PowerBudgetLanguage>("IPowerParticipant-continuous", IPowerParticipant, this) { Key = "IPowerParticipant-continuous", Name = "continuous", Optional = true, Type = _builtIns.Integer });
-		_iPowerParticipant_peak = new(() => new PropertyBase<PowerBudgetLanguage>("IPowerParticipant-peak", IPowerParticipant, this) { Key = "IPowerParticipant-peak", Name = "peak", Optional = true, Type = _builtIns.Integer });
-		_powerConsumer = new(() => new ConceptBase<PowerBudgetLanguage>("PowerConsumer", this) { Key = "PowerConsumer", Name = "PowerConsumer", Abstract = false, Partition = false, ExtendsLazy = new(() => _builtIns.Node), ImplementsLazy = new(() => [IPowerModuleContent, IPowerParticipant]), FeaturesLazy = new(() => [PowerConsumer_providedFrom]) });
-		_powerConsumer_providedFrom = new(() => new ReferenceBase<PowerBudgetLanguage>("ODgyNjBiZDctZjQ0MC00ZWNhLTk4NzMtMTJkOTRjYjZlNzQ3LzEwMDI1NjMxNTEwMTY3ODAxOTUvMTAwMjU2MzE1MTAxNjg4NTY0Nw", PowerConsumer, this) { Key = "ODgyNjBiZDctZjQ0MC00ZWNhLTk4NzMtMTJkOTRjYjZlNzQ3LzEwMDI1NjMxNTEwMTY3ODAxOTUvMTAwMjU2MzE1MTAxNjg4NTY0Nw", Name = "providedFrom", Optional = true, Multiple = true, Type = PowerSource });
-		_powerModule = new(() => new ConceptBase<PowerBudgetLanguage>("PowerModule", this) { Key = "PowerModule", Name = "PowerModule", Abstract = false, Partition = true, ExtendsLazy = new(() => _builtIns.Node), ImplementsLazy = new(() => [_builtIns.INamed]), FeaturesLazy = new(() => [PowerModule_contents]) });
-		_powerModule_contents = new(() => new ContainmentBase<PowerBudgetLanguage>("PowerModule-contents", PowerModule, this) { Key = "PowerModule-contents", Name = "contents", Optional = true, Multiple = true, Type = IPowerModuleContent });
-		_powerSource = new(() => new ConceptBase<PowerBudgetLanguage>("PowerSource", this) { Key = "PowerSource", Name = "PowerSource", Abstract = false, Partition = false, ExtendsLazy = new(() => _builtIns.Node), ImplementsLazy = new(() => [IPowerModuleContent, IPowerParticipant]), FeaturesLazy = new(() => [PowerSource_kind]) });
-		_powerSource_kind = new(() => new PropertyBase<PowerBudgetLanguage>("PowerSource-kind", PowerSource, this) { Key = "PowerSource-kind", Name = "kind", Optional = true, Type = PowerSourceKind });
-		_powerSourceKind = new(() => new EnumerationBase<PowerBudgetLanguage>("PowerSourceKind", this) { Key = "PowerSourceKind", Name = "PowerSourceKind", LiteralsLazy = new(() => [PowerSourceKind_diesel, PowerSourceKind_nuclear, PowerSourceKind_solar]) });
-		_powerSourceKind_diesel = new(() => new EnumerationLiteralBase<PowerBudgetLanguage>("PowerSourceKind-diesel", PowerSourceKind, this) { Key = "PowerSourceKind-diesel", Name = "diesel" });
-		_powerSourceKind_nuclear = new(() => new EnumerationLiteralBase<PowerBudgetLanguage>("PowerSourceKind-nuclear", PowerSourceKind, this) { Key = "PowerSourceKind-nuclear", Name = "nuclear" });
-		_powerSourceKind_solar = new(() => new EnumerationLiteralBase<PowerBudgetLanguage>("PowerSourceKind-solar", PowerSourceKind, this) { Key = "PowerSourceKind-solar", Name = "solar" });
-		_factory = new PowerBudgetFactory(this);
+		_iPowerModuleContent = new(() => new InterfaceBase<PowerBudgetLanguageLanguage>("IPowerModuleContent", this) { Key = "IPowerModuleContent", Name = "IPowerModuleContent", ExtendsLazy = new(() => [_builtIns.INamed]) });
+		_iPowerParticipant = new(() => new InterfaceBase<PowerBudgetLanguageLanguage>("IPowerParticipant", this) { Key = "IPowerParticipant", Name = "IPowerParticipant", FeaturesLazy = new(() => [IPowerParticipant_continuous, IPowerParticipant_peak]) });
+		_iPowerParticipant_continuous = new(() => new PropertyBase<PowerBudgetLanguageLanguage>("IPowerParticipant-continuous", IPowerParticipant, this) { Key = "IPowerParticipant-continuous", Name = "continuous", Optional = true, Type = _builtIns.Integer });
+		_iPowerParticipant_peak = new(() => new PropertyBase<PowerBudgetLanguageLanguage>("IPowerParticipant-peak", IPowerParticipant, this) { Key = "IPowerParticipant-peak", Name = "peak", Optional = true, Type = _builtIns.Integer });
+		_powerConsumer = new(() => new ConceptBase<PowerBudgetLanguageLanguage>("PowerConsumer", this) { Key = "PowerConsumer", Name = "PowerConsumer", Abstract = false, Partition = false, ExtendsLazy = new(() => _builtIns.Node), ImplementsLazy = new(() => [IPowerModuleContent, IPowerParticipant]), FeaturesLazy = new(() => [PowerConsumer_providedFrom]) });
+		_powerConsumer_providedFrom = new(() => new ReferenceBase<PowerBudgetLanguageLanguage>("ODgyNjBiZDctZjQ0MC00ZWNhLTk4NzMtMTJkOTRjYjZlNzQ3LzEwMDI1NjMxNTEwMTY3ODAxOTUvMTAwMjU2MzE1MTAxNjg4NTY0Nw", PowerConsumer, this) { Key = "ODgyNjBiZDctZjQ0MC00ZWNhLTk4NzMtMTJkOTRjYjZlNzQ3LzEwMDI1NjMxNTEwMTY3ODAxOTUvMTAwMjU2MzE1MTAxNjg4NTY0Nw", Name = "providedFrom", Optional = true, Multiple = true, Type = PowerSource });
+		_powerModule = new(() => new ConceptBase<PowerBudgetLanguageLanguage>("PowerModule", this) { Key = "PowerModule", Name = "PowerModule", Abstract = false, Partition = true, ExtendsLazy = new(() => _builtIns.Node), ImplementsLazy = new(() => [_builtIns.INamed]), FeaturesLazy = new(() => [PowerModule_contents]) });
+		_powerModule_contents = new(() => new ContainmentBase<PowerBudgetLanguageLanguage>("PowerModule-contents", PowerModule, this) { Key = "PowerModule-contents", Name = "contents", Optional = true, Multiple = true, Type = IPowerModuleContent });
+		_powerSource = new(() => new ConceptBase<PowerBudgetLanguageLanguage>("PowerSource", this) { Key = "PowerSource", Name = "PowerSource", Abstract = false, Partition = false, ExtendsLazy = new(() => _builtIns.Node), ImplementsLazy = new(() => [IPowerModuleContent, IPowerParticipant]), FeaturesLazy = new(() => [PowerSource_kind]) });
+		_powerSource_kind = new(() => new PropertyBase<PowerBudgetLanguageLanguage>("PowerSource-kind", PowerSource, this) { Key = "PowerSource-kind", Name = "kind", Optional = true, Type = PowerSourceKind });
+		_powerSourceKind = new(() => new EnumerationBase<PowerBudgetLanguageLanguage>("PowerSourceKind", this) { Key = "PowerSourceKind", Name = "PowerSourceKind", LiteralsLazy = new(() => [PowerSourceKind_diesel, PowerSourceKind_nuclear, PowerSourceKind_solar]) });
+		_powerSourceKind_diesel = new(() => new EnumerationLiteralBase<PowerBudgetLanguageLanguage>("PowerSourceKind-diesel", PowerSourceKind, this) { Key = "PowerSourceKind-diesel", Name = "diesel" });
+		_powerSourceKind_nuclear = new(() => new EnumerationLiteralBase<PowerBudgetLanguageLanguage>("PowerSourceKind-nuclear", PowerSourceKind, this) { Key = "PowerSourceKind-nuclear", Name = "nuclear" });
+		_powerSourceKind_solar = new(() => new EnumerationLiteralBase<PowerBudgetLanguageLanguage>("PowerSourceKind-solar", PowerSourceKind, this) { Key = "PowerSourceKind-solar", Name = "solar" });
+		_factory = new PowerBudgetLanguageFactory(this);
 	}
 
 	/// <inheritdoc/>
@@ -49,7 +49,7 @@ public partial class PowerBudgetLanguage : LanguageBase<IPowerBudgetFactory>
 	/// <inheritdoc/>
         public override string Key => _key;
 
-	private const string _name = "PowerBudget";
+	private const string _name = "PowerBudgetLanguage";
 	/// <inheritdoc/>
         public override string Name => _name;
 
@@ -100,7 +100,7 @@ public partial class PowerBudgetLanguage : LanguageBase<IPowerBudgetFactory>
 	public EnumerationLiteral PowerSourceKind_solar => _powerSourceKind_solar.Value;
 }
 
-public partial interface IPowerBudgetFactory : INodeFactory
+public partial interface IPowerBudgetLanguageFactory : INodeFactory
 {
 	public PowerConsumer NewPowerConsumer(string id);
 	public PowerConsumer CreatePowerConsumer();
@@ -110,10 +110,10 @@ public partial interface IPowerBudgetFactory : INodeFactory
 	public PowerSource CreatePowerSource();
 }
 
-public class PowerBudgetFactory : AbstractBaseNodeFactory, IPowerBudgetFactory
+public class PowerBudgetLanguageFactory : AbstractBaseNodeFactory, IPowerBudgetLanguageFactory
 {
-	private readonly PowerBudgetLanguage _language;
-	public PowerBudgetFactory(PowerBudgetLanguage language) : base(language)
+	private readonly PowerBudgetLanguageLanguage _language;
+	public PowerBudgetLanguageFactory(PowerBudgetLanguageLanguage language) : base(language)
 	{
 		_language = language;
 	}
@@ -152,23 +152,23 @@ public class PowerBudgetFactory : AbstractBaseNodeFactory, IPowerBudgetFactory
 	public virtual PowerSource CreatePowerSource() => NewPowerSource(GetNewId());
 }
 
-[LionCoreMetaPointer(Language = typeof(PowerBudgetLanguage), Key = "IPowerModuleContent")]
+[LionCoreMetaPointer(Language = typeof(PowerBudgetLanguageLanguage), Key = "IPowerModuleContent")]
 public partial interface IPowerModuleContent : INamedWritable, INode
 {
 }
 
-[LionCoreMetaPointer(Language = typeof(PowerBudgetLanguage), Key = "IPowerParticipant")]
+[LionCoreMetaPointer(Language = typeof(PowerBudgetLanguageLanguage), Key = "IPowerParticipant")]
 public partial interface IPowerParticipant : INode
 {
 	/// <remarks>Optional Property</remarks>
-        [LionCoreMetaPointer(Language = typeof(PowerBudgetLanguage), Key = "IPowerParticipant-continuous")]
+        [LionCoreMetaPointer(Language = typeof(PowerBudgetLanguageLanguage), Key = "IPowerParticipant-continuous")]
 	[LionCoreFeature(Kind = LionCoreFeatureKind.Property, Optional = true, Multiple = false)]
 	public int? Continuous { get; set; }
 
 	/// <remarks>Optional Property</remarks>
         public IPowerParticipant SetContinuous(int? value);
 	/// <remarks>Optional Property</remarks>
-        [LionCoreMetaPointer(Language = typeof(PowerBudgetLanguage), Key = "IPowerParticipant-peak")]
+        [LionCoreMetaPointer(Language = typeof(PowerBudgetLanguageLanguage), Key = "IPowerParticipant-peak")]
 	[LionCoreFeature(Kind = LionCoreFeatureKind.Property, Optional = true, Multiple = false)]
 	public int? Peak { get; set; }
 
@@ -176,7 +176,7 @@ public partial interface IPowerParticipant : INode
         public IPowerParticipant SetPeak(int? value);
 }
 
-[LionCoreMetaPointer(Language = typeof(PowerBudgetLanguage), Key = "PowerConsumer")]
+[LionCoreMetaPointer(Language = typeof(PowerBudgetLanguageLanguage), Key = "PowerConsumer")]
 public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, IPowerParticipant, INamedWritable
 {
 	private string? _name = null;
@@ -215,7 +215,7 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 
 	private int? _continuous = null;
 	/// <remarks>Optional Property</remarks>
-        [LionCoreMetaPointer(Language = typeof(PowerBudgetLanguage), Key = "IPowerParticipant-continuous")]
+        [LionCoreMetaPointer(Language = typeof(PowerBudgetLanguageLanguage), Key = "IPowerParticipant-continuous")]
 	[LionCoreFeature(Kind = LionCoreFeatureKind.Property, Optional = true, Multiple = false)]
 	public int? Continuous { get => _continuous; set => SetContinuous(value); }
 
@@ -238,13 +238,13 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 	/// <remarks>Optional Property</remarks>
         public PowerConsumer SetContinuous(int? value)
 	{
-		SetOptionalValueTypeProperty<int>(value, PowerBudgetLanguage.Instance.IPowerParticipant_continuous, _continuous, SetContinuousRaw);
+		SetOptionalValueTypeProperty<int>(value, PowerBudgetLanguageLanguage.Instance.IPowerParticipant_continuous, _continuous, SetContinuousRaw);
 		return this;
 	}
 
 	private int? _peak = null;
 	/// <remarks>Optional Property</remarks>
-        [LionCoreMetaPointer(Language = typeof(PowerBudgetLanguage), Key = "IPowerParticipant-peak")]
+        [LionCoreMetaPointer(Language = typeof(PowerBudgetLanguageLanguage), Key = "IPowerParticipant-peak")]
 	[LionCoreFeature(Kind = LionCoreFeatureKind.Property, Optional = true, Multiple = false)]
 	public int? Peak { get => _peak; set => SetPeak(value); }
 
@@ -267,7 +267,7 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 	/// <remarks>Optional Property</remarks>
         public PowerConsumer SetPeak(int? value)
 	{
-		SetOptionalValueTypeProperty<int>(value, PowerBudgetLanguage.Instance.IPowerParticipant_peak, _peak, SetPeakRaw);
+		SetOptionalValueTypeProperty<int>(value, PowerBudgetLanguageLanguage.Instance.IPowerParticipant_peak, _peak, SetPeakRaw);
 		return this;
 	}
 
@@ -275,9 +275,9 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 	private IReadOnlyList<ReferenceTarget> ReadOnlyProvidedFrom() => _providedFrom?.AsReadOnly() ?? _emptyReferences;
 	private List<ReferenceTarget> WritableProvidedFrom() => _providedFrom ??= [];
 	/// <remarks>Optional Multiple Reference</remarks>
-        [LionCoreMetaPointer(Language = typeof(PowerBudgetLanguage), Key = "ODgyNjBiZDctZjQ0MC00ZWNhLTk4NzMtMTJkOTRjYjZlNzQ3LzEwMDI1NjMxNTEwMTY3ODAxOTUvMTAwMjU2MzE1MTAxNjg4NTY0Nw")]
+        [LionCoreMetaPointer(Language = typeof(PowerBudgetLanguageLanguage), Key = "ODgyNjBiZDctZjQ0MC00ZWNhLTk4NzMtMTJkOTRjYjZlNzQ3LzEwMDI1NjMxNTEwMTY3ODAxOTUvMTAwMjU2MzE1MTAxNjg4NTY0Nw")]
 	[LionCoreFeature(Kind = LionCoreFeatureKind.Reference, Optional = true, Multiple = true)]
-	public IReadOnlyList<PowerSource> ProvidedFrom { get => ReferenceTargetNonNullTargets<PowerSource>(_providedFrom, PowerBudgetLanguage.Instance.PowerConsumer_providedFrom); init => AddProvidedFrom(value); }
+	public IReadOnlyList<PowerSource> ProvidedFrom { get => ReferenceTargetNonNullTargets<PowerSource>(_providedFrom, PowerBudgetLanguageLanguage.Instance.PowerConsumer_providedFrom); init => AddProvidedFrom(value); }
 
 	/// <remarks>Optional Multiple Reference</remarks>
         public bool TryGetProvidedFrom([NotNullWhenAttribute(true)] out IReadOnlyList<PowerSource> providedFrom) => TryGetReference<PowerSource>(_providedFrom, out providedFrom);
@@ -288,21 +288,21 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 	/// <remarks>Optional Multiple Reference</remarks>
         public PowerConsumer AddProvidedFrom(IEnumerable<PowerSource> nodes)
 	{
-		AddOptionalMultipleReference<PowerSource>(nodes, PowerBudgetLanguage.Instance.PowerConsumer_providedFrom, WritableProvidedFrom(), AddProvidedFromRaw);
+		AddOptionalMultipleReference<PowerSource>(nodes, PowerBudgetLanguageLanguage.Instance.PowerConsumer_providedFrom, WritableProvidedFrom(), AddProvidedFromRaw);
 		return this;
 	}
 
 	/// <remarks>Optional Multiple Reference</remarks>
         public PowerConsumer InsertProvidedFrom(int index, IEnumerable<PowerSource> nodes)
 	{
-		InsertOptionalMultipleReference<PowerSource>(index, nodes, PowerBudgetLanguage.Instance.PowerConsumer_providedFrom, WritableProvidedFrom(), InsertProvidedFromRaw);
+		InsertOptionalMultipleReference<PowerSource>(index, nodes, PowerBudgetLanguageLanguage.Instance.PowerConsumer_providedFrom, WritableProvidedFrom(), InsertProvidedFromRaw);
 		return this;
 	}
 
 	/// <remarks>Optional Multiple Reference</remarks>
         public PowerConsumer RemoveProvidedFrom(IEnumerable<PowerSource> nodes)
 	{
-		RemoveOptionalMultipleReference<PowerSource>(nodes, PowerBudgetLanguage.Instance.PowerConsumer_providedFrom, _providedFrom, RemoveProvidedFromRaw);
+		RemoveOptionalMultipleReference<PowerSource>(nodes, PowerBudgetLanguageLanguage.Instance.PowerConsumer_providedFrom, _providedFrom, RemoveProvidedFromRaw);
 		return this;
 	}
 
@@ -311,7 +311,7 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 	}
 
 	/// <inheritdoc/>
-        public override Concept GetConcept() => PowerBudgetLanguage.Instance.PowerConsumer;
+        public override Concept GetConcept() => PowerBudgetLanguageLanguage.Instance.PowerConsumer;
 	/// <inheritdoc/>
         protected override bool GetInternal(Feature? feature, out object? result)
 	{
@@ -323,19 +323,19 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 			return true;
 		}
 
-		if (PowerBudgetLanguage.Instance.IPowerParticipant_continuous.EqualsIdentity(feature))
+		if (PowerBudgetLanguageLanguage.Instance.IPowerParticipant_continuous.EqualsIdentity(feature))
 		{
 			result = Continuous;
 			return true;
 		}
 
-		if (PowerBudgetLanguage.Instance.IPowerParticipant_peak.EqualsIdentity(feature))
+		if (PowerBudgetLanguageLanguage.Instance.IPowerParticipant_peak.EqualsIdentity(feature))
 		{
 			result = Peak;
 			return true;
 		}
 
-		if (PowerBudgetLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(feature))
+		if (PowerBudgetLanguageLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(feature))
 		{
 			result = ProvidedFrom;
 			return true;
@@ -354,13 +354,13 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 			return true;
 		}
 
-		if (PowerBudgetLanguage.Instance.IPowerParticipant_continuous.EqualsIdentity(feature))
+		if (PowerBudgetLanguageLanguage.Instance.IPowerParticipant_continuous.EqualsIdentity(feature))
 		{
 			result = _continuous;
 			return true;
 		}
 
-		if (PowerBudgetLanguage.Instance.IPowerParticipant_peak.EqualsIdentity(feature))
+		if (PowerBudgetLanguageLanguage.Instance.IPowerParticipant_peak.EqualsIdentity(feature))
 		{
 			result = _peak;
 			return true;
@@ -373,7 +373,7 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 	{
 		if (base.TryGetReferencesRaw(feature, out result))
 			return true;
-		if (PowerBudgetLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(feature))
+		if (PowerBudgetLanguageLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(feature))
 		{
 			result = ReadOnlyProvidedFrom();
 			return true;
@@ -398,7 +398,7 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 			throw new InvalidValueException(feature, value);
 		}
 
-		if (PowerBudgetLanguage.Instance.IPowerParticipant_continuous.EqualsIdentity(feature))
+		if (PowerBudgetLanguageLanguage.Instance.IPowerParticipant_continuous.EqualsIdentity(feature))
 		{
 			if (value is null or int)
 			{
@@ -409,7 +409,7 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 			throw new InvalidValueException(feature, value);
 		}
 
-		if (PowerBudgetLanguage.Instance.IPowerParticipant_peak.EqualsIdentity(feature))
+		if (PowerBudgetLanguageLanguage.Instance.IPowerParticipant_peak.EqualsIdentity(feature))
 		{
 			if (value is null or int)
 			{
@@ -420,9 +420,9 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 			throw new InvalidValueException(feature, value);
 		}
 
-		if (PowerBudgetLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(feature))
+		if (PowerBudgetLanguageLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(feature))
 		{
-			SetOptionalMultipleReference<PowerSource>(value, PowerBudgetLanguage.Instance.PowerConsumer_providedFrom, WritableProvidedFrom(), SetProvidedFromRaw);
+			SetOptionalMultipleReference<PowerSource>(value, PowerBudgetLanguageLanguage.Instance.PowerConsumer_providedFrom, WritableProvidedFrom(), SetProvidedFromRaw);
 			return true;
 		}
 
@@ -435,9 +435,9 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 			return true;
 		if (_builtIns.INamed_name.EqualsIdentity(feature) && value is null or string)
 			return SetNameRaw((string?)value);
-		if (PowerBudgetLanguage.Instance.IPowerParticipant_continuous.EqualsIdentity(feature) && value is null or int)
+		if (PowerBudgetLanguageLanguage.Instance.IPowerParticipant_continuous.EqualsIdentity(feature) && value is null or int)
 			return SetContinuousRaw((int?)value);
-		if (PowerBudgetLanguage.Instance.IPowerParticipant_peak.EqualsIdentity(feature) && value is null or int)
+		if (PowerBudgetLanguageLanguage.Instance.IPowerParticipant_peak.EqualsIdentity(feature) && value is null or int)
 			return SetPeakRaw((int?)value);
 		return false;
 	}
@@ -449,11 +449,11 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 		if (TryGetName(out _))
 			result.Add(_builtIns.INamed_name);
 		if (TryGetContinuous(out _))
-			result.Add(PowerBudgetLanguage.Instance.IPowerParticipant_continuous);
+			result.Add(PowerBudgetLanguageLanguage.Instance.IPowerParticipant_continuous);
 		if (TryGetPeak(out _))
-			result.Add(PowerBudgetLanguage.Instance.IPowerParticipant_peak);
+			result.Add(PowerBudgetLanguageLanguage.Instance.IPowerParticipant_peak);
 		if (TryGetProvidedFrom(out _))
-			result.Add(PowerBudgetLanguage.Instance.PowerConsumer_providedFrom);
+			result.Add(PowerBudgetLanguageLanguage.Instance.PowerConsumer_providedFrom);
 		return result;
 	}
 
@@ -461,7 +461,7 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 	{
 		if (base.AddReferencesRaw(feature, value))
 			return true;
-		if (PowerBudgetLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(feature))
+		if (PowerBudgetLanguageLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(feature))
 			return AddProvidedFromRaw(value);
 		return false;
 	}
@@ -470,7 +470,7 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 	{
 		if (base.InsertReferencesRaw(feature, index, value))
 			return true;
-		if (PowerBudgetLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(feature))
+		if (PowerBudgetLanguageLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(feature))
 			return InsertProvidedFromRaw(index, value);
 		return false;
 	}
@@ -479,7 +479,7 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 	{
 		if (base.RemoveReferencesRaw(feature, value))
 			return true;
-		if (PowerBudgetLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(feature))
+		if (PowerBudgetLanguageLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(feature))
 			return RemoveProvidedFromRaw(value);
 		return false;
 	}
@@ -489,9 +489,9 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 	{
 		if (base.AddInternal(link, value))
 			return true;
-		if (PowerBudgetLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(link))
+		if (PowerBudgetLanguageLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(link))
 		{
-			AddProvidedFrom(PowerBudgetLanguage.Instance.PowerConsumer_providedFrom.AsNodes<Languages.PowerSource>(value));
+			AddProvidedFrom(PowerBudgetLanguageLanguage.Instance.PowerConsumer_providedFrom.AsNodes<Languages.PowerSource>(value));
 			return true;
 		}
 
@@ -503,9 +503,9 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 	{
 		if (base.InsertInternal(link, index, value))
 			return true;
-		if (PowerBudgetLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(link))
+		if (PowerBudgetLanguageLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(link))
 		{
-			InsertProvidedFrom(index, PowerBudgetLanguage.Instance.PowerConsumer_providedFrom.AsNodes<Languages.PowerSource>(value));
+			InsertProvidedFrom(index, PowerBudgetLanguageLanguage.Instance.PowerConsumer_providedFrom.AsNodes<Languages.PowerSource>(value));
 			return true;
 		}
 
@@ -517,9 +517,9 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 	{
 		if (base.RemoveInternal(link, value))
 			return true;
-		if (PowerBudgetLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(link))
+		if (PowerBudgetLanguageLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(link))
 		{
-			RemoveProvidedFrom(PowerBudgetLanguage.Instance.PowerConsumer_providedFrom.AsNodes<Languages.PowerSource>(value));
+			RemoveProvidedFrom(PowerBudgetLanguageLanguage.Instance.PowerConsumer_providedFrom.AsNodes<Languages.PowerSource>(value));
 			return true;
 		}
 
@@ -527,7 +527,7 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 	}
 }
 
-[LionCoreMetaPointer(Language = typeof(PowerBudgetLanguage), Key = "PowerModule")]
+[LionCoreMetaPointer(Language = typeof(PowerBudgetLanguageLanguage), Key = "PowerModule")]
 public partial class PowerModule : ConceptInstanceBase, INamedWritable, IPartitionInstance<INode>
 {
 	private string? _name = null;
@@ -573,7 +573,7 @@ public partial class PowerModule : ConceptInstanceBase, INamedWritable, IPartiti
 	private IReadOnlyList<IPowerModuleContent> ReadOnlyContents() => _contents?.AsReadOnly() ?? _emptyContents;
 	private List<IPowerModuleContent> WritableContents() => _contents ??= [];
 	/// <remarks>Optional Multiple Containment</remarks>
-        [LionCoreMetaPointer(Language = typeof(PowerBudgetLanguage), Key = "PowerModule-contents")]
+        [LionCoreMetaPointer(Language = typeof(PowerBudgetLanguageLanguage), Key = "PowerModule-contents")]
 	[LionCoreFeature(Kind = LionCoreFeatureKind.Containment, Optional = true, Multiple = true)]
 	public IReadOnlyList<IPowerModuleContent> Contents { get => ReadOnlyContents(); init => AddContents(value); }
 
@@ -587,21 +587,21 @@ public partial class PowerModule : ConceptInstanceBase, INamedWritable, IPartiti
 	/// <remarks>Optional Multiple Containment</remarks>
         public PowerModule AddContents(IEnumerable<IPowerModuleContent> nodes)
 	{
-		AddOptionalMultipleContainment<IPowerModuleContent>(nodes, PowerBudgetLanguage.Instance.PowerModule_contents, WritableContents(), AddContentsRaw);
+		AddOptionalMultipleContainment<IPowerModuleContent>(nodes, PowerBudgetLanguageLanguage.Instance.PowerModule_contents, WritableContents(), AddContentsRaw);
 		return this;
 	}
 
 	/// <remarks>Optional Multiple Containment</remarks>
         public PowerModule InsertContents(int index, IEnumerable<IPowerModuleContent> nodes)
 	{
-		InsertOptionalMultipleContainment<IPowerModuleContent>(index, nodes, PowerBudgetLanguage.Instance.PowerModule_contents, WritableContents(), InsertContentsRaw);
+		InsertOptionalMultipleContainment<IPowerModuleContent>(index, nodes, PowerBudgetLanguageLanguage.Instance.PowerModule_contents, WritableContents(), InsertContentsRaw);
 		return this;
 	}
 
 	/// <remarks>Optional Multiple Containment</remarks>
         public PowerModule RemoveContents(IEnumerable<IPowerModuleContent> nodes)
 	{
-		RemoveOptionalMultipleContainment<IPowerModuleContent>(nodes, PowerBudgetLanguage.Instance.PowerModule_contents, _contents, RemoveContentsRaw);
+		RemoveOptionalMultipleContainment<IPowerModuleContent>(nodes, PowerBudgetLanguageLanguage.Instance.PowerModule_contents, _contents, RemoveContentsRaw);
 		return this;
 	}
 
@@ -611,7 +611,7 @@ public partial class PowerModule : ConceptInstanceBase, INamedWritable, IPartiti
 	}
 
 	/// <inheritdoc/>
-        public override Concept GetConcept() => PowerBudgetLanguage.Instance.PowerModule;
+        public override Concept GetConcept() => PowerBudgetLanguageLanguage.Instance.PowerModule;
 	private readonly IPartitionNotificationProducer? _notificationProducer;
 	IPartitionNotificationProducer? IPartitionInstance.GetNotificationProducer() => _notificationProducer;
 	/// <inheritdoc/>
@@ -627,7 +627,7 @@ public partial class PowerModule : ConceptInstanceBase, INamedWritable, IPartiti
 			return true;
 		}
 
-		if (PowerBudgetLanguage.Instance.PowerModule_contents.EqualsIdentity(feature))
+		if (PowerBudgetLanguageLanguage.Instance.PowerModule_contents.EqualsIdentity(feature))
 		{
 			result = Contents;
 			return true;
@@ -653,7 +653,7 @@ public partial class PowerModule : ConceptInstanceBase, INamedWritable, IPartiti
 	{
 		if (base.TryGetContainmentsRaw(feature, out result))
 			return true;
-		if (PowerBudgetLanguage.Instance.PowerModule_contents.EqualsIdentity(feature))
+		if (PowerBudgetLanguageLanguage.Instance.PowerModule_contents.EqualsIdentity(feature))
 		{
 			result = ReadOnlyContents();
 			return true;
@@ -678,9 +678,9 @@ public partial class PowerModule : ConceptInstanceBase, INamedWritable, IPartiti
 			throw new InvalidValueException(feature, value);
 		}
 
-		if (PowerBudgetLanguage.Instance.PowerModule_contents.EqualsIdentity(feature))
+		if (PowerBudgetLanguageLanguage.Instance.PowerModule_contents.EqualsIdentity(feature))
 		{
-			SetOptionalMultipleContainment<IPowerModuleContent>(value, PowerBudgetLanguage.Instance.PowerModule_contents, WritableContents(), SetContentsRaw);
+			SetOptionalMultipleContainment<IPowerModuleContent>(value, PowerBudgetLanguageLanguage.Instance.PowerModule_contents, WritableContents(), SetContentsRaw);
 			return true;
 		}
 
@@ -703,7 +703,7 @@ public partial class PowerModule : ConceptInstanceBase, INamedWritable, IPartiti
 		if (TryGetName(out _))
 			result.Add(_builtIns.INamed_name);
 		if (TryGetContents(out _))
-			result.Add(PowerBudgetLanguage.Instance.PowerModule_contents);
+			result.Add(PowerBudgetLanguageLanguage.Instance.PowerModule_contents);
 		return result;
 	}
 
@@ -711,7 +711,7 @@ public partial class PowerModule : ConceptInstanceBase, INamedWritable, IPartiti
 	{
 		if (base.AddContainmentsRaw(feature, value))
 			return true;
-		if (PowerBudgetLanguage.Instance.PowerModule_contents.EqualsIdentity(feature) && value is Languages.IPowerModuleContent v0)
+		if (PowerBudgetLanguageLanguage.Instance.PowerModule_contents.EqualsIdentity(feature) && value is Languages.IPowerModuleContent v0)
 			return AddContentsRaw(v0);
 		return false;
 	}
@@ -720,7 +720,7 @@ public partial class PowerModule : ConceptInstanceBase, INamedWritable, IPartiti
 	{
 		if (base.InsertContainmentsRaw(feature, index, value))
 			return true;
-		if (PowerBudgetLanguage.Instance.PowerModule_contents.EqualsIdentity(feature) && value is Languages.IPowerModuleContent v0)
+		if (PowerBudgetLanguageLanguage.Instance.PowerModule_contents.EqualsIdentity(feature) && value is Languages.IPowerModuleContent v0)
 			return InsertContentsRaw(index, v0);
 		return false;
 	}
@@ -729,7 +729,7 @@ public partial class PowerModule : ConceptInstanceBase, INamedWritable, IPartiti
 	{
 		if (base.RemoveContainmentsRaw(feature, value))
 			return true;
-		if (PowerBudgetLanguage.Instance.PowerModule_contents.EqualsIdentity(feature) && value is Languages.IPowerModuleContent v0)
+		if (PowerBudgetLanguageLanguage.Instance.PowerModule_contents.EqualsIdentity(feature) && value is Languages.IPowerModuleContent v0)
 			return RemoveContentsRaw(v0);
 		return false;
 	}
@@ -739,9 +739,9 @@ public partial class PowerModule : ConceptInstanceBase, INamedWritable, IPartiti
 	{
 		if (base.AddInternal(link, value))
 			return true;
-		if (PowerBudgetLanguage.Instance.PowerModule_contents.EqualsIdentity(link))
+		if (PowerBudgetLanguageLanguage.Instance.PowerModule_contents.EqualsIdentity(link))
 		{
-			AddContents(PowerBudgetLanguage.Instance.PowerModule_contents.AsNodes<Languages.IPowerModuleContent>(value));
+			AddContents(PowerBudgetLanguageLanguage.Instance.PowerModule_contents.AsNodes<Languages.IPowerModuleContent>(value));
 			return true;
 		}
 
@@ -753,9 +753,9 @@ public partial class PowerModule : ConceptInstanceBase, INamedWritable, IPartiti
 	{
 		if (base.InsertInternal(link, index, value))
 			return true;
-		if (PowerBudgetLanguage.Instance.PowerModule_contents.EqualsIdentity(link))
+		if (PowerBudgetLanguageLanguage.Instance.PowerModule_contents.EqualsIdentity(link))
 		{
-			InsertContents(index, PowerBudgetLanguage.Instance.PowerModule_contents.AsNodes<Languages.IPowerModuleContent>(value));
+			InsertContents(index, PowerBudgetLanguageLanguage.Instance.PowerModule_contents.AsNodes<Languages.IPowerModuleContent>(value));
 			return true;
 		}
 
@@ -767,9 +767,9 @@ public partial class PowerModule : ConceptInstanceBase, INamedWritable, IPartiti
 	{
 		if (base.RemoveInternal(link, value))
 			return true;
-		if (PowerBudgetLanguage.Instance.PowerModule_contents.EqualsIdentity(link))
+		if (PowerBudgetLanguageLanguage.Instance.PowerModule_contents.EqualsIdentity(link))
 		{
-			RemoveContents(PowerBudgetLanguage.Instance.PowerModule_contents.AsNodes<Languages.IPowerModuleContent>(value));
+			RemoveContents(PowerBudgetLanguageLanguage.Instance.PowerModule_contents.AsNodes<Languages.IPowerModuleContent>(value));
 			return true;
 		}
 
@@ -782,9 +782,9 @@ public partial class PowerModule : ConceptInstanceBase, INamedWritable, IPartiti
 		if (base.DetachChild(child, notify))
 			return true;
 		Containment? c = GetContainmentOf(child);
-		if (PowerBudgetLanguage.Instance.PowerModule_contents.EqualsIdentity(c))
+		if (PowerBudgetLanguageLanguage.Instance.PowerModule_contents.EqualsIdentity(c))
 		{
-			RemoveSelfParent((IPowerModuleContent)child, WritableContents(), PowerBudgetLanguage.Instance.PowerModule_contents, null, notify ? ContainmentRemover<IPowerModuleContent>(PowerBudgetLanguage.Instance.PowerModule_contents) : null);
+			RemoveSelfParent((IPowerModuleContent)child, WritableContents(), PowerBudgetLanguageLanguage.Instance.PowerModule_contents, null, notify ? ContainmentRemover<IPowerModuleContent>(PowerBudgetLanguageLanguage.Instance.PowerModule_contents) : null);
 			return true;
 		}
 
@@ -798,12 +798,12 @@ public partial class PowerModule : ConceptInstanceBase, INamedWritable, IPartiti
 		if (result != null)
 			return result;
 		if (child is IPowerModuleContent child0 && (_contents?.Contains(child0) ?? false))
-			return PowerBudgetLanguage.Instance.PowerModule_contents;
+			return PowerBudgetLanguageLanguage.Instance.PowerModule_contents;
 		return null;
 	}
 }
 
-[LionCoreMetaPointer(Language = typeof(PowerBudgetLanguage), Key = "PowerSource")]
+[LionCoreMetaPointer(Language = typeof(PowerBudgetLanguageLanguage), Key = "PowerSource")]
 public partial class PowerSource : ConceptInstanceBase, IPowerModuleContent, IPowerParticipant, INamedWritable
 {
 	private string? _name = null;
@@ -842,7 +842,7 @@ public partial class PowerSource : ConceptInstanceBase, IPowerModuleContent, IPo
 
 	private int? _continuous = null;
 	/// <remarks>Optional Property</remarks>
-        [LionCoreMetaPointer(Language = typeof(PowerBudgetLanguage), Key = "IPowerParticipant-continuous")]
+        [LionCoreMetaPointer(Language = typeof(PowerBudgetLanguageLanguage), Key = "IPowerParticipant-continuous")]
 	[LionCoreFeature(Kind = LionCoreFeatureKind.Property, Optional = true, Multiple = false)]
 	public int? Continuous { get => _continuous; set => SetContinuous(value); }
 
@@ -865,13 +865,13 @@ public partial class PowerSource : ConceptInstanceBase, IPowerModuleContent, IPo
 	/// <remarks>Optional Property</remarks>
         public PowerSource SetContinuous(int? value)
 	{
-		SetOptionalValueTypeProperty<int>(value, PowerBudgetLanguage.Instance.IPowerParticipant_continuous, _continuous, SetContinuousRaw);
+		SetOptionalValueTypeProperty<int>(value, PowerBudgetLanguageLanguage.Instance.IPowerParticipant_continuous, _continuous, SetContinuousRaw);
 		return this;
 	}
 
 	private int? _peak = null;
 	/// <remarks>Optional Property</remarks>
-        [LionCoreMetaPointer(Language = typeof(PowerBudgetLanguage), Key = "IPowerParticipant-peak")]
+        [LionCoreMetaPointer(Language = typeof(PowerBudgetLanguageLanguage), Key = "IPowerParticipant-peak")]
 	[LionCoreFeature(Kind = LionCoreFeatureKind.Property, Optional = true, Multiple = false)]
 	public int? Peak { get => _peak; set => SetPeak(value); }
 
@@ -894,13 +894,13 @@ public partial class PowerSource : ConceptInstanceBase, IPowerModuleContent, IPo
 	/// <remarks>Optional Property</remarks>
         public PowerSource SetPeak(int? value)
 	{
-		SetOptionalValueTypeProperty<int>(value, PowerBudgetLanguage.Instance.IPowerParticipant_peak, _peak, SetPeakRaw);
+		SetOptionalValueTypeProperty<int>(value, PowerBudgetLanguageLanguage.Instance.IPowerParticipant_peak, _peak, SetPeakRaw);
 		return this;
 	}
 
 	private PowerSourceKind? _kind = null;
 	/// <remarks>Optional Property</remarks>
-        [LionCoreMetaPointer(Language = typeof(PowerBudgetLanguage), Key = "PowerSource-kind")]
+        [LionCoreMetaPointer(Language = typeof(PowerBudgetLanguageLanguage), Key = "PowerSource-kind")]
 	[LionCoreFeature(Kind = LionCoreFeatureKind.Property, Optional = true, Multiple = false)]
 	public PowerSourceKind? Kind { get => _kind; set => SetKind(value); }
 
@@ -922,7 +922,7 @@ public partial class PowerSource : ConceptInstanceBase, IPowerModuleContent, IPo
 	/// <remarks>Optional Property</remarks>
         public PowerSource SetKind(PowerSourceKind? value)
 	{
-		SetOptionalValueTypeProperty<PowerSourceKind>(value, PowerBudgetLanguage.Instance.PowerSource_kind, _kind, SetKindRaw);
+		SetOptionalValueTypeProperty<PowerSourceKind>(value, PowerBudgetLanguageLanguage.Instance.PowerSource_kind, _kind, SetKindRaw);
 		return this;
 	}
 
@@ -931,7 +931,7 @@ public partial class PowerSource : ConceptInstanceBase, IPowerModuleContent, IPo
 	}
 
 	/// <inheritdoc/>
-        public override Concept GetConcept() => PowerBudgetLanguage.Instance.PowerSource;
+        public override Concept GetConcept() => PowerBudgetLanguageLanguage.Instance.PowerSource;
 	/// <inheritdoc/>
         protected override bool GetInternal(Feature? feature, out object? result)
 	{
@@ -943,19 +943,19 @@ public partial class PowerSource : ConceptInstanceBase, IPowerModuleContent, IPo
 			return true;
 		}
 
-		if (PowerBudgetLanguage.Instance.IPowerParticipant_continuous.EqualsIdentity(feature))
+		if (PowerBudgetLanguageLanguage.Instance.IPowerParticipant_continuous.EqualsIdentity(feature))
 		{
 			result = Continuous;
 			return true;
 		}
 
-		if (PowerBudgetLanguage.Instance.IPowerParticipant_peak.EqualsIdentity(feature))
+		if (PowerBudgetLanguageLanguage.Instance.IPowerParticipant_peak.EqualsIdentity(feature))
 		{
 			result = Peak;
 			return true;
 		}
 
-		if (PowerBudgetLanguage.Instance.PowerSource_kind.EqualsIdentity(feature))
+		if (PowerBudgetLanguageLanguage.Instance.PowerSource_kind.EqualsIdentity(feature))
 		{
 			result = Kind;
 			return true;
@@ -974,19 +974,19 @@ public partial class PowerSource : ConceptInstanceBase, IPowerModuleContent, IPo
 			return true;
 		}
 
-		if (PowerBudgetLanguage.Instance.IPowerParticipant_continuous.EqualsIdentity(feature))
+		if (PowerBudgetLanguageLanguage.Instance.IPowerParticipant_continuous.EqualsIdentity(feature))
 		{
 			result = _continuous;
 			return true;
 		}
 
-		if (PowerBudgetLanguage.Instance.IPowerParticipant_peak.EqualsIdentity(feature))
+		if (PowerBudgetLanguageLanguage.Instance.IPowerParticipant_peak.EqualsIdentity(feature))
 		{
 			result = _peak;
 			return true;
 		}
 
-		if (PowerBudgetLanguage.Instance.PowerSource_kind.EqualsIdentity(feature))
+		if (PowerBudgetLanguageLanguage.Instance.PowerSource_kind.EqualsIdentity(feature))
 		{
 			result = _kind;
 			return true;
@@ -1011,7 +1011,7 @@ public partial class PowerSource : ConceptInstanceBase, IPowerModuleContent, IPo
 			throw new InvalidValueException(feature, value);
 		}
 
-		if (PowerBudgetLanguage.Instance.IPowerParticipant_continuous.EqualsIdentity(feature))
+		if (PowerBudgetLanguageLanguage.Instance.IPowerParticipant_continuous.EqualsIdentity(feature))
 		{
 			if (value is null or int)
 			{
@@ -1022,7 +1022,7 @@ public partial class PowerSource : ConceptInstanceBase, IPowerModuleContent, IPo
 			throw new InvalidValueException(feature, value);
 		}
 
-		if (PowerBudgetLanguage.Instance.IPowerParticipant_peak.EqualsIdentity(feature))
+		if (PowerBudgetLanguageLanguage.Instance.IPowerParticipant_peak.EqualsIdentity(feature))
 		{
 			if (value is null or int)
 			{
@@ -1033,7 +1033,7 @@ public partial class PowerSource : ConceptInstanceBase, IPowerModuleContent, IPo
 			throw new InvalidValueException(feature, value);
 		}
 
-		if (PowerBudgetLanguage.Instance.PowerSource_kind.EqualsIdentity(feature))
+		if (PowerBudgetLanguageLanguage.Instance.PowerSource_kind.EqualsIdentity(feature))
 		{
 			if (value is null or Languages.PowerSourceKind)
 			{
@@ -1053,11 +1053,11 @@ public partial class PowerSource : ConceptInstanceBase, IPowerModuleContent, IPo
 			return true;
 		if (_builtIns.INamed_name.EqualsIdentity(feature) && value is null or string)
 			return SetNameRaw((string?)value);
-		if (PowerBudgetLanguage.Instance.IPowerParticipant_continuous.EqualsIdentity(feature) && value is null or int)
+		if (PowerBudgetLanguageLanguage.Instance.IPowerParticipant_continuous.EqualsIdentity(feature) && value is null or int)
 			return SetContinuousRaw((int?)value);
-		if (PowerBudgetLanguage.Instance.IPowerParticipant_peak.EqualsIdentity(feature) && value is null or int)
+		if (PowerBudgetLanguageLanguage.Instance.IPowerParticipant_peak.EqualsIdentity(feature) && value is null or int)
 			return SetPeakRaw((int?)value);
-		if (PowerBudgetLanguage.Instance.PowerSource_kind.EqualsIdentity(feature) && value is null or Languages.PowerSourceKind)
+		if (PowerBudgetLanguageLanguage.Instance.PowerSource_kind.EqualsIdentity(feature) && value is null or Languages.PowerSourceKind)
 			return SetKindRaw((Languages.PowerSourceKind?)value);
 		return false;
 	}
@@ -1069,22 +1069,22 @@ public partial class PowerSource : ConceptInstanceBase, IPowerModuleContent, IPo
 		if (TryGetName(out _))
 			result.Add(_builtIns.INamed_name);
 		if (TryGetContinuous(out _))
-			result.Add(PowerBudgetLanguage.Instance.IPowerParticipant_continuous);
+			result.Add(PowerBudgetLanguageLanguage.Instance.IPowerParticipant_continuous);
 		if (TryGetPeak(out _))
-			result.Add(PowerBudgetLanguage.Instance.IPowerParticipant_peak);
+			result.Add(PowerBudgetLanguageLanguage.Instance.IPowerParticipant_peak);
 		if (TryGetKind(out _))
-			result.Add(PowerBudgetLanguage.Instance.PowerSource_kind);
+			result.Add(PowerBudgetLanguageLanguage.Instance.PowerSource_kind);
 		return result;
 	}
 }
 
-[LionCoreMetaPointer(Language = typeof(PowerBudgetLanguage), Key = "PowerSourceKind")]
+[LionCoreMetaPointer(Language = typeof(PowerBudgetLanguageLanguage), Key = "PowerSourceKind")]
 public enum PowerSourceKind
 {
-	[LionCoreMetaPointer(Language = typeof(PowerBudgetLanguage), Key = "PowerSourceKind-diesel")]
+	[LionCoreMetaPointer(Language = typeof(PowerBudgetLanguageLanguage), Key = "PowerSourceKind-diesel")]
 	diesel,
-	[LionCoreMetaPointer(Language = typeof(PowerBudgetLanguage), Key = "PowerSourceKind-nuclear")]
+	[LionCoreMetaPointer(Language = typeof(PowerBudgetLanguageLanguage), Key = "PowerSourceKind-nuclear")]
 	nuclear,
-	[LionCoreMetaPointer(Language = typeof(PowerBudgetLanguage), Key = "PowerSourceKind-solar")]
+	[LionCoreMetaPointer(Language = typeof(PowerBudgetLanguageLanguage), Key = "PowerSourceKind-solar")]
 	solar
 }
