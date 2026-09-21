@@ -23,6 +23,7 @@
     "./packages/space-dsl",
     "./packages/daga-client",
     "./packages/echo-ws-server",
-    "./packages/react-client"
+    "./packages/react-client",
+    "./packages/test"
   ]
 }
