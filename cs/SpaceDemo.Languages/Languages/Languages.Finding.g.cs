@@ -5,16 +5,15 @@
 #pragma warning disable 1591
 #nullable enable
 namespace Languages;
-using LionWeb.Core;
-using LionWeb.Core.M2;
-using LionWeb.Core.M3;
-using LionWeb.Core.Notification;
-using LionWeb.Core.Notification.Partition.Emitter;
-using LionWeb.Core.Utilities;
-using LionWeb.Core.VersionSpecific.V2023_1;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+using global::LionWeb.Core;
+using global::LionWeb.Core.M2;
+using global::LionWeb.Core.M3;
+using global::LionWeb.Core.Notification;
+using global::LionWeb.Core.Utilities;
+using global::LionWeb.Core.VersionSpecific.V2023_1;
+using global::System;
+using global::System.Collections.Generic;
+using global::System.Diagnostics.CodeAnalysis;
 
 [LionCoreLanguage(Key = "FindingLanguage", Version = "0.1")]
 public partial class FindingLanguage : LanguageBase<IFindingFactory>
@@ -128,16 +127,21 @@ public partial class Finding : AnnotationInstanceBase
         public bool TryGetCode([NotNullWhenAttribute(true)] out int? code)
 	{
 		code = _code;
-		return _code != null;
+		return code != null;
+	}
+
+	private bool SetCodeRaw(int? value)
+	{
+		if (value == _code)
+			return false;
+		_code = value;
+		return true;
 	}
 
 	/// <remarks>Optional Property</remarks>
-        public Finding SetCode(int? value, INotificationId? notificationId = null)
+        public Finding SetCode(int? value)
 	{
-		PropertyNotificationEmitter emitter = new(FindingLanguage.Instance.Finding_code, this, value, _code, notificationId);
-		emitter.CollectOldData();
-		_code = value;
-		emitter.Notify();
+		SetOptionalValueTypeProperty<int>(value, FindingLanguage.Instance.Finding_code, _code, SetCodeRaw);
 		return this;
 	}
 
@@ -151,16 +155,21 @@ public partial class Finding : AnnotationInstanceBase
         public bool TryGetMessage([NotNullWhenAttribute(true)] out string? message)
 	{
 		message = _message;
-		return _message != null;
+		return message != null;
+	}
+
+	private bool SetMessageRaw(string? value)
+	{
+		if (value == _message)
+			return false;
+		_message = value;
+		return true;
 	}
 
 	/// <remarks>Optional Property</remarks>
-        public Finding SetMessage(string? value, INotificationId? notificationId = null)
+        public Finding SetMessage(string? value)
 	{
-		PropertyNotificationEmitter emitter = new(FindingLanguage.Instance.Finding_message, this, value, _message, notificationId);
-		emitter.CollectOldData();
-		_message = value;
-		emitter.Notify();
+		SetOptionalReferenceTypeProperty<string>(value, FindingLanguage.Instance.Finding_message, _message, SetMessageRaw);
 		return this;
 	}
 
@@ -174,16 +183,21 @@ public partial class Finding : AnnotationInstanceBase
         public bool TryGetSeverity([NotNullWhenAttribute(true)] out Severity? severity)
 	{
 		severity = _severity;
-		return _severity != null;
+		return severity != null;
+	}
+
+	private bool SetSeverityRaw(Severity? value)
+	{
+		if (value == _severity)
+			return false;
+		_severity = value;
+		return true;
 	}
 
 	/// <remarks>Optional Property</remarks>
-        public Finding SetSeverity(Severity? value, INotificationId? notificationId = null)
+        public Finding SetSeverity(Severity? value)
 	{
-		PropertyNotificationEmitter emitter = new(FindingLanguage.Instance.Finding_severity, this, value, _severity, notificationId);
-		emitter.CollectOldData();
-		_severity = value;
-		emitter.Notify();
+		SetOptionalValueTypeProperty<Severity>(value, FindingLanguage.Instance.Finding_severity, _severity, SetSeverityRaw);
 		return this;
 	}
 
@@ -219,16 +233,41 @@ public partial class Finding : AnnotationInstanceBase
 		return false;
 	}
 
-	/// <inheritdoc/>
-        protected override bool SetInternal(Feature? feature, object? value, INotificationId? notificationId = null)
+	protected override bool TryGetPropertyRaw(Property feature, out object? result)
 	{
-		if (base.SetInternal(feature, value, notificationId))
+		if (base.TryGetPropertyRaw(feature, out result))
+			return true;
+		if (FindingLanguage.Instance.Finding_code.EqualsIdentity(feature))
+		{
+			result = _code;
+			return true;
+		}
+
+		if (FindingLanguage.Instance.Finding_message.EqualsIdentity(feature))
+		{
+			result = _message;
+			return true;
+		}
+
+		if (FindingLanguage.Instance.Finding_severity.EqualsIdentity(feature))
+		{
+			result = _severity;
+			return true;
+		}
+
+		return false;
+	}
+
+	/// <inheritdoc/>
+        protected override bool SetInternal(Feature? feature, object? value)
+	{
+		if (base.SetInternal(feature, value))
 			return true;
 		if (FindingLanguage.Instance.Finding_code.EqualsIdentity(feature))
 		{
 			if (value is null or int)
 			{
-				SetCode((int?)value, notificationId);
+				SetCode((int?)value);
 				return true;
 			}
 
@@ -239,7 +278,7 @@ public partial class Finding : AnnotationInstanceBase
 		{
 			if (value is null or string)
 			{
-				SetMessage((string?)value, notificationId);
+				SetMessage((string?)value);
 				return true;
 			}
 
@@ -250,13 +289,26 @@ public partial class Finding : AnnotationInstanceBase
 		{
 			if (value is null or Languages.Severity)
 			{
-				SetSeverity((Languages.Severity?)value, notificationId);
+				SetSeverity((Languages.Severity?)value);
 				return true;
 			}
 
 			throw new InvalidValueException(feature, value);
 		}
 
+		return false;
+	}
+
+	protected override bool SetPropertyRaw(Property feature, object? value)
+	{
+		if (base.SetPropertyRaw(feature, value))
+			return true;
+		if (FindingLanguage.Instance.Finding_code.EqualsIdentity(feature) && value is null or int)
+			return SetCodeRaw((int?)value);
+		if (FindingLanguage.Instance.Finding_message.EqualsIdentity(feature) && value is null or string)
+			return SetMessageRaw((string?)value);
+		if (FindingLanguage.Instance.Finding_severity.EqualsIdentity(feature) && value is null or Languages.Severity)
+			return SetSeverityRaw((Languages.Severity?)value);
 		return false;
 	}
 

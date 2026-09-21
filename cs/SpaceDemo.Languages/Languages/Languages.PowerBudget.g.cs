@@ -5,18 +5,17 @@
 #pragma warning disable 1591
 #nullable enable
 namespace Languages;
-using LionWeb.Core;
-using LionWeb.Core.M2;
-using LionWeb.Core.M3;
-using LionWeb.Core.Notification;
-using LionWeb.Core.Notification.Partition;
-using LionWeb.Core.Notification.Partition.Emitter;
-using LionWeb.Core.Notification.Pipe;
-using LionWeb.Core.Utilities;
-using LionWeb.Core.VersionSpecific.V2023_1;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+using global::LionWeb.Core;
+using global::LionWeb.Core.M2;
+using global::LionWeb.Core.M3;
+using global::LionWeb.Core.Notification;
+using global::LionWeb.Core.Notification.Partition;
+using global::LionWeb.Core.Notification.Pipe;
+using global::LionWeb.Core.Utilities;
+using global::LionWeb.Core.VersionSpecific.V2023_1;
+using global::System;
+using global::System.Collections.Generic;
+using global::System.Diagnostics.CodeAnalysis;
 
 [LionCoreLanguage(Key = "space-PowerBudget", Version = "0.1")]
 public partial class PowerBudgetLanguage : LanguageBase<IPowerBudgetFactory>
@@ -167,20 +166,28 @@ public partial interface IPowerParticipant : INode
 	public int? Continuous { get; set; }
 
 	/// <remarks>Optional Property</remarks>
-        public IPowerParticipant SetContinuous(int? value, INotificationId? notificationId = null);
+        public IPowerParticipant SetContinuous(int? value);
 	/// <remarks>Optional Property</remarks>
         [LionCoreMetaPointer(Language = typeof(PowerBudgetLanguage), Key = "IPowerParticipant-peak")]
 	[LionCoreFeature(Kind = LionCoreFeatureKind.Property, Optional = true, Multiple = false)]
 	public int? Peak { get; set; }
 
 	/// <remarks>Optional Property</remarks>
-        public IPowerParticipant SetPeak(int? value, INotificationId? notificationId = null);
+        public IPowerParticipant SetPeak(int? value);
 }
 
 [LionCoreMetaPointer(Language = typeof(PowerBudgetLanguage), Key = "PowerConsumer")]
 public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, IPowerParticipant, INamedWritable
 {
 	private string? _name = null;
+	private bool SetNameRaw(string? value)
+	{
+		if (value == _name)
+			return false;
+		_name = value;
+		return true;
+	}
+
 	/// <remarks>Required Property</remarks>
     	/// <exception cref = "UnsetFeatureException">If Name has not been set</exception>
     	/// <exception cref = "InvalidValueException">If set to null</exception>
@@ -193,20 +200,16 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
         public bool TryGetName([NotNullWhenAttribute(true)] out string? name)
 	{
 		name = _name;
-		return _name != null;
+		return name != null;
 	}
 /// <remarks>Required Property</remarks>
 /// <exception cref="InvalidValueException">If set to null</exception>
- INamedWritable INamedWritable.SetName(string value, INotificationId? notificationId = null) => SetName(value);
+ INamedWritable INamedWritable.SetName(string value) => SetName(value);
 	/// <remarks>Required Property</remarks>
     	/// <exception cref = "InvalidValueException">If set to null</exception>
-        public PowerConsumer SetName(string value, INotificationId? notificationId = null)
+        public PowerConsumer SetName(string value)
 	{
-		AssureNotNull(value, _builtIns.INamed_name);
-		PropertyNotificationEmitter emitter = new(_builtIns.INamed_name, this, value, _name, notificationId);
-		emitter.CollectOldData();
-		_name = value;
-		emitter.Notify();
+		SetRequiredReferenceTypeProperty<string>(value, _builtIns.INamed_name, _name, SetNameRaw);
 		return this;
 	}
 
@@ -220,17 +223,22 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
         public bool TryGetContinuous([NotNullWhenAttribute(true)] out int? continuous)
 	{
 		continuous = _continuous;
-		return _continuous != null;
+		return continuous != null;
+	}
+
+	private bool SetContinuousRaw(int? value)
+	{
+		if (value == _continuous)
+			return false;
+		_continuous = value;
+		return true;
 	}
 /// <remarks>Optional Property</remarks>
- IPowerParticipant IPowerParticipant.SetContinuous(int? value, INotificationId? notificationId = null) => SetContinuous(value);
+ IPowerParticipant IPowerParticipant.SetContinuous(int? value) => SetContinuous(value);
 	/// <remarks>Optional Property</remarks>
-        public PowerConsumer SetContinuous(int? value, INotificationId? notificationId = null)
+        public PowerConsumer SetContinuous(int? value)
 	{
-		PropertyNotificationEmitter emitter = new(PowerBudgetLanguage.Instance.IPowerParticipant_continuous, this, value, _continuous, notificationId);
-		emitter.CollectOldData();
-		_continuous = value;
-		emitter.Notify();
+		SetOptionalValueTypeProperty<int>(value, PowerBudgetLanguage.Instance.IPowerParticipant_continuous, _continuous, SetContinuousRaw);
 		return this;
 	}
 
@@ -244,67 +252,57 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
         public bool TryGetPeak([NotNullWhenAttribute(true)] out int? peak)
 	{
 		peak = _peak;
-		return _peak != null;
+		return peak != null;
+	}
+
+	private bool SetPeakRaw(int? value)
+	{
+		if (value == _peak)
+			return false;
+		_peak = value;
+		return true;
 	}
 /// <remarks>Optional Property</remarks>
- IPowerParticipant IPowerParticipant.SetPeak(int? value, INotificationId? notificationId = null) => SetPeak(value);
+ IPowerParticipant IPowerParticipant.SetPeak(int? value) => SetPeak(value);
 	/// <remarks>Optional Property</remarks>
-        public PowerConsumer SetPeak(int? value, INotificationId? notificationId = null)
+        public PowerConsumer SetPeak(int? value)
 	{
-		PropertyNotificationEmitter emitter = new(PowerBudgetLanguage.Instance.IPowerParticipant_peak, this, value, _peak, notificationId);
-		emitter.CollectOldData();
-		_peak = value;
-		emitter.Notify();
+		SetOptionalValueTypeProperty<int>(value, PowerBudgetLanguage.Instance.IPowerParticipant_peak, _peak, SetPeakRaw);
 		return this;
 	}
 
-	private readonly List<PowerSource> _providedFrom = [];
+	private List<ReferenceTarget>? _providedFrom;
+	private IReadOnlyList<ReferenceTarget> ReadOnlyProvidedFrom() => _providedFrom?.AsReadOnly() ?? _emptyReferences;
+	private List<ReferenceTarget> WritableProvidedFrom() => _providedFrom ??= [];
 	/// <remarks>Optional Multiple Reference</remarks>
         [LionCoreMetaPointer(Language = typeof(PowerBudgetLanguage), Key = "ODgyNjBiZDctZjQ0MC00ZWNhLTk4NzMtMTJkOTRjYjZlNzQ3LzEwMDI1NjMxNTEwMTY3ODAxOTUvMTAwMjU2MzE1MTAxNjg4NTY0Nw")]
 	[LionCoreFeature(Kind = LionCoreFeatureKind.Reference, Optional = true, Multiple = true)]
-	public IReadOnlyList<PowerSource> ProvidedFrom { get => _providedFrom.AsReadOnly(); init => AddProvidedFrom(value); }
+	public IReadOnlyList<PowerSource> ProvidedFrom { get => ReferenceTargetNonNullTargets<PowerSource>(_providedFrom, PowerBudgetLanguage.Instance.PowerConsumer_providedFrom); init => AddProvidedFrom(value); }
 
 	/// <remarks>Optional Multiple Reference</remarks>
-        public bool TryGetProvidedFrom([NotNullWhenAttribute(true)] out IReadOnlyList<PowerSource> providedFrom)
-	{
-		providedFrom = _providedFrom;
-		return _providedFrom.Count != 0;
-	}
-
+        public bool TryGetProvidedFrom([NotNullWhenAttribute(true)] out IReadOnlyList<PowerSource> providedFrom) => TryGetReference<PowerSource>(_providedFrom, out providedFrom);
+	private bool SetProvidedFromRaw(List<ReferenceTarget> targets) => SetReferencesRaw(targets, WritableProvidedFrom());
+	private bool AddProvidedFromRaw(ReferenceTarget target) => AddReferencesRaw(target, WritableProvidedFrom());
+	private bool InsertProvidedFromRaw(int index, ReferenceTarget target) => InsertReferencesRaw(index, target, WritableProvidedFrom());
+	private bool RemoveProvidedFromRaw(ReferenceTarget target) => RemoveReferencesRaw(target, _providedFrom);
 	/// <remarks>Optional Multiple Reference</remarks>
-        public PowerConsumer AddProvidedFrom(IEnumerable<PowerSource> nodes, INotificationId? notificationId = null)
+        public PowerConsumer AddProvidedFrom(IEnumerable<PowerSource> nodes)
 	{
-		var safeNodes = nodes?.ToList();
-		AssureNotNull(safeNodes, PowerBudgetLanguage.Instance.PowerConsumer_providedFrom);
-		AssureNotNullMembers(safeNodes, PowerBudgetLanguage.Instance.PowerConsumer_providedFrom);
-		ReferenceAddMultipleNotificationEmitter<PowerSource> emitter = new(PowerBudgetLanguage.Instance.PowerConsumer_providedFrom, this, safeNodes, _providedFrom.Count, notificationId);
-		emitter.CollectOldData();
-		_providedFrom.AddRange(safeNodes);
-		emitter.Notify();
+		AddOptionalMultipleReference<PowerSource>(nodes, PowerBudgetLanguage.Instance.PowerConsumer_providedFrom, WritableProvidedFrom(), AddProvidedFromRaw);
 		return this;
 	}
 
 	/// <remarks>Optional Multiple Reference</remarks>
-        public PowerConsumer InsertProvidedFrom(int index, IEnumerable<PowerSource> nodes, INotificationId? notificationId = null)
+        public PowerConsumer InsertProvidedFrom(int index, IEnumerable<PowerSource> nodes)
 	{
-		AssureInRange(index, _providedFrom);
-		var safeNodes = nodes?.ToList();
-		AssureNotNull(safeNodes, PowerBudgetLanguage.Instance.PowerConsumer_providedFrom);
-		AssureNotNullMembers(safeNodes, PowerBudgetLanguage.Instance.PowerConsumer_providedFrom);
-		ReferenceAddMultipleNotificationEmitter<PowerSource> emitter = new(PowerBudgetLanguage.Instance.PowerConsumer_providedFrom, this, safeNodes, index, notificationId);
-		emitter.CollectOldData();
-		_providedFrom.InsertRange(index, safeNodes);
-		emitter.Notify();
+		InsertOptionalMultipleReference<PowerSource>(index, nodes, PowerBudgetLanguage.Instance.PowerConsumer_providedFrom, WritableProvidedFrom(), InsertProvidedFromRaw);
 		return this;
 	}
 
 	/// <remarks>Optional Multiple Reference</remarks>
-        public PowerConsumer RemoveProvidedFrom(IEnumerable<PowerSource> nodes, INotificationId? notificationId = null)
+        public PowerConsumer RemoveProvidedFrom(IEnumerable<PowerSource> nodes)
 	{
-		var safeNodes = nodes?.ToList();
-		AssureNotNull(safeNodes, PowerBudgetLanguage.Instance.PowerConsumer_providedFrom);
-		AssureNotNullMembers(safeNodes, PowerBudgetLanguage.Instance.PowerConsumer_providedFrom);
-		RemoveAll(safeNodes, _providedFrom, ReferenceRemover<PowerSource>(PowerBudgetLanguage.Instance.PowerConsumer_providedFrom));
+		RemoveOptionalMultipleReference<PowerSource>(nodes, PowerBudgetLanguage.Instance.PowerConsumer_providedFrom, _providedFrom, RemoveProvidedFromRaw);
 		return this;
 	}
 
@@ -346,16 +344,54 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 		return false;
 	}
 
-	/// <inheritdoc/>
-        protected override bool SetInternal(Feature? feature, object? value, INotificationId? notificationId = null)
+	protected override bool TryGetPropertyRaw(Property feature, out object? result)
 	{
-		if (base.SetInternal(feature, value, notificationId))
+		if (base.TryGetPropertyRaw(feature, out result))
+			return true;
+		if (_builtIns.INamed_name.EqualsIdentity(feature))
+		{
+			result = _name;
+			return true;
+		}
+
+		if (PowerBudgetLanguage.Instance.IPowerParticipant_continuous.EqualsIdentity(feature))
+		{
+			result = _continuous;
+			return true;
+		}
+
+		if (PowerBudgetLanguage.Instance.IPowerParticipant_peak.EqualsIdentity(feature))
+		{
+			result = _peak;
+			return true;
+		}
+
+		return false;
+	}
+
+	protected override bool TryGetReferencesRaw(Reference feature, out IReadOnlyList<IReferenceTarget> result)
+	{
+		if (base.TryGetReferencesRaw(feature, out result))
+			return true;
+		if (PowerBudgetLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(feature))
+		{
+			result = ReadOnlyProvidedFrom();
+			return true;
+		}
+
+		return false;
+	}
+
+	/// <inheritdoc/>
+        protected override bool SetInternal(Feature? feature, object? value)
+	{
+		if (base.SetInternal(feature, value))
 			return true;
 		if (_builtIns.INamed_name.EqualsIdentity(feature))
 		{
 			if (value is string v)
 			{
-				SetName(v, notificationId);
+				SetName(v);
 				return true;
 			}
 
@@ -366,7 +402,7 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 		{
 			if (value is null or int)
 			{
-				SetContinuous((int?)value, notificationId);
+				SetContinuous((int?)value);
 				return true;
 			}
 
@@ -377,7 +413,7 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 		{
 			if (value is null or int)
 			{
-				SetPeak((int?)value, notificationId);
+				SetPeak((int?)value);
 				return true;
 			}
 
@@ -386,17 +422,23 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 
 		if (PowerBudgetLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(feature))
 		{
-			var safeNodes = PowerBudgetLanguage.Instance.PowerConsumer_providedFrom.AsNodes<Languages.PowerSource>(value).ToList();
-			AssureNotNull(safeNodes, PowerBudgetLanguage.Instance.PowerConsumer_providedFrom);
-			AssureNotNullMembers(safeNodes, PowerBudgetLanguage.Instance.PowerConsumer_providedFrom);
-			ReferenceSetNotificationEmitter<PowerSource> emitter = new(PowerBudgetLanguage.Instance.PowerConsumer_providedFrom, this, safeNodes, _providedFrom, notificationId);
-			emitter.CollectOldData();
-			_providedFrom.Clear();
-			_providedFrom.AddRange(safeNodes);
-			emitter.Notify();
+			SetOptionalMultipleReference<PowerSource>(value, PowerBudgetLanguage.Instance.PowerConsumer_providedFrom, WritableProvidedFrom(), SetProvidedFromRaw);
 			return true;
 		}
 
+		return false;
+	}
+
+	protected override bool SetPropertyRaw(Property feature, object? value)
+	{
+		if (base.SetPropertyRaw(feature, value))
+			return true;
+		if (_builtIns.INamed_name.EqualsIdentity(feature) && value is null or string)
+			return SetNameRaw((string?)value);
+		if (PowerBudgetLanguage.Instance.IPowerParticipant_continuous.EqualsIdentity(feature) && value is null or int)
+			return SetContinuousRaw((int?)value);
+		if (PowerBudgetLanguage.Instance.IPowerParticipant_peak.EqualsIdentity(feature) && value is null or int)
+			return SetPeakRaw((int?)value);
 		return false;
 	}
 
@@ -414,12 +456,89 @@ public partial class PowerConsumer : ConceptInstanceBase, IPowerModuleContent, I
 			result.Add(PowerBudgetLanguage.Instance.PowerConsumer_providedFrom);
 		return result;
 	}
+
+	protected override bool AddReferencesRaw(Reference feature, ReferenceTarget value)
+	{
+		if (base.AddReferencesRaw(feature, value))
+			return true;
+		if (PowerBudgetLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(feature))
+			return AddProvidedFromRaw(value);
+		return false;
+	}
+
+	protected override bool InsertReferencesRaw(Reference feature, int index, ReferenceTarget value)
+	{
+		if (base.InsertReferencesRaw(feature, index, value))
+			return true;
+		if (PowerBudgetLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(feature))
+			return InsertProvidedFromRaw(index, value);
+		return false;
+	}
+
+	protected override bool RemoveReferencesRaw(Reference feature, ReferenceTarget value)
+	{
+		if (base.RemoveReferencesRaw(feature, value))
+			return true;
+		if (PowerBudgetLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(feature))
+			return RemoveProvidedFromRaw(value);
+		return false;
+	}
+
+	/// <inheritdoc/>
+        protected override bool AddInternal(Link? link, IEnumerable<IReadableNode> value)
+	{
+		if (base.AddInternal(link, value))
+			return true;
+		if (PowerBudgetLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(link))
+		{
+			AddProvidedFrom(PowerBudgetLanguage.Instance.PowerConsumer_providedFrom.AsNodes<Languages.PowerSource>(value));
+			return true;
+		}
+
+		return false;
+	}
+
+	/// <inheritdoc/>
+        protected override bool InsertInternal(Link? link, int index, IEnumerable<IReadableNode> value)
+	{
+		if (base.InsertInternal(link, index, value))
+			return true;
+		if (PowerBudgetLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(link))
+		{
+			InsertProvidedFrom(index, PowerBudgetLanguage.Instance.PowerConsumer_providedFrom.AsNodes<Languages.PowerSource>(value));
+			return true;
+		}
+
+		return false;
+	}
+
+	/// <inheritdoc/>
+        protected override bool RemoveInternal(Link? link, IEnumerable<IReadableNode> value)
+	{
+		if (base.RemoveInternal(link, value))
+			return true;
+		if (PowerBudgetLanguage.Instance.PowerConsumer_providedFrom.EqualsIdentity(link))
+		{
+			RemoveProvidedFrom(PowerBudgetLanguage.Instance.PowerConsumer_providedFrom.AsNodes<Languages.PowerSource>(value));
+			return true;
+		}
+
+		return false;
+	}
 }
 
 [LionCoreMetaPointer(Language = typeof(PowerBudgetLanguage), Key = "PowerModule")]
 public partial class PowerModule : ConceptInstanceBase, INamedWritable, IPartitionInstance<INode>
 {
 	private string? _name = null;
+	private bool SetNameRaw(string? value)
+	{
+		if (value == _name)
+			return false;
+		_name = value;
+		return true;
+	}
+
 	/// <remarks>Required Property</remarks>
     	/// <exception cref = "UnsetFeatureException">If Name has not been set</exception>
     	/// <exception cref = "InvalidValueException">If set to null</exception>
@@ -432,68 +551,57 @@ public partial class PowerModule : ConceptInstanceBase, INamedWritable, IPartiti
         public bool TryGetName([NotNullWhenAttribute(true)] out string? name)
 	{
 		name = _name;
-		return _name != null;
+		return name != null;
 	}
 /// <remarks>Required Property</remarks>
 /// <exception cref="InvalidValueException">If set to null</exception>
- INamedWritable INamedWritable.SetName(string value, INotificationId? notificationId = null) => SetName(value);
+ INamedWritable INamedWritable.SetName(string value) => SetName(value);
 	/// <remarks>Required Property</remarks>
     	/// <exception cref = "InvalidValueException">If set to null</exception>
-        public PowerModule SetName(string value, INotificationId? notificationId = null)
+        public PowerModule SetName(string value)
 	{
-		AssureNotNull(value, _builtIns.INamed_name);
-		PropertyNotificationEmitter emitter = new(_builtIns.INamed_name, this, value, _name, notificationId);
-		emitter.CollectOldData();
-		_name = value;
-		emitter.Notify();
+		SetRequiredReferenceTypeProperty<string>(value, _builtIns.INamed_name, _name, SetNameRaw);
 		return this;
 	}
 
-	private readonly List<IPowerModuleContent> _contents = [];
+	private bool SetContentsRaw(List<IPowerModuleContent> nodes) => ExchangeChildrenRaw(nodes, WritableContents());
+	private bool AddContentsRaw(IPowerModuleContent? value) => AddChildRaw(value, WritableContents());
+	private bool InsertContentsRaw(int index, IPowerModuleContent? value) => InsertChildRaw(index, value, WritableContents());
+	private bool RemoveContentsRaw(IPowerModuleContent? value) => RemoveChildRaw(value, _contents);
+	private List<IPowerModuleContent>? _contents;
+	private static readonly IReadOnlyList<IPowerModuleContent> _emptyContents = [];
+	private IReadOnlyList<IPowerModuleContent> ReadOnlyContents() => _contents?.AsReadOnly() ?? _emptyContents;
+	private List<IPowerModuleContent> WritableContents() => _contents ??= [];
 	/// <remarks>Optional Multiple Containment</remarks>
         [LionCoreMetaPointer(Language = typeof(PowerBudgetLanguage), Key = "PowerModule-contents")]
 	[LionCoreFeature(Kind = LionCoreFeatureKind.Containment, Optional = true, Multiple = true)]
-	public IReadOnlyList<IPowerModuleContent> Contents { get => _contents.AsReadOnly(); init => AddContents(value); }
+	public IReadOnlyList<IPowerModuleContent> Contents { get => ReadOnlyContents(); init => AddContents(value); }
 
 	/// <remarks>Optional Multiple Containment</remarks>
         public bool TryGetContents([NotNullWhenAttribute(true)] out IReadOnlyList<IPowerModuleContent> contents)
 	{
-		contents = _contents;
-		return _contents.Count != 0;
+		contents = ReadOnlyContents();
+		return contents.Count != 0;
 	}
 
 	/// <remarks>Optional Multiple Containment</remarks>
-        public PowerModule AddContents(IEnumerable<IPowerModuleContent> nodes, INotificationId? notificationId = null)
+        public PowerModule AddContents(IEnumerable<IPowerModuleContent> nodes)
 	{
-		var safeNodes = nodes?.ToList();
-		AssureNotNull(safeNodes, PowerBudgetLanguage.Instance.PowerModule_contents);
-		AssureNotNullMembers(safeNodes, PowerBudgetLanguage.Instance.PowerModule_contents);
-		ContainmentAddMultipleNotificationEmitter<IPowerModuleContent> emitter = new(PowerBudgetLanguage.Instance.PowerModule_contents, this, safeNodes, _contents, null, notificationId);
-		emitter.CollectOldData();
-		_contents.AddRange(SetSelfParent(safeNodes, PowerBudgetLanguage.Instance.PowerModule_contents));
-		emitter.Notify();
+		AddOptionalMultipleContainment<IPowerModuleContent>(nodes, PowerBudgetLanguage.Instance.PowerModule_contents, WritableContents(), AddContentsRaw);
 		return this;
 	}
 
 	/// <remarks>Optional Multiple Containment</remarks>
-        public PowerModule InsertContents(int index, IEnumerable<IPowerModuleContent> nodes, INotificationId? notificationId = null)
+        public PowerModule InsertContents(int index, IEnumerable<IPowerModuleContent> nodes)
 	{
-		AssureInRange(index, _contents);
-		var safeNodes = nodes?.ToList();
-		AssureNotNull(safeNodes, PowerBudgetLanguage.Instance.PowerModule_contents);
-		AssureNoSelfMove(index, safeNodes, _contents);
-		AssureNotNullMembers(safeNodes, PowerBudgetLanguage.Instance.PowerModule_contents);
-		ContainmentAddMultipleNotificationEmitter<IPowerModuleContent> emitter = new(PowerBudgetLanguage.Instance.PowerModule_contents, this, safeNodes, _contents, index, notificationId);
-		emitter.CollectOldData();
-		_contents.InsertRange(index, SetSelfParent(safeNodes, PowerBudgetLanguage.Instance.PowerModule_contents));
-		emitter.Notify();
+		InsertOptionalMultipleContainment<IPowerModuleContent>(index, nodes, PowerBudgetLanguage.Instance.PowerModule_contents, WritableContents(), InsertContentsRaw);
 		return this;
 	}
 
 	/// <remarks>Optional Multiple Containment</remarks>
-        public PowerModule RemoveContents(IEnumerable<IPowerModuleContent> nodes, INotificationId? notificationId = null)
+        public PowerModule RemoveContents(IEnumerable<IPowerModuleContent> nodes)
 	{
-		RemoveSelfParent(nodes?.ToList(), _contents, PowerBudgetLanguage.Instance.PowerModule_contents, ContainmentRemover<IPowerModuleContent>(PowerBudgetLanguage.Instance.PowerModule_contents));
+		RemoveOptionalMultipleContainment<IPowerModuleContent>(nodes, PowerBudgetLanguage.Instance.PowerModule_contents, _contents, RemoveContentsRaw);
 		return this;
 	}
 
@@ -528,16 +636,42 @@ public partial class PowerModule : ConceptInstanceBase, INamedWritable, IPartiti
 		return false;
 	}
 
-	/// <inheritdoc/>
-        protected override bool SetInternal(Feature? feature, object? value, INotificationId? notificationId = null)
+	protected override bool TryGetPropertyRaw(Property feature, out object? result)
 	{
-		if (base.SetInternal(feature, value, notificationId))
+		if (base.TryGetPropertyRaw(feature, out result))
+			return true;
+		if (_builtIns.INamed_name.EqualsIdentity(feature))
+		{
+			result = _name;
+			return true;
+		}
+
+		return false;
+	}
+
+	protected override bool TryGetContainmentsRaw(Containment feature, out IReadOnlyList<IReadableNode> result)
+	{
+		if (base.TryGetContainmentsRaw(feature, out result))
+			return true;
+		if (PowerBudgetLanguage.Instance.PowerModule_contents.EqualsIdentity(feature))
+		{
+			result = ReadOnlyContents();
+			return true;
+		}
+
+		return false;
+	}
+
+	/// <inheritdoc/>
+        protected override bool SetInternal(Feature? feature, object? value)
+	{
+		if (base.SetInternal(feature, value))
 			return true;
 		if (_builtIns.INamed_name.EqualsIdentity(feature))
 		{
 			if (value is string v)
 			{
-				SetName(v, notificationId);
+				SetName(v);
 				return true;
 			}
 
@@ -546,15 +680,19 @@ public partial class PowerModule : ConceptInstanceBase, INamedWritable, IPartiti
 
 		if (PowerBudgetLanguage.Instance.PowerModule_contents.EqualsIdentity(feature))
 		{
-			var safeNodes = PowerBudgetLanguage.Instance.PowerModule_contents.AsNodes<Languages.IPowerModuleContent>(value).ToList();
-			ContainmentSetNotificationEmitter<IPowerModuleContent> emitter = new(PowerBudgetLanguage.Instance.PowerModule_contents, this, safeNodes, _contents, notificationId);
-			emitter.CollectOldData();
-			RemoveSelfParent(_contents.ToList(), _contents, PowerBudgetLanguage.Instance.PowerModule_contents);
-			_contents.AddRange(SetSelfParent(safeNodes, PowerBudgetLanguage.Instance.PowerModule_contents));
-			emitter.Notify();
+			SetOptionalMultipleContainment<IPowerModuleContent>(value, PowerBudgetLanguage.Instance.PowerModule_contents, WritableContents(), SetContentsRaw);
 			return true;
 		}
 
+		return false;
+	}
+
+	protected override bool SetPropertyRaw(Property feature, object? value)
+	{
+		if (base.SetPropertyRaw(feature, value))
+			return true;
+		if (_builtIns.INamed_name.EqualsIdentity(feature) && value is null or string)
+			return SetNameRaw((string?)value);
 		return false;
 	}
 
@@ -569,15 +707,84 @@ public partial class PowerModule : ConceptInstanceBase, INamedWritable, IPartiti
 		return result;
 	}
 
-	/// <inheritdoc/>
-        protected override bool DetachChild(INode child)
+	protected override bool AddContainmentsRaw(Containment feature, IWritableNode value)
 	{
-		if (base.DetachChild(child))
+		if (base.AddContainmentsRaw(feature, value))
+			return true;
+		if (PowerBudgetLanguage.Instance.PowerModule_contents.EqualsIdentity(feature) && value is Languages.IPowerModuleContent v0)
+			return AddContentsRaw(v0);
+		return false;
+	}
+
+	protected override bool InsertContainmentsRaw(Containment feature, int index, IWritableNode value)
+	{
+		if (base.InsertContainmentsRaw(feature, index, value))
+			return true;
+		if (PowerBudgetLanguage.Instance.PowerModule_contents.EqualsIdentity(feature) && value is Languages.IPowerModuleContent v0)
+			return InsertContentsRaw(index, v0);
+		return false;
+	}
+
+	protected override bool RemoveContainmentsRaw(Containment feature, IWritableNode value)
+	{
+		if (base.RemoveContainmentsRaw(feature, value))
+			return true;
+		if (PowerBudgetLanguage.Instance.PowerModule_contents.EqualsIdentity(feature) && value is Languages.IPowerModuleContent v0)
+			return RemoveContentsRaw(v0);
+		return false;
+	}
+
+	/// <inheritdoc/>
+        protected override bool AddInternal(Link? link, IEnumerable<IReadableNode> value)
+	{
+		if (base.AddInternal(link, value))
+			return true;
+		if (PowerBudgetLanguage.Instance.PowerModule_contents.EqualsIdentity(link))
+		{
+			AddContents(PowerBudgetLanguage.Instance.PowerModule_contents.AsNodes<Languages.IPowerModuleContent>(value));
+			return true;
+		}
+
+		return false;
+	}
+
+	/// <inheritdoc/>
+        protected override bool InsertInternal(Link? link, int index, IEnumerable<IReadableNode> value)
+	{
+		if (base.InsertInternal(link, index, value))
+			return true;
+		if (PowerBudgetLanguage.Instance.PowerModule_contents.EqualsIdentity(link))
+		{
+			InsertContents(index, PowerBudgetLanguage.Instance.PowerModule_contents.AsNodes<Languages.IPowerModuleContent>(value));
+			return true;
+		}
+
+		return false;
+	}
+
+	/// <inheritdoc/>
+        protected override bool RemoveInternal(Link? link, IEnumerable<IReadableNode> value)
+	{
+		if (base.RemoveInternal(link, value))
+			return true;
+		if (PowerBudgetLanguage.Instance.PowerModule_contents.EqualsIdentity(link))
+		{
+			RemoveContents(PowerBudgetLanguage.Instance.PowerModule_contents.AsNodes<Languages.IPowerModuleContent>(value));
+			return true;
+		}
+
+		return false;
+	}
+
+	/// <inheritdoc/>
+        protected override bool DetachChild(INode child, bool notify)
+	{
+		if (base.DetachChild(child, notify))
 			return true;
 		Containment? c = GetContainmentOf(child);
 		if (PowerBudgetLanguage.Instance.PowerModule_contents.EqualsIdentity(c))
 		{
-			RemoveSelfParent(child, _contents, PowerBudgetLanguage.Instance.PowerModule_contents);
+			RemoveSelfParent((IPowerModuleContent)child, WritableContents(), PowerBudgetLanguage.Instance.PowerModule_contents, null, notify ? ContainmentRemover<IPowerModuleContent>(PowerBudgetLanguage.Instance.PowerModule_contents) : null);
 			return true;
 		}
 
@@ -590,7 +797,7 @@ public partial class PowerModule : ConceptInstanceBase, INamedWritable, IPartiti
 		Containment? result = base.GetContainmentOf(child);
 		if (result != null)
 			return result;
-		if (child is IPowerModuleContent child0 && _contents.Contains(child0))
+		if (child is IPowerModuleContent child0 && (_contents?.Contains(child0) ?? false))
 			return PowerBudgetLanguage.Instance.PowerModule_contents;
 		return null;
 	}
@@ -600,6 +807,14 @@ public partial class PowerModule : ConceptInstanceBase, INamedWritable, IPartiti
 public partial class PowerSource : ConceptInstanceBase, IPowerModuleContent, IPowerParticipant, INamedWritable
 {
 	private string? _name = null;
+	private bool SetNameRaw(string? value)
+	{
+		if (value == _name)
+			return false;
+		_name = value;
+		return true;
+	}
+
 	/// <remarks>Required Property</remarks>
     	/// <exception cref = "UnsetFeatureException">If Name has not been set</exception>
     	/// <exception cref = "InvalidValueException">If set to null</exception>
@@ -612,20 +827,16 @@ public partial class PowerSource : ConceptInstanceBase, IPowerModuleContent, IPo
         public bool TryGetName([NotNullWhenAttribute(true)] out string? name)
 	{
 		name = _name;
-		return _name != null;
+		return name != null;
 	}
 /// <remarks>Required Property</remarks>
 /// <exception cref="InvalidValueException">If set to null</exception>
- INamedWritable INamedWritable.SetName(string value, INotificationId? notificationId = null) => SetName(value);
+ INamedWritable INamedWritable.SetName(string value) => SetName(value);
 	/// <remarks>Required Property</remarks>
     	/// <exception cref = "InvalidValueException">If set to null</exception>
-        public PowerSource SetName(string value, INotificationId? notificationId = null)
+        public PowerSource SetName(string value)
 	{
-		AssureNotNull(value, _builtIns.INamed_name);
-		PropertyNotificationEmitter emitter = new(_builtIns.INamed_name, this, value, _name, notificationId);
-		emitter.CollectOldData();
-		_name = value;
-		emitter.Notify();
+		SetRequiredReferenceTypeProperty<string>(value, _builtIns.INamed_name, _name, SetNameRaw);
 		return this;
 	}
 
@@ -639,17 +850,22 @@ public partial class PowerSource : ConceptInstanceBase, IPowerModuleContent, IPo
         public bool TryGetContinuous([NotNullWhenAttribute(true)] out int? continuous)
 	{
 		continuous = _continuous;
-		return _continuous != null;
+		return continuous != null;
+	}
+
+	private bool SetContinuousRaw(int? value)
+	{
+		if (value == _continuous)
+			return false;
+		_continuous = value;
+		return true;
 	}
 /// <remarks>Optional Property</remarks>
- IPowerParticipant IPowerParticipant.SetContinuous(int? value, INotificationId? notificationId = null) => SetContinuous(value);
+ IPowerParticipant IPowerParticipant.SetContinuous(int? value) => SetContinuous(value);
 	/// <remarks>Optional Property</remarks>
-        public PowerSource SetContinuous(int? value, INotificationId? notificationId = null)
+        public PowerSource SetContinuous(int? value)
 	{
-		PropertyNotificationEmitter emitter = new(PowerBudgetLanguage.Instance.IPowerParticipant_continuous, this, value, _continuous, notificationId);
-		emitter.CollectOldData();
-		_continuous = value;
-		emitter.Notify();
+		SetOptionalValueTypeProperty<int>(value, PowerBudgetLanguage.Instance.IPowerParticipant_continuous, _continuous, SetContinuousRaw);
 		return this;
 	}
 
@@ -663,17 +879,22 @@ public partial class PowerSource : ConceptInstanceBase, IPowerModuleContent, IPo
         public bool TryGetPeak([NotNullWhenAttribute(true)] out int? peak)
 	{
 		peak = _peak;
-		return _peak != null;
+		return peak != null;
+	}
+
+	private bool SetPeakRaw(int? value)
+	{
+		if (value == _peak)
+			return false;
+		_peak = value;
+		return true;
 	}
 /// <remarks>Optional Property</remarks>
- IPowerParticipant IPowerParticipant.SetPeak(int? value, INotificationId? notificationId = null) => SetPeak(value);
+ IPowerParticipant IPowerParticipant.SetPeak(int? value) => SetPeak(value);
 	/// <remarks>Optional Property</remarks>
-        public PowerSource SetPeak(int? value, INotificationId? notificationId = null)
+        public PowerSource SetPeak(int? value)
 	{
-		PropertyNotificationEmitter emitter = new(PowerBudgetLanguage.Instance.IPowerParticipant_peak, this, value, _peak, notificationId);
-		emitter.CollectOldData();
-		_peak = value;
-		emitter.Notify();
+		SetOptionalValueTypeProperty<int>(value, PowerBudgetLanguage.Instance.IPowerParticipant_peak, _peak, SetPeakRaw);
 		return this;
 	}
 
@@ -687,16 +908,21 @@ public partial class PowerSource : ConceptInstanceBase, IPowerModuleContent, IPo
         public bool TryGetKind([NotNullWhenAttribute(true)] out PowerSourceKind? kind)
 	{
 		kind = _kind;
-		return _kind != null;
+		return kind != null;
+	}
+
+	private bool SetKindRaw(PowerSourceKind? value)
+	{
+		if (value == _kind)
+			return false;
+		_kind = value;
+		return true;
 	}
 
 	/// <remarks>Optional Property</remarks>
-        public PowerSource SetKind(PowerSourceKind? value, INotificationId? notificationId = null)
+        public PowerSource SetKind(PowerSourceKind? value)
 	{
-		PropertyNotificationEmitter emitter = new(PowerBudgetLanguage.Instance.PowerSource_kind, this, value, _kind, notificationId);
-		emitter.CollectOldData();
-		_kind = value;
-		emitter.Notify();
+		SetOptionalValueTypeProperty<PowerSourceKind>(value, PowerBudgetLanguage.Instance.PowerSource_kind, _kind, SetKindRaw);
 		return this;
 	}
 
@@ -738,16 +964,47 @@ public partial class PowerSource : ConceptInstanceBase, IPowerModuleContent, IPo
 		return false;
 	}
 
-	/// <inheritdoc/>
-        protected override bool SetInternal(Feature? feature, object? value, INotificationId? notificationId = null)
+	protected override bool TryGetPropertyRaw(Property feature, out object? result)
 	{
-		if (base.SetInternal(feature, value, notificationId))
+		if (base.TryGetPropertyRaw(feature, out result))
+			return true;
+		if (_builtIns.INamed_name.EqualsIdentity(feature))
+		{
+			result = _name;
+			return true;
+		}
+
+		if (PowerBudgetLanguage.Instance.IPowerParticipant_continuous.EqualsIdentity(feature))
+		{
+			result = _continuous;
+			return true;
+		}
+
+		if (PowerBudgetLanguage.Instance.IPowerParticipant_peak.EqualsIdentity(feature))
+		{
+			result = _peak;
+			return true;
+		}
+
+		if (PowerBudgetLanguage.Instance.PowerSource_kind.EqualsIdentity(feature))
+		{
+			result = _kind;
+			return true;
+		}
+
+		return false;
+	}
+
+	/// <inheritdoc/>
+        protected override bool SetInternal(Feature? feature, object? value)
+	{
+		if (base.SetInternal(feature, value))
 			return true;
 		if (_builtIns.INamed_name.EqualsIdentity(feature))
 		{
 			if (value is string v)
 			{
-				SetName(v, notificationId);
+				SetName(v);
 				return true;
 			}
 
@@ -758,7 +1015,7 @@ public partial class PowerSource : ConceptInstanceBase, IPowerModuleContent, IPo
 		{
 			if (value is null or int)
 			{
-				SetContinuous((int?)value, notificationId);
+				SetContinuous((int?)value);
 				return true;
 			}
 
@@ -769,7 +1026,7 @@ public partial class PowerSource : ConceptInstanceBase, IPowerModuleContent, IPo
 		{
 			if (value is null or int)
 			{
-				SetPeak((int?)value, notificationId);
+				SetPeak((int?)value);
 				return true;
 			}
 
@@ -780,13 +1037,28 @@ public partial class PowerSource : ConceptInstanceBase, IPowerModuleContent, IPo
 		{
 			if (value is null or Languages.PowerSourceKind)
 			{
-				SetKind((Languages.PowerSourceKind?)value, notificationId);
+				SetKind((Languages.PowerSourceKind?)value);
 				return true;
 			}
 
 			throw new InvalidValueException(feature, value);
 		}
 
+		return false;
+	}
+
+	protected override bool SetPropertyRaw(Property feature, object? value)
+	{
+		if (base.SetPropertyRaw(feature, value))
+			return true;
+		if (_builtIns.INamed_name.EqualsIdentity(feature) && value is null or string)
+			return SetNameRaw((string?)value);
+		if (PowerBudgetLanguage.Instance.IPowerParticipant_continuous.EqualsIdentity(feature) && value is null or int)
+			return SetContinuousRaw((int?)value);
+		if (PowerBudgetLanguage.Instance.IPowerParticipant_peak.EqualsIdentity(feature) && value is null or int)
+			return SetPeakRaw((int?)value);
+		if (PowerBudgetLanguage.Instance.PowerSource_kind.EqualsIdentity(feature) && value is null or Languages.PowerSourceKind)
+			return SetKindRaw((Languages.PowerSourceKind?)value);
 		return false;
 	}
 

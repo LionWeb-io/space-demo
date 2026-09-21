@@ -4,8 +4,10 @@ Requirements to run:
 
 * C# 8
 
-* LionWeb-CSharp _unreleased branch_ `websocket` of the `lionweb-csharp` repository.
-  That means that you'll have to publish the packages in that repository to your local NuGet repository, or link packages directly through the file system.
+* LionWeb-CSharp version (at least) 0.6.0
+    Note that this version is configured in *two* places:
+    * In `cs/Directory.Packages.props`, inside the `<LionWebCSharpVersion>` tag;
+    * In `cs/SpaceDemo.Languages/.config/dotnet-tools.json`, as the value of the `version` property.
 
 
 ## Generate languages
@@ -13,7 +15,8 @@ Requirements to run:
 Run in `SpaceDemo.Languages`:
 
 ```shell
-$ dotnet LionWebGenerator --config <space-DSL Git root>/cs/SpaceDemo.Languages/generate-languages.config.json
+$ dotnet tool restore
+$ dotnet LionWebGenerator --config generate-languages.config.json
 ```
 
 

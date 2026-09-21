@@ -85,7 +85,7 @@ export class DagaDiagramComponent implements AfterViewInit, OnDestroy {
           console.log(`signed on`);
 
           console.log(`getting list of partitions`);
-          client.listPartitions(uniqueQueryId(), Number.MAX_SAFE_INTEGER).then((partitionInfo) => {
+          client.listPartitions(uniqueQueryId(), (1 << 30) - 1).then((partitionInfo) => {
             const partitionIds = partitionInfo.nodes
               .filter((partitionJson) => partitionJson.parent === null)
               .map(({ id }) => id);
@@ -100,7 +100,8 @@ export class DagaDiagramComponent implements AfterViewInit, OnDestroy {
               .subscribeToPartitionContents(uniqueQueryId(), partitionId)
               .then((receivedPartitionJson) => {
                 console.log(`deserializing partition`);
-                const receivedModel = client.forest.deserializeInto(receivedPartitionJson);
+                const receivedModel = client.forest.deserializeInto(receivedPartitionJson as LionWebJsonChunk);
+                  // FIXME  type coercion hack because type of Forest.deserializeInto should be OnlyNodesOfLionWebJsonChunk
 
                 this.importModel(receivedModel);
 
