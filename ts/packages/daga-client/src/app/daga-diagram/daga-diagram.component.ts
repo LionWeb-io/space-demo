@@ -101,8 +101,7 @@ export class DagaDiagramComponent implements AfterViewInit, OnDestroy {
               .subscribeToPartitionContents(uniqueQueryId(), partitionId)
               .then((receivedPartitionJson) => {
                 console.log(`deserializing partition`);
-                const receivedModel = client.forest.deserializeInto(receivedPartitionJson as LionWebJsonChunk);
-                  // FIXME  type coercion hack because type of Forest.deserializeInto should be OnlyNodesOfLionWebJsonChunk (fixed in 0.10.1)
+                const receivedModel = client.forest.deserializeInto(receivedPartitionJson);
 
                 this.importModel(receivedModel);
 

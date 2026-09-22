@@ -134,7 +134,7 @@ export class Finding extends $lwClassCore.NodeBase {
         this._code = new $lwClassCore.OptionalPropertyValueManager<number>(FindingLanguageBase.INSTANCE.Finding_code, this);
     }
 
-    getPropertyValueManager(property: $lwCore.Property): $lwClassCore.PropertyValueManager<unknown> {
+    override getPropertyValueManager(property: $lwCore.Property): $lwClassCore.PropertyValueManager<unknown> {
         switch (property.key) {
             case FindingLanguageBase.INSTANCE.Finding_severity.key: return this._severity;
             case FindingLanguageBase.INSTANCE.Finding_message.key: return this._message;

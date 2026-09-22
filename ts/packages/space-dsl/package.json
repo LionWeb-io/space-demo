@@ -21,9 +21,9 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@lionweb/class-core": "0.10.0",
-    "@lionweb/core": "0.10.0",
-    "@lionweb/json": "0.10.0"
+    "@lionweb/class-core": "0.10.1",
+    "@lionweb/core": "0.10.1",
+    "@lionweb/json": "0.10.1"
   },
   "devDependencies": {
     "@types/node": "26.1.1",

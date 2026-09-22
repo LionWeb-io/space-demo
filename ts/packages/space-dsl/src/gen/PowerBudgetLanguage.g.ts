@@ -210,7 +210,7 @@ export class PowerConsumer extends $lwClassCore.NodeBase implements IPowerModule
         this._continuous = new $lwClassCore.OptionalPropertyValueManager<number>(PowerBudgetLanguageBase.INSTANCE.IPowerParticipant_continuous, this);
     }
 
-    getPropertyValueManager(property: $lwCore.Property): $lwClassCore.PropertyValueManager<unknown> {
+    override getPropertyValueManager(property: $lwCore.Property): $lwClassCore.PropertyValueManager<unknown> {
         switch (property.key) {
             case $lwClassCore.LionCore_builtinsBase.INSTANCE.INamed_name.key: return this._name;
             case PowerBudgetLanguageBase.INSTANCE.IPowerParticipant_peak.key: return this._peak;
@@ -219,7 +219,7 @@ export class PowerConsumer extends $lwClassCore.NodeBase implements IPowerModule
         }
     }
 
-    getReferenceValueManager(reference: $lwCore.Reference): $lwClassCore.ReferenceValueManager<$lwCore.Node> {
+    override getReferenceValueManager(reference: $lwCore.Reference): $lwClassCore.ReferenceValueManager<$lwCore.Node> {
         if (reference.key === PowerBudgetLanguageBase.INSTANCE.PowerConsumer_providedFrom.key) {
             return this._providedFrom;
         }
@@ -272,14 +272,14 @@ export class PowerModule extends $lwClassCore.NodeBase implements $lwClassCore.I
         this._name = new $lwClassCore.RequiredPropertyValueManager<string>($lwClassCore.LionCore_builtinsBase.INSTANCE.INamed_name, this);
     }
 
-    getPropertyValueManager(property: $lwCore.Property): $lwClassCore.PropertyValueManager<unknown> {
+    override getPropertyValueManager(property: $lwCore.Property): $lwClassCore.PropertyValueManager<unknown> {
         if (property.key === $lwClassCore.LionCore_builtinsBase.INSTANCE.INamed_name.key) {
             return this._name;
         }
         return super.getPropertyValueManager(property);
     }
 
-    getContainmentValueManager(containment: $lwCore.Containment): $lwClassCore.ContainmentValueManager<$lwClassCore.INodeBase> {
+    override getContainmentValueManager(containment: $lwCore.Containment): $lwClassCore.ContainmentValueManager<$lwClassCore.INodeBase> {
         if (containment.key === PowerBudgetLanguageBase.INSTANCE.PowerModule_contents.key) {
             return this._contents;
         }
@@ -332,7 +332,7 @@ export class PowerSource extends $lwClassCore.NodeBase implements IPowerModuleCo
         this._continuous = new $lwClassCore.OptionalPropertyValueManager<number>(PowerBudgetLanguageBase.INSTANCE.IPowerParticipant_continuous, this);
     }
 
-    getPropertyValueManager(property: $lwCore.Property): $lwClassCore.PropertyValueManager<unknown> {
+    override getPropertyValueManager(property: $lwCore.Property): $lwClassCore.PropertyValueManager<unknown> {
         switch (property.key) {
             case PowerBudgetLanguageBase.INSTANCE.PowerSource_kind.key: return this._kind;
             case $lwClassCore.LionCore_builtinsBase.INSTANCE.INamed_name.key: return this._name;
