@@ -1,6 +1,6 @@
 /*
  * language's metadata:
- *     name:    PowerBudget
+ *     name:    PowerBudgetLanguage
  *     version: 0.1
  *     key:     space-PowerBudget
  *     id:      space-PowerBudget
@@ -11,9 +11,9 @@ import * as $lwClassCore from "@lionweb/class-core";
 import * as $lwCore from "@lionweb/core";
 import * as $lwJson from "@lionweb/json";
 
-export class PowerBudgetBase implements $lwClassCore.ILanguageBase {
+export class PowerBudgetLanguageBase implements $lwClassCore.ILanguageBase {
 
-    private readonly _language: $lwCore.Language = new $lwCore.Language("PowerBudget", "0.1", "space-PowerBudget", "space-PowerBudget");
+    private readonly _language: $lwCore.Language = new $lwCore.Language("PowerBudgetLanguage", "0.1", "space-PowerBudget", "space-PowerBudget");
     get language(): $lwCore.Language {
         this.ensureWiredUp();
         return this._language;
@@ -144,7 +144,7 @@ export class PowerBudgetBase implements $lwClassCore.ILanguageBase {
         throw new Error(`enumeration with key ${enumeration.key} is not known in language ${language.name} (key=${language.key}, version=${language.version})`);
     }
 
-    public static readonly INSTANCE = new PowerBudgetBase();
+    public static readonly INSTANCE = new PowerBudgetLanguageBase();
 }
 
 
@@ -158,7 +158,7 @@ export interface IPowerParticipant extends $lwClassCore.INodeBase {
 
 export class PowerConsumer extends $lwClassCore.NodeBase implements IPowerModuleContent, IPowerParticipant {
     static create(id: $lwJson.LionWebId, receiveDelta?: $lwClassCore.DeltaReceiver, parentInfo?: $lwClassCore.Parentage): PowerConsumer {
-        return new PowerConsumer(PowerBudgetBase.INSTANCE.PowerConsumer, id, receiveDelta, parentInfo);
+        return new PowerConsumer(PowerBudgetLanguageBase.INSTANCE.PowerConsumer, id, receiveDelta, parentInfo);
     }
 
     private readonly _providedFrom: $lwClassCore.OptionalMultiReferenceValueManager<PowerSource>;
@@ -204,23 +204,23 @@ export class PowerConsumer extends $lwClassCore.NodeBase implements IPowerModule
 
     public constructor(classifier: $lwCore.Classifier, id: $lwJson.LionWebId, receiveDelta?: $lwClassCore.DeltaReceiver, parentInfo?: $lwClassCore.Parentage) {
         super(classifier, id, receiveDelta, parentInfo);
-        this._providedFrom = new $lwClassCore.OptionalMultiReferenceValueManager<PowerSource>(PowerBudgetBase.INSTANCE.PowerConsumer_providedFrom, this);
+        this._providedFrom = new $lwClassCore.OptionalMultiReferenceValueManager<PowerSource>(PowerBudgetLanguageBase.INSTANCE.PowerConsumer_providedFrom, this);
         this._name = new $lwClassCore.RequiredPropertyValueManager<string>($lwClassCore.LionCore_builtinsBase.INSTANCE.INamed_name, this);
-        this._peak = new $lwClassCore.OptionalPropertyValueManager<number>(PowerBudgetBase.INSTANCE.IPowerParticipant_peak, this);
-        this._continuous = new $lwClassCore.OptionalPropertyValueManager<number>(PowerBudgetBase.INSTANCE.IPowerParticipant_continuous, this);
+        this._peak = new $lwClassCore.OptionalPropertyValueManager<number>(PowerBudgetLanguageBase.INSTANCE.IPowerParticipant_peak, this);
+        this._continuous = new $lwClassCore.OptionalPropertyValueManager<number>(PowerBudgetLanguageBase.INSTANCE.IPowerParticipant_continuous, this);
     }
 
-    getPropertyValueManager(property: $lwCore.Property): $lwClassCore.PropertyValueManager<unknown> {
+    override getPropertyValueManager(property: $lwCore.Property): $lwClassCore.PropertyValueManager<unknown> {
         switch (property.key) {
             case $lwClassCore.LionCore_builtinsBase.INSTANCE.INamed_name.key: return this._name;
-            case PowerBudgetBase.INSTANCE.IPowerParticipant_peak.key: return this._peak;
-            case PowerBudgetBase.INSTANCE.IPowerParticipant_continuous.key: return this._continuous;
+            case PowerBudgetLanguageBase.INSTANCE.IPowerParticipant_peak.key: return this._peak;
+            case PowerBudgetLanguageBase.INSTANCE.IPowerParticipant_continuous.key: return this._continuous;
             default: return super.getPropertyValueManager(property);
         }
     }
 
-    getReferenceValueManager(reference: $lwCore.Reference): $lwClassCore.ReferenceValueManager<$lwCore.Node> {
-        if (reference.key === PowerBudgetBase.INSTANCE.PowerConsumer_providedFrom.key) {
+    override getReferenceValueManager(reference: $lwCore.Reference): $lwClassCore.ReferenceValueManager<$lwCore.Node> {
+        if (reference.key === PowerBudgetLanguageBase.INSTANCE.PowerConsumer_providedFrom.key) {
             return this._providedFrom;
         }
         return super.getReferenceValueManager(reference);
@@ -229,7 +229,7 @@ export class PowerConsumer extends $lwClassCore.NodeBase implements IPowerModule
 
 export class PowerModule extends $lwClassCore.NodeBase implements $lwClassCore.INamed {
     static create(id: $lwJson.LionWebId, receiveDelta?: $lwClassCore.DeltaReceiver, parentInfo?: $lwClassCore.Parentage): PowerModule {
-        return new PowerModule(PowerBudgetBase.INSTANCE.PowerModule, id, receiveDelta, parentInfo);
+        return new PowerModule(PowerBudgetLanguageBase.INSTANCE.PowerModule, id, receiveDelta, parentInfo);
     }
 
     private readonly _contents: $lwClassCore.OptionalMultiContainmentValueManager<IPowerModuleContent>;
@@ -268,19 +268,19 @@ export class PowerModule extends $lwClassCore.NodeBase implements $lwClassCore.I
 
     public constructor(classifier: $lwCore.Classifier, id: $lwJson.LionWebId, receiveDelta?: $lwClassCore.DeltaReceiver, parentInfo?: $lwClassCore.Parentage) {
         super(classifier, id, receiveDelta, parentInfo);
-        this._contents = new $lwClassCore.OptionalMultiContainmentValueManager<IPowerModuleContent>(PowerBudgetBase.INSTANCE.PowerModule_contents, this);
+        this._contents = new $lwClassCore.OptionalMultiContainmentValueManager<IPowerModuleContent>(PowerBudgetLanguageBase.INSTANCE.PowerModule_contents, this);
         this._name = new $lwClassCore.RequiredPropertyValueManager<string>($lwClassCore.LionCore_builtinsBase.INSTANCE.INamed_name, this);
     }
 
-    getPropertyValueManager(property: $lwCore.Property): $lwClassCore.PropertyValueManager<unknown> {
+    override getPropertyValueManager(property: $lwCore.Property): $lwClassCore.PropertyValueManager<unknown> {
         if (property.key === $lwClassCore.LionCore_builtinsBase.INSTANCE.INamed_name.key) {
             return this._name;
         }
         return super.getPropertyValueManager(property);
     }
 
-    getContainmentValueManager(containment: $lwCore.Containment): $lwClassCore.ContainmentValueManager<$lwClassCore.INodeBase> {
-        if (containment.key === PowerBudgetBase.INSTANCE.PowerModule_contents.key) {
+    override getContainmentValueManager(containment: $lwCore.Containment): $lwClassCore.ContainmentValueManager<$lwClassCore.INodeBase> {
+        if (containment.key === PowerBudgetLanguageBase.INSTANCE.PowerModule_contents.key) {
             return this._contents;
         }
         return super.getContainmentValueManager(containment);
@@ -289,7 +289,7 @@ export class PowerModule extends $lwClassCore.NodeBase implements $lwClassCore.I
 
 export class PowerSource extends $lwClassCore.NodeBase implements IPowerModuleContent, IPowerParticipant {
     static create(id: $lwJson.LionWebId, receiveDelta?: $lwClassCore.DeltaReceiver, parentInfo?: $lwClassCore.Parentage): PowerSource {
-        return new PowerSource(PowerBudgetBase.INSTANCE.PowerSource, id, receiveDelta, parentInfo);
+        return new PowerSource(PowerBudgetLanguageBase.INSTANCE.PowerSource, id, receiveDelta, parentInfo);
     }
 
     private readonly _kind: $lwClassCore.OptionalPropertyValueManager<PowerSourceKind>;
@@ -326,18 +326,18 @@ export class PowerSource extends $lwClassCore.NodeBase implements IPowerModuleCo
 
     public constructor(classifier: $lwCore.Classifier, id: $lwJson.LionWebId, receiveDelta?: $lwClassCore.DeltaReceiver, parentInfo?: $lwClassCore.Parentage) {
         super(classifier, id, receiveDelta, parentInfo);
-        this._kind = new $lwClassCore.OptionalPropertyValueManager<PowerSourceKind>(PowerBudgetBase.INSTANCE.PowerSource_kind, this);
+        this._kind = new $lwClassCore.OptionalPropertyValueManager<PowerSourceKind>(PowerBudgetLanguageBase.INSTANCE.PowerSource_kind, this);
         this._name = new $lwClassCore.RequiredPropertyValueManager<string>($lwClassCore.LionCore_builtinsBase.INSTANCE.INamed_name, this);
-        this._peak = new $lwClassCore.OptionalPropertyValueManager<number>(PowerBudgetBase.INSTANCE.IPowerParticipant_peak, this);
-        this._continuous = new $lwClassCore.OptionalPropertyValueManager<number>(PowerBudgetBase.INSTANCE.IPowerParticipant_continuous, this);
+        this._peak = new $lwClassCore.OptionalPropertyValueManager<number>(PowerBudgetLanguageBase.INSTANCE.IPowerParticipant_peak, this);
+        this._continuous = new $lwClassCore.OptionalPropertyValueManager<number>(PowerBudgetLanguageBase.INSTANCE.IPowerParticipant_continuous, this);
     }
 
-    getPropertyValueManager(property: $lwCore.Property): $lwClassCore.PropertyValueManager<unknown> {
+    override getPropertyValueManager(property: $lwCore.Property): $lwClassCore.PropertyValueManager<unknown> {
         switch (property.key) {
-            case PowerBudgetBase.INSTANCE.PowerSource_kind.key: return this._kind;
+            case PowerBudgetLanguageBase.INSTANCE.PowerSource_kind.key: return this._kind;
             case $lwClassCore.LionCore_builtinsBase.INSTANCE.INamed_name.key: return this._name;
-            case PowerBudgetBase.INSTANCE.IPowerParticipant_peak.key: return this._peak;
-            case PowerBudgetBase.INSTANCE.IPowerParticipant_continuous.key: return this._continuous;
+            case PowerBudgetLanguageBase.INSTANCE.IPowerParticipant_peak.key: return this._peak;
+            case PowerBudgetLanguageBase.INSTANCE.IPowerParticipant_continuous.key: return this._continuous;
             default: return super.getPropertyValueManager(property);
         }
     }

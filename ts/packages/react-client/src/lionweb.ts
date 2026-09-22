@@ -2,8 +2,9 @@ import { asTreeTextWith, INodeBase } from "@lionweb/class-core"
 import { LionWebClient } from "@lionweb/delta-protocol-client"
 import { createBrowserLowLevelClient } from "@lionweb/delta-protocol-low-level-client-browser"
 
-import { allLanguageBases } from "./gen/index.g.js"
+import { allLanguageBases } from "ts-space-demo-dsl"
 import { store } from "./store.js"
+import { LionWebJsonChunk } from "@lionweb/json"
 
 
 export const logModel = (model: INodeBase[]) => {
@@ -31,6 +32,7 @@ export const initializeLionWeb = () => {
     LionWebClient.create({
         clientId: "TS-client-1",
         url: "ws://localhost:40000",
+        repositoryId: "myRepo",
         languageBases: allLanguageBases,
         lowLevelClientInstantiator: (lowLevelClientParameters) =>
             createBrowserLowLevelClient(lowLevelClientParameters, (logItem) => {
@@ -55,7 +57,7 @@ export const initializeLionWeb = () => {
                     console.log(`signed on`)
 
                     console.log(`getting list of partitions`)
-                    client.listPartitions(uniqueQueryId())
+                    client.listPartitions(uniqueQueryId(), 1 << 30)
                         .then((partitionInfo) => {
                             const partitionIds = partitionInfo.nodes
                                 .filter((partitionJson) => partitionJson.parent === null)

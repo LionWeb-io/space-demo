@@ -1,7 +1,7 @@
 {
-  "name": "ts-space-demo-build",
+  "name": "ts-space-demo-test",
   "version": "0.0.1-alpha.0",
-  "description": "Build the language's types",
+  "description": "Test some things",
   "private": true,
   "main": "dist/generate.js",
   "type": "module",
@@ -16,16 +16,17 @@
   "scripts": {
     "clean": "npx rimraf dist node_modules",
     "build": "tsc",
-    "pregenerate": "npm run build",
-    "generate": "node dist/generate.js"
+    "pretest": "npm run build",
+    "test": "node dist/test.js"
+  },
+  "dependencies": {
+    "@lionweb/class-core": "0.10.1",
+    "@lionweb/json": "0.10.1",
+    "@lionweb/utilities": "0.10.1",
+    "ts-space-demo-dsl": "0.0.1-alpha.0"
   },
   "devDependencies": {
-    "@lionweb/class-core-generator": "0.10.1",
-    "@lionweb/io-lionweb-mps-specific": "0.10.1",
-    "@lionweb/json": "0.10.1",
-    "@lionweb/node-utils": "0.10.1",
-    "@lionweb/utilities": "0.10.1",
     "@types/node": "26.1.1",
-    "typescript": "5.9.3"
+    "typescript": "6.0.3"
   }
 }

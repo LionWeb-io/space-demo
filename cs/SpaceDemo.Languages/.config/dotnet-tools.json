@@ -3,7 +3,7 @@
   "isRoot": true,
   "tools": {
     "lionweb-csharp-generator-cli": {
-      "version": "0.6.0",
+      "version": "0.7.0-alpha.1",
       "commands": [
         "LionWebGenerator"
       ],

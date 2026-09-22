@@ -21,9 +21,10 @@ import {
 } from '@metadev/daga-angular';
 import { delay, Subscription } from 'rxjs';
 import { SPACE_DIAGRAM_CONFIG } from './daga-diagram.config';
-import { Finding } from './gen/Finding.g';
-import { allLanguageBases } from './gen/index.g';
-import { PowerConsumer, PowerModule, PowerSource, PowerSourceKind } from './gen/PowerBudget.g';
+import { allLanguageBases, FindingLanguage, PowerBudgetLanguage } from 'ts-space-demo-dsl';
+const { Finding } = FindingLanguage;
+const { PowerConsumer, PowerModule, PowerSource } = PowerBudgetLanguage;
+import { PowerSourceKind } from "ts-space-demo-dsl/dist/gen/PowerBudgetLanguage.g.js"  // TODO  can we improve on that?
 
 const repositoryId = 'myRepo'
 
@@ -100,8 +101,7 @@ export class DagaDiagramComponent implements AfterViewInit, OnDestroy {
               .subscribeToPartitionContents(uniqueQueryId(), partitionId)
               .then((receivedPartitionJson) => {
                 console.log(`deserializing partition`);
-                const receivedModel = client.forest.deserializeInto(receivedPartitionJson as LionWebJsonChunk);
-                  // FIXME  type coercion hack because type of Forest.deserializeInto should be OnlyNodesOfLionWebJsonChunk
+                const receivedModel = client.forest.deserializeInto(receivedPartitionJson);
 
                 this.importModel(receivedModel);
 

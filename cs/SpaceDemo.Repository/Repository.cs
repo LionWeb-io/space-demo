@@ -29,7 +29,7 @@ public class Repository
         LionWebVersions lionWebVersion = LionWebVersions.v2023_1;
         List<Language> languages =
         [
-            PowerBudgetLanguage.Instance, FindingLanguage.Instance,
+            PowerBudgetLanguageLanguage.Instance, FindingLanguageLanguage.Instance,
             lionWebVersion.BuiltIns, lionWebVersion.LionCore
         ];
 

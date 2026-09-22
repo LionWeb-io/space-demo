@@ -4,8 +4,10 @@ import { observer } from "mobx-react"
 import React from "react"
 import { FaBatteryHalf, FaPlug } from "react-icons/fa"
 
-import { PowerConsumer, PowerModule, PowerSource } from "./gen/PowerBudget.g.js"
-import { Finding, Severity } from "./gen/Finding.g.js"
+import { FindingLanguage, PowerBudgetLanguage } from "ts-space-demo-dsl"
+const { Finding } = FindingLanguage
+import { Severity } from "ts-space-demo-dsl/dist/gen/FindingLanguage.g.js"  // TODO  can we improve on that?
+const { PowerConsumer, PowerModule, PowerSource } = PowerBudgetLanguage
 
 
 const parsedNumberValue = (stringValue: string) =>

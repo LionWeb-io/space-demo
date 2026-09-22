@@ -23,17 +23,18 @@
     "prod": "http-server dist/ --port 1234"
   },
   "dependencies": {
-    "@lionweb/class-core": "0.10.0",
-    "@lionweb/core": "0.10.0",
-    "@lionweb/delta-protocol-client": "0.10.0",
-    "@lionweb/delta-protocol-low-level-client-browser": "0.10.0",
-    "@lionweb/json": "0.10.0",
+    "@lionweb/class-core": "0.10.1",
+    "@lionweb/core": "0.10.1",
+    "@lionweb/delta-protocol-client": "0.10.1",
+    "@lionweb/delta-protocol-low-level-client-browser": "0.10.1",
+    "@lionweb/json": "0.10.1",
     "mobx": "6.16.1",
     "mobx-react": "9.2.2",
     "nanoid": "6.0.0",
     "react": "19.2.7",
     "react-dom": "19.2.7",
-    "react-icons": "5.7.0"
+    "react-icons": "5.7.0",
+    "ts-space-demo-dsl": "0.0.1-alpha.0"
   },
   "devDependencies": {
     "@parcel/transformer-typescript-tsc": "2.16.4",
@@ -41,6 +42,6 @@
     "@types/react-dom": "19.2.3",
     "http-server": "14.1.1",
     "parcel": "2.16.4",
-    "typescript": "6.0.3"
+    "typescript": "5.9.3"
   }
 }

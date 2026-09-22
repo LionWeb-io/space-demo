@@ -20,7 +20,7 @@ class Loader
 
     private static readonly List<Language> languages =
     [
-        PowerBudgetLanguage.Instance, FindingLanguage.Instance,
+        PowerBudgetLanguageLanguage.Instance, FindingLanguageLanguage.Instance,
         lionWebVersion.BuiltIns, lionWebVersion.LionCore
     ];
 

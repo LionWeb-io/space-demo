@@ -1,6 +1,6 @@
 /*
  * language's metadata:
- *     name:    Finding
+ *     name:    FindingLanguage
  *     version: 0.1
  *     key:     FindingLanguage
  *     id:      FindingLanguage
@@ -11,9 +11,9 @@ import * as $lwClassCore from "@lionweb/class-core";
 import * as $lwCore from "@lionweb/core";
 import * as $lwJson from "@lionweb/json";
 
-export class FindingBase implements $lwClassCore.ILanguageBase {
+export class FindingLanguageBase implements $lwClassCore.ILanguageBase {
 
-    private readonly _language: $lwCore.Language = new $lwCore.Language("Finding", "0.1", "FindingLanguage", "FindingLanguage");
+    private readonly _language: $lwCore.Language = new $lwCore.Language("FindingLanguage", "0.1", "FindingLanguage", "FindingLanguage");
     get language(): $lwCore.Language {
         this.ensureWiredUp();
         return this._language;
@@ -94,13 +94,13 @@ export class FindingBase implements $lwClassCore.ILanguageBase {
         throw new Error(`enumeration with key ${enumeration.key} is not known in language ${language.name} (key=${language.key}, version=${language.version})`);
     }
 
-    public static readonly INSTANCE = new FindingBase();
+    public static readonly INSTANCE = new FindingLanguageBase();
 }
 
 
 export class Finding extends $lwClassCore.NodeBase {
     static create(id: $lwJson.LionWebId, receiveDelta?: $lwClassCore.DeltaReceiver, parentInfo?: $lwClassCore.Parentage): Finding {
-        return new Finding(FindingBase.INSTANCE.Finding, id, receiveDelta, parentInfo);
+        return new Finding(FindingLanguageBase.INSTANCE.Finding, id, receiveDelta, parentInfo);
     }
 
     private readonly _severity: $lwClassCore.OptionalPropertyValueManager<Severity>;
@@ -129,16 +129,16 @@ export class Finding extends $lwClassCore.NodeBase {
 
     public constructor(classifier: $lwCore.Classifier, id: $lwJson.LionWebId, receiveDelta?: $lwClassCore.DeltaReceiver, parentInfo?: $lwClassCore.Parentage) {
         super(classifier, id, receiveDelta, parentInfo);
-        this._severity = new $lwClassCore.OptionalPropertyValueManager<Severity>(FindingBase.INSTANCE.Finding_severity, this);
-        this._message = new $lwClassCore.OptionalPropertyValueManager<string>(FindingBase.INSTANCE.Finding_message, this);
-        this._code = new $lwClassCore.OptionalPropertyValueManager<number>(FindingBase.INSTANCE.Finding_code, this);
+        this._severity = new $lwClassCore.OptionalPropertyValueManager<Severity>(FindingLanguageBase.INSTANCE.Finding_severity, this);
+        this._message = new $lwClassCore.OptionalPropertyValueManager<string>(FindingLanguageBase.INSTANCE.Finding_message, this);
+        this._code = new $lwClassCore.OptionalPropertyValueManager<number>(FindingLanguageBase.INSTANCE.Finding_code, this);
     }
 
-    getPropertyValueManager(property: $lwCore.Property): $lwClassCore.PropertyValueManager<unknown> {
+    override getPropertyValueManager(property: $lwCore.Property): $lwClassCore.PropertyValueManager<unknown> {
         switch (property.key) {
-            case FindingBase.INSTANCE.Finding_severity.key: return this._severity;
-            case FindingBase.INSTANCE.Finding_message.key: return this._message;
-            case FindingBase.INSTANCE.Finding_code.key: return this._code;
+            case FindingLanguageBase.INSTANCE.Finding_severity.key: return this._severity;
+            case FindingLanguageBase.INSTANCE.Finding_message.key: return this._message;
+            case FindingLanguageBase.INSTANCE.Finding_code.key: return this._code;
             default: return super.getPropertyValueManager(property);
         }
     }

@@ -16,20 +16,20 @@ using global::System.Collections.Generic;
 using global::System.Diagnostics.CodeAnalysis;
 
 [LionCoreLanguage(Key = "FindingLanguage", Version = "0.1")]
-public partial class FindingLanguage : LanguageBase<IFindingFactory>
+public partial class FindingLanguageLanguage : LanguageBase<IFindingLanguageFactory>
 {
-	public static readonly FindingLanguage Instance = new Lazy<FindingLanguage>(() => new("FindingLanguage")).Value;
-	public FindingLanguage(string id) : base(id, LionWebVersions.v2023_1)
+	public static readonly FindingLanguageLanguage Instance = new Lazy<FindingLanguageLanguage>(() => new("FindingLanguage")).Value;
+	public FindingLanguageLanguage(string id) : base(id, LionWebVersions.v2023_1)
 	{
-		_finding = new(() => new AnnotationBase<FindingLanguage>("Finding", this) { Key = "Finding", Name = "Finding", AnnotatesLazy = new(() => _builtIns.Node), FeaturesLazy = new(() => [Finding_code, Finding_message, Finding_severity]) });
-		_finding_code = new(() => new PropertyBase<FindingLanguage>("Finding-code", Finding, this) { Key = "Finding-code", Name = "code", Optional = true, Type = _builtIns.Integer });
-		_finding_message = new(() => new PropertyBase<FindingLanguage>("Finding-message", Finding, this) { Key = "Finding-message", Name = "message", Optional = true, Type = _builtIns.String });
-		_finding_severity = new(() => new PropertyBase<FindingLanguage>("Finding-severity", Finding, this) { Key = "Finding-severity", Name = "severity", Optional = true, Type = Severity });
-		_severity = new(() => new EnumerationBase<FindingLanguage>("Severity", this) { Key = "Severity", Name = "Severity", LiteralsLazy = new(() => [Severity_error, Severity_info, Severity_warning]) });
-		_severity_error = new(() => new EnumerationLiteralBase<FindingLanguage>("Severity-error", Severity, this) { Key = "Severity-error", Name = "error" });
-		_severity_info = new(() => new EnumerationLiteralBase<FindingLanguage>("Severity-info", Severity, this) { Key = "Severity-info", Name = "info" });
-		_severity_warning = new(() => new EnumerationLiteralBase<FindingLanguage>("Severity-warning", Severity, this) { Key = "Severity-warning", Name = "warning" });
-		_factory = new FindingFactory(this);
+		_finding = new(() => new AnnotationBase<FindingLanguageLanguage>("Finding", this) { Key = "Finding", Name = "Finding", AnnotatesLazy = new(() => _builtIns.Node), FeaturesLazy = new(() => [Finding_code, Finding_message, Finding_severity]) });
+		_finding_code = new(() => new PropertyBase<FindingLanguageLanguage>("Finding-code", Finding, this) { Key = "Finding-code", Name = "code", Optional = true, Type = _builtIns.Integer });
+		_finding_message = new(() => new PropertyBase<FindingLanguageLanguage>("Finding-message", Finding, this) { Key = "Finding-message", Name = "message", Optional = true, Type = _builtIns.String });
+		_finding_severity = new(() => new PropertyBase<FindingLanguageLanguage>("Finding-severity", Finding, this) { Key = "Finding-severity", Name = "severity", Optional = true, Type = Severity });
+		_severity = new(() => new EnumerationBase<FindingLanguageLanguage>("Severity", this) { Key = "Severity", Name = "Severity", LiteralsLazy = new(() => [Severity_error, Severity_info, Severity_warning]) });
+		_severity_error = new(() => new EnumerationLiteralBase<FindingLanguageLanguage>("Severity-error", Severity, this) { Key = "Severity-error", Name = "error" });
+		_severity_info = new(() => new EnumerationLiteralBase<FindingLanguageLanguage>("Severity-info", Severity, this) { Key = "Severity-info", Name = "info" });
+		_severity_warning = new(() => new EnumerationLiteralBase<FindingLanguageLanguage>("Severity-warning", Severity, this) { Key = "Severity-warning", Name = "warning" });
+		_factory = new FindingLanguageFactory(this);
 	}
 
 	/// <inheritdoc/>
@@ -41,7 +41,7 @@ public partial class FindingLanguage : LanguageBase<IFindingFactory>
 	/// <inheritdoc/>
         public override string Key => _key;
 
-	private const string _name = "Finding";
+	private const string _name = "FindingLanguage";
 	/// <inheritdoc/>
         public override string Name => _name;
 
@@ -74,16 +74,16 @@ public partial class FindingLanguage : LanguageBase<IFindingFactory>
 	public EnumerationLiteral Severity_warning => _severity_warning.Value;
 }
 
-public partial interface IFindingFactory : INodeFactory
+public partial interface IFindingLanguageFactory : INodeFactory
 {
 	public Finding NewFinding(string id);
 	public Finding CreateFinding();
 }
 
-public class FindingFactory : AbstractBaseNodeFactory, IFindingFactory
+public class FindingLanguageFactory : AbstractBaseNodeFactory, IFindingLanguageFactory
 {
-	private readonly FindingLanguage _language;
-	public FindingFactory(FindingLanguage language) : base(language)
+	private readonly FindingLanguageLanguage _language;
+	public FindingLanguageFactory(FindingLanguageLanguage language) : base(language)
 	{
 		_language = language;
 	}
@@ -114,12 +114,12 @@ public class FindingFactory : AbstractBaseNodeFactory, IFindingFactory
 	public virtual Finding CreateFinding() => NewFinding(GetNewId());
 }
 
-[LionCoreMetaPointer(Language = typeof(FindingLanguage), Key = "Finding")]
+[LionCoreMetaPointer(Language = typeof(FindingLanguageLanguage), Key = "Finding")]
 public partial class Finding : AnnotationInstanceBase
 {
 	private int? _code = null;
 	/// <remarks>Optional Property</remarks>
-        [LionCoreMetaPointer(Language = typeof(FindingLanguage), Key = "Finding-code")]
+        [LionCoreMetaPointer(Language = typeof(FindingLanguageLanguage), Key = "Finding-code")]
 	[LionCoreFeature(Kind = LionCoreFeatureKind.Property, Optional = true, Multiple = false)]
 	public int? Code { get => _code; set => SetCode(value); }
 
@@ -141,13 +141,13 @@ public partial class Finding : AnnotationInstanceBase
 	/// <remarks>Optional Property</remarks>
         public Finding SetCode(int? value)
 	{
-		SetOptionalValueTypeProperty<int>(value, FindingLanguage.Instance.Finding_code, _code, SetCodeRaw);
+		SetOptionalValueTypeProperty<int>(value, FindingLanguageLanguage.Instance.Finding_code, _code, SetCodeRaw);
 		return this;
 	}
 
 	private string? _message = null;
 	/// <remarks>Optional Property</remarks>
-        [LionCoreMetaPointer(Language = typeof(FindingLanguage), Key = "Finding-message")]
+        [LionCoreMetaPointer(Language = typeof(FindingLanguageLanguage), Key = "Finding-message")]
 	[LionCoreFeature(Kind = LionCoreFeatureKind.Property, Optional = true, Multiple = false)]
 	public string? Message { get => _message; set => SetMessage(value); }
 
@@ -169,13 +169,13 @@ public partial class Finding : AnnotationInstanceBase
 	/// <remarks>Optional Property</remarks>
         public Finding SetMessage(string? value)
 	{
-		SetOptionalReferenceTypeProperty<string>(value, FindingLanguage.Instance.Finding_message, _message, SetMessageRaw);
+		SetOptionalReferenceTypeProperty<string>(value, FindingLanguageLanguage.Instance.Finding_message, _message, SetMessageRaw);
 		return this;
 	}
 
 	private Severity? _severity = null;
 	/// <remarks>Optional Property</remarks>
-        [LionCoreMetaPointer(Language = typeof(FindingLanguage), Key = "Finding-severity")]
+        [LionCoreMetaPointer(Language = typeof(FindingLanguageLanguage), Key = "Finding-severity")]
 	[LionCoreFeature(Kind = LionCoreFeatureKind.Property, Optional = true, Multiple = false)]
 	public Severity? Severity { get => _severity; set => SetSeverity(value); }
 
@@ -197,7 +197,7 @@ public partial class Finding : AnnotationInstanceBase
 	/// <remarks>Optional Property</remarks>
         public Finding SetSeverity(Severity? value)
 	{
-		SetOptionalValueTypeProperty<Severity>(value, FindingLanguage.Instance.Finding_severity, _severity, SetSeverityRaw);
+		SetOptionalValueTypeProperty<Severity>(value, FindingLanguageLanguage.Instance.Finding_severity, _severity, SetSeverityRaw);
 		return this;
 	}
 
@@ -206,25 +206,25 @@ public partial class Finding : AnnotationInstanceBase
 	}
 
 	/// <inheritdoc/>
-        public override Annotation GetAnnotation() => FindingLanguage.Instance.Finding;
+        public override Annotation GetAnnotation() => FindingLanguageLanguage.Instance.Finding;
 	/// <inheritdoc/>
         protected override bool GetInternal(Feature? feature, out object? result)
 	{
 		if (base.GetInternal(feature, out result))
 			return true;
-		if (FindingLanguage.Instance.Finding_code.EqualsIdentity(feature))
+		if (FindingLanguageLanguage.Instance.Finding_code.EqualsIdentity(feature))
 		{
 			result = Code;
 			return true;
 		}
 
-		if (FindingLanguage.Instance.Finding_message.EqualsIdentity(feature))
+		if (FindingLanguageLanguage.Instance.Finding_message.EqualsIdentity(feature))
 		{
 			result = Message;
 			return true;
 		}
 
-		if (FindingLanguage.Instance.Finding_severity.EqualsIdentity(feature))
+		if (FindingLanguageLanguage.Instance.Finding_severity.EqualsIdentity(feature))
 		{
 			result = Severity;
 			return true;
@@ -237,19 +237,19 @@ public partial class Finding : AnnotationInstanceBase
 	{
 		if (base.TryGetPropertyRaw(feature, out result))
 			return true;
-		if (FindingLanguage.Instance.Finding_code.EqualsIdentity(feature))
+		if (FindingLanguageLanguage.Instance.Finding_code.EqualsIdentity(feature))
 		{
 			result = _code;
 			return true;
 		}
 
-		if (FindingLanguage.Instance.Finding_message.EqualsIdentity(feature))
+		if (FindingLanguageLanguage.Instance.Finding_message.EqualsIdentity(feature))
 		{
 			result = _message;
 			return true;
 		}
 
-		if (FindingLanguage.Instance.Finding_severity.EqualsIdentity(feature))
+		if (FindingLanguageLanguage.Instance.Finding_severity.EqualsIdentity(feature))
 		{
 			result = _severity;
 			return true;
@@ -263,7 +263,7 @@ public partial class Finding : AnnotationInstanceBase
 	{
 		if (base.SetInternal(feature, value))
 			return true;
-		if (FindingLanguage.Instance.Finding_code.EqualsIdentity(feature))
+		if (FindingLanguageLanguage.Instance.Finding_code.EqualsIdentity(feature))
 		{
 			if (value is null or int)
 			{
@@ -274,7 +274,7 @@ public partial class Finding : AnnotationInstanceBase
 			throw new InvalidValueException(feature, value);
 		}
 
-		if (FindingLanguage.Instance.Finding_message.EqualsIdentity(feature))
+		if (FindingLanguageLanguage.Instance.Finding_message.EqualsIdentity(feature))
 		{
 			if (value is null or string)
 			{
@@ -285,7 +285,7 @@ public partial class Finding : AnnotationInstanceBase
 			throw new InvalidValueException(feature, value);
 		}
 
-		if (FindingLanguage.Instance.Finding_severity.EqualsIdentity(feature))
+		if (FindingLanguageLanguage.Instance.Finding_severity.EqualsIdentity(feature))
 		{
 			if (value is null or Languages.Severity)
 			{
@@ -303,11 +303,11 @@ public partial class Finding : AnnotationInstanceBase
 	{
 		if (base.SetPropertyRaw(feature, value))
 			return true;
-		if (FindingLanguage.Instance.Finding_code.EqualsIdentity(feature) && value is null or int)
+		if (FindingLanguageLanguage.Instance.Finding_code.EqualsIdentity(feature) && value is null or int)
 			return SetCodeRaw((int?)value);
-		if (FindingLanguage.Instance.Finding_message.EqualsIdentity(feature) && value is null or string)
+		if (FindingLanguageLanguage.Instance.Finding_message.EqualsIdentity(feature) && value is null or string)
 			return SetMessageRaw((string?)value);
-		if (FindingLanguage.Instance.Finding_severity.EqualsIdentity(feature) && value is null or Languages.Severity)
+		if (FindingLanguageLanguage.Instance.Finding_severity.EqualsIdentity(feature) && value is null or Languages.Severity)
 			return SetSeverityRaw((Languages.Severity?)value);
 		return false;
 	}
@@ -317,22 +317,22 @@ public partial class Finding : AnnotationInstanceBase
 	{
 		List<Feature> result = base.CollectAllSetFeatures().ToList();
 		if (TryGetCode(out _))
-			result.Add(FindingLanguage.Instance.Finding_code);
+			result.Add(FindingLanguageLanguage.Instance.Finding_code);
 		if (TryGetMessage(out _))
-			result.Add(FindingLanguage.Instance.Finding_message);
+			result.Add(FindingLanguageLanguage.Instance.Finding_message);
 		if (TryGetSeverity(out _))
-			result.Add(FindingLanguage.Instance.Finding_severity);
+			result.Add(FindingLanguageLanguage.Instance.Finding_severity);
 		return result;
 	}
 }
 
-[LionCoreMetaPointer(Language = typeof(FindingLanguage), Key = "Severity")]
+[LionCoreMetaPointer(Language = typeof(FindingLanguageLanguage), Key = "Severity")]
 public enum Severity
 {
-	[LionCoreMetaPointer(Language = typeof(FindingLanguage), Key = "Severity-error")]
+	[LionCoreMetaPointer(Language = typeof(FindingLanguageLanguage), Key = "Severity-error")]
 	error,
-	[LionCoreMetaPointer(Language = typeof(FindingLanguage), Key = "Severity-info")]
+	[LionCoreMetaPointer(Language = typeof(FindingLanguageLanguage), Key = "Severity-info")]
 	info,
-	[LionCoreMetaPointer(Language = typeof(FindingLanguage), Key = "Severity-warning")]
+	[LionCoreMetaPointer(Language = typeof(FindingLanguageLanguage), Key = "Severity-warning")]
 	warning
 }

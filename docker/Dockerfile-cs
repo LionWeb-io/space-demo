@@ -21,7 +21,7 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 COPY --from=build /src/chunks chunks/
-COPY docker/start-all.sh .
+COPY start-all.sh .
 RUN chmod +x start-all.sh
 
 CMD ["sh", "/app/start-all.sh"]
