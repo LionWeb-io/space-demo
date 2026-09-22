@@ -1,12 +1,13 @@
 # TypeScript implementation of space DSL
 
-Before running the commands below on a command-line, run:
+Before running any of the commands below, run the following on a command-line:
 
 ```shell
-$ npm install
+$ ./make.sh
 ```
 
-This (sub-)project contains six packages:
+
+This subproject contains six packages:
 
 * `build`: Takes care of generating required code into the `editor` package.
 
