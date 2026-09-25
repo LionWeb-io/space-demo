@@ -26,6 +26,11 @@ public class Repository
             ? int.Parse(args[0])
             : DEFAULT_WS_PORT;
 
+        // Use "+" to listen on all interfaces (e.g. inside a container)
+        var host = args.Length > 1 && !args[1].StartsWith("--")
+            ? args[1]
+            : DEFAULT_WS_SERVER;
+
         LionWebVersions lionWebVersion = LionWebVersions.v2023_1;
         List<Language> languages =
         [
@@ -38,9 +43,9 @@ public class Repository
             Languages = languages
         };
 
-        webSocketServer.StartServer(DEFAULT_WS_SERVER, port);
+        webSocketServer.StartServer(host, port);
 
-        Console.WriteLine($"WS listening at port {port}...");
+        Console.WriteLine($"WS listening at {host}:{port}...");
 
         var serverForest = new Forest();
 

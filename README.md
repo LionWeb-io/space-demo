@@ -15,3 +15,20 @@ The `chunks/` directory contains two serialization chunks:
 
 Both chunks are exported from MPS: see its respective [`README.md`](./mps/README.md).
 
+## Fast demo
+
+Buold containers and start:
+
+```bash
+./docker/build.sh
+./docker/start.sh
+```
+
+Then look at <http://localhost:1234>.
+See logs for containers also.
+
+To stop it all:
+
+```bash
+./docker/stop.sh
+```
