@@ -17,7 +17,7 @@ Both chunks are exported from MPS: see its respective [`README.md`](./mps/README
 
 ## Fast demo
 
-Buold containers and start:
+Build containers and start:
 
 ```bash
 ./docker/build.sh
