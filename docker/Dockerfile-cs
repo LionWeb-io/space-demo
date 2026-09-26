@@ -2,7 +2,6 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
-EXPOSE 40000
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
@@ -21,7 +20,7 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 COPY --from=build /src/chunks chunks/
-COPY start-all.sh .
+COPY docker/start-all.sh .
 RUN chmod +x start-all.sh
 
 CMD ["sh", "/app/start-all.sh"]
