@@ -27,14 +27,14 @@ services:
     networks:
       - space
   client1-react:
-    image: spacedsl-ts
+    image: spacedsl-react
     ports:
-      - 1234:1234
+      - 1234:80
     networks:
       - space
-  # client2-daga:
-  #   build: ../daga-client/Dockerfile
-  #   ports:
-  #     - 1235:80
-  #   networks:
-  #     - space
+  client2-daga:
+    image: spacedsl-daga
+    ports:
+      - 1235:80
+    networks:
+      - space

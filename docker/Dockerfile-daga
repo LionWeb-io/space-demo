@@ -12,7 +12,7 @@ RUN npm run generate
 WORKDIR /app/ts/packages/space-dsl
 RUN npm run build
 
-WORKDIR /app/ts/packages/react-client
+WORKDIR /app/ts/packages/daga-client
 RUN npm run build
 
-CMD ["npx", "http-server", "dist/", "--port", "1234"]
+CMD ["npx", "http-server", "dist/daga-client/browser/", "--port", "80"]
