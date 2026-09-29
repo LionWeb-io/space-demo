@@ -1,6 +1,12 @@
 #!/bin/sh
 # Build containers for the demo
 
-docker build -f Dockerfile-cs -t spacedsl-cs .
-docker build -f Dockerfile-ts -t spacedsl-ts .
-docker-compose -f compose.yaml build
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+echo "Building docker images" && \
+  cd $SCRIPT_DIR && \
+  docker build -f Dockerfile-cs    -t spacedsl-cs $PROJECT_ROOT && \
+  docker build -f Dockerfile-react -t spacedsl-react $PROJECT_ROOT && \
+  docker build -f Dockerfile-daga  -t spacedsl-daga $PROJECT_ROOT && \
+  docker-compose -f compose.yaml build

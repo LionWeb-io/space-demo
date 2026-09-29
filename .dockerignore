@@ -1,3 +1,5 @@
-node_modules/
-bin/
-obj/
+**/node_modules/
+**/bin/
+**/obj/
+**/dist/
+**/.parcel-cache/

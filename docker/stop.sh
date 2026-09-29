@@ -1,4 +1,6 @@
 #!/bin/sh
 # Stop containers for the demo
 
-docker-compose -f compose.yaml down
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+docker-compose -f $SCRIPT_DIR/compose.yaml down

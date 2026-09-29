@@ -14,7 +14,7 @@ Run the images with:
 ./start.sh
 ```
 
-Server is available at <http://localhost:40000>
+Repository is available at <http://localhost:40000>, and through the nginx proxy at <http://localhost:40001>
 
 Clients available at:
 

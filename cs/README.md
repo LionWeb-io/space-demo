@@ -26,7 +26,7 @@ Run in this exact order:
 
 1. in `SpaceDemo.Repository`:
   ```shell
-  $ dotnet run [port; default=40000]
+  $ dotnet run [port; default=40000] [host; default=localhost, use + for all interfaces]
   ```
   This starts the _empty_ repository – with ID "`myRepo`" – on the specified port.
 
