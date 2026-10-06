@@ -5,7 +5,7 @@ pglite_process=$!
 
 sleep 2
 
-npx @lionweb/server-server@0.4.2-beta.1 --run --config server-config-pglite.json &
+npx @lionweb/server-server@0.4.2-beta.3 --run --config server-config-pglite.json &
 lwServer_process=$!
 
 wait $pglite_process $lwServer_process
