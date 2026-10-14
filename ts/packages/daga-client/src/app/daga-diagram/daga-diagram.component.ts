@@ -60,7 +60,7 @@ export class DagaDiagramComponent implements AfterViewInit, OnDestroy {
       console.log(`creating client`);
       LionWebClient.create({
         repositoryId,
-        clientId: 'TS-client-1',
+        clientId: `Daga-client-${Math.round(100*Math.random())}`,
         url: 'ws://localhost:40000',
         languageBases: allLanguageBases,
         lowLevelClientInstantiator: (lowLevelClientParameters) =>

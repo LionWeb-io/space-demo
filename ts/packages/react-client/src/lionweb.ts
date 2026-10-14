@@ -30,7 +30,7 @@ export const initializeLionWeb = () => {
 
     console.log(`creating client`)
     LionWebClient.create({
-        clientId: "TS-client-1",
+        clientId: `React-client-${Math.round(100*Math.random())}`,
         url: "ws://localhost:40000",
         repositoryId: "myRepo",
         languageBases: allLanguageBases,
